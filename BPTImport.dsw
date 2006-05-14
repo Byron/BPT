@@ -1,0 +1,52 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "BPTImport"=".\BPTImport.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/BPTImport", BAAAAAAA
+    .
+    end source code control
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name Byronimo
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "Byronimo"=".\Byronimo\Byronimo.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/BPTImport", BAAAAAAA
+    .\ 
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+
