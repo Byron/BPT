@@ -12,10 +12,11 @@
 
 // IOStream includes - ist absolut nötig
 //
-#include <iostream>
-using std::cout;
-using std::endl;
-
+#ifndef REQUIRE_IOSTREAM
+	#include <iostream>
+	using std::cout;
+	using std::endl;
+#endif
 
 // PRAGMA DISABLES
 // ----------------

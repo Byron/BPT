@@ -80,8 +80,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="./compileFiles/$(ConfigurationName)"
-			IntermediateDirectory="./compileFiles/$(ConfigurationName)"
+			OutputDirectory="$(B_TMP_PATH)/$(ProjectName)/$(ConfigurationName)"
+			IntermediateDirectory="$(B_TMP_PATH)/$(ProjectName)/$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -89,14 +89,16 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_USRDLL;ALPHA"
+				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\7.0\include&quot;;.\;&quot;$(B_SDK_BYRONIMO)\include&quot;;&quot;$(B_SDK_BYRONIMO)\source&quot;;&quot;$(B_SDK_FREETYPE)\include\&quot;"
+				PreprocessorDefinitions="_DEBUG;NT_PLUGIN;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_USRDLL;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="1"
-				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\compilefiles\PrecompiledHeaders\$(ConfigurationName).PCH"
-				AssemblerListingLocation=".\compileFiles\$(ConfigurationName)\"
-				ObjectFile=".\compileFiles\$(ConfigurationName)\"
-				ProgramDataBaseFileName=".\compileFiles\$(ConfigurationName)\"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile="$(OutDir)\$(ProjectName).PCH"
+				AssemblerOutput="4"
+				AssemblerListingLocation="$(OutDir)\"
+				ObjectFile="$(OutDir)\"
+				ProgramDataBaseFileName="$(OutDir)\"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"/>
@@ -104,13 +106,15 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				IgnoreImportLibrary="TRUE"
-				OutputFile="Debug/Byronimo.dll"
-				LinkIncremental="1"
+				IgnoreImportLibrary="FALSE"
+				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib"
+				OutputFile="$(B_DEBUG_OUTPATH)\ByronsPolyTools.mll"
+				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\7.0\lib&quot;"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\compileFiles\ProgramDataBaser\$(ConfigurationName).pdb"
-				ImportLibrary=".\Debug/Byronimo.lib"
+				ProgramDatabaseFile="$(OutDir)\$(ProjectName).pdb"
+				ImportLibrary=""
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -1359,7 +1363,7 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
 			<File
-				RelativePath=".\MACROS.cpp">
+				RelativePath=".\source\MACROS.cpp">
 			</File>
 			<Filter
 				Name="Nodes"
@@ -1387,7 +1391,7 @@
 				Name="Tools"
 				Filter="">
 				<File
-					RelativePath="interactiveValueTweakTool.cpp">
+					RelativePath=".\source\interactiveValueTweakTool.cpp">
 					<FileConfiguration
 						Name="Release_5_DEBUG|Win32">
 						<Tool
@@ -1401,7 +1405,6 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"
-							PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -1536,16 +1539,16 @@
 					Name="STT"
 					Filter="">
 					<File
-						RelativePath=".\softTransformationToolCmd.cpp">
+						RelativePath=".\source\softTransformationToolCmd.cpp">
 					</File>
 					<File
-						RelativePath=".\softTransformationToolContext.cpp">
+						RelativePath=".\source\softTransformationToolContext.cpp">
 					</File>
 					<File
-						RelativePath=".\softTransformationToolContextCmd.cpp">
+						RelativePath=".\source\softTransformationToolContextCmd.cpp">
 					</File>
 					<File
-						RelativePath=".\softTransformationToolMoveM.cpp">
+						RelativePath=".\source\softTransformationToolMoveM.cpp">
 					</File>
 				</Filter>
 			</Filter>
@@ -1556,7 +1559,7 @@
 					Name="Bevel"
 					Filter="cpp">
 					<File
-						RelativePath="edge.cpp">
+						RelativePath=".\source\edge.cpp">
 						<FileConfiguration
 							Name="Release_5_DEBUG|Win32">
 							<Tool
@@ -1570,7 +1573,6 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"
-								PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1700,7 +1702,7 @@
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="edgeFaceData.cpp">
+						RelativePath=".\source\edgeFaceData.cpp">
 						<FileConfiguration
 							Name="Release_5_DEBUG|Win32">
 							<Tool
@@ -1714,7 +1716,6 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"
-								PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1844,7 +1845,7 @@
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="endFaceData.cpp">
+						RelativePath=".\source\endFaceData.cpp">
 						<FileConfiguration
 							Name="Release_5_DEBUG|Win32">
 							<Tool
@@ -1858,7 +1859,6 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"
-								PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1988,7 +1988,7 @@
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="nSelEdge.cpp">
+						RelativePath=".\source\nSelEdge.cpp">
 						<FileConfiguration
 							Name="Release_5_DEBUG|Win32">
 							<Tool
@@ -2002,7 +2002,6 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"
-								PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2132,7 +2131,7 @@
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="nSelEdgeData.cpp">
+						RelativePath=".\source\nSelEdgeData.cpp">
 						<FileConfiguration
 							Name="Release_5_DEBUG|Win32">
 							<Tool
@@ -2146,7 +2145,6 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"
-								PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2276,7 +2274,7 @@
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="selEdge.cpp">
+						RelativePath=".\source\selEdge.cpp">
 						<FileConfiguration
 							Name="Release_5_DEBUG|Win32">
 							<Tool
@@ -2290,7 +2288,6 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"
-								PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2424,7 +2421,7 @@
 					Name="Split"
 					Filter="cpp">
 					<File
-						RelativePath="face.cpp">
+						RelativePath=".\source\face.cpp">
 						<FileConfiguration
 							Name="Release_5_DEBUG|Win32">
 							<Tool
@@ -2438,7 +2435,6 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"
-								PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2573,7 +2569,7 @@
 				Name="Factory"
 				Filter="">
 				<File
-					RelativePath="IVfty.cpp">
+					RelativePath=".\source\IVfty.cpp">
 					<FileConfiguration
 						Name="Release_5_DEBUG|Win32">
 						<Tool
@@ -2587,7 +2583,6 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"
-							PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -2717,7 +2712,7 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="vertexFty.cpp">
+					RelativePath=".\source\vertexFty.cpp">
 					<FileConfiguration
 						Name="Release_5_DEBUG|Win32">
 						<Tool
@@ -2731,7 +2726,6 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"
-							PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -2864,7 +2858,7 @@
 					Name="BPTfty"
 					Filter="">
 					<File
-						RelativePath="BPT_SMC.cpp">
+						RelativePath=".\source\BPT_SMC.cpp">
 						<FileConfiguration
 							Name="Release_5_DEBUG|Win32"
 							ExcludedFromBuild="TRUE">
@@ -2875,11 +2869,11 @@
 								PreprocessorDefinitions="DEBUG;NT_PLUGIN;TIMER;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
 						</FileConfiguration>
 						<FileConfiguration
-							Name="Debug|Win32">
+							Name="Debug|Win32"
+							ExcludedFromBuild="TRUE">
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"
-								PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -3026,7 +3020,7 @@
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="BPTfty.cpp">
+						RelativePath=".\source\BPTfty.cpp">
 						<FileConfiguration
 							Name="Release_5_DEBUG|Win32">
 							<Tool
@@ -3040,7 +3034,6 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"
-								PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -3170,7 +3163,7 @@
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="BPTfty_NH.cpp">
+						RelativePath=".\source\BPTfty_NH.cpp">
 						<FileConfiguration
 							Name="Release_5_DEBUG|Win32">
 							<Tool
@@ -3184,7 +3177,6 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"
-								PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -3314,7 +3306,7 @@
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="BPTftyAction.cpp">
+						RelativePath=".\source\BPTftyAction.cpp">
 						<FileConfiguration
 							Name="Release_5_DEBUG|Win32">
 							<Tool
@@ -3328,7 +3320,6 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"
-								PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -3463,7 +3454,7 @@
 				Name="Commands"
 				Filter="">
 				<File
-					RelativePath="ByronsPolyToolsAction.cpp">
+					RelativePath=".\source\ByronsPolyToolsAction.cpp">
 					<FileConfiguration
 						Name="Release_5_DEBUG|Win32">
 						<Tool
@@ -3477,7 +3468,6 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"
-							PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -3607,7 +3597,7 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="ByronsPolyToolsInit.cpp">
+					RelativePath=".\source\ByronsPolyToolsInit.cpp">
 					<FileConfiguration
 						Name="Release_5_DEBUG|Win32">
 						<Tool
@@ -3621,7 +3611,6 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"
-							PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -3755,7 +3744,7 @@
 				Name="Creators"
 				Filter="">
 				<File
-					RelativePath="edgeMeshCreator.cpp">
+					RelativePath=".\source\edgeMeshCreator.cpp">
 					<FileConfiguration
 						Name="Release_5_DEBUG|Win32">
 						<Tool
@@ -3769,7 +3758,6 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"
-							PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -3899,7 +3887,7 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="IVMeshCreator.cpp">
+					RelativePath=".\source\IVMeshCreator.cpp">
 					<FileConfiguration
 						Name="Release_5_DEBUG|Win32">
 						<Tool
@@ -3913,7 +3901,6 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"
-							PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -4043,7 +4030,7 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="meshCreator.cpp">
+					RelativePath=".\source\meshCreator.cpp">
 					<FileConfiguration
 						Name="Release_5_DEBUG|Win32">
 						<Tool
@@ -4057,7 +4044,6 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"
-							PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -4191,7 +4177,7 @@
 				Name="Helpers"
 				Filter="">
 				<File
-					RelativePath="componentConverter.cpp">
+					RelativePath=".\source\componentConverter.cpp">
 					<FileConfiguration
 						Name="Release_5_DEBUG|Win32">
 						<Tool
@@ -4205,7 +4191,6 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"
-							PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -4335,7 +4320,7 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="dData.cpp">
+					RelativePath=".\source\dData.cpp">
 					<FileConfiguration
 						Name="Release_5_DEBUG|Win32">
 						<Tool
@@ -4349,7 +4334,6 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"
-							PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -4482,7 +4466,7 @@
 					Name="LinkedList"
 					Filter="">
 					<File
-						RelativePath="baseNode.cpp">
+						RelativePath=".\source\baseNode.cpp">
 						<FileConfiguration
 							Name="Release_5_DEBUG|Win32">
 							<Tool
@@ -4496,7 +4480,6 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"
-								PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -4626,7 +4609,7 @@
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="linkedNode.cpp">
+						RelativePath=".\source\linkedNode.cpp">
 						<FileConfiguration
 							Name="Release_5_DEBUG|Win32">
 							<Tool
@@ -4640,7 +4623,6 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"
-								PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -4770,7 +4752,7 @@
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="simpleLinkedList.cpp">
+						RelativePath=".\source\simpleLinkedList.cpp">
 						<FileConfiguration
 							Name="Release_5_DEBUG|Win32">
 							<Tool
@@ -4784,7 +4766,6 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"
-								PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -4919,7 +4900,7 @@
 				Name="PolyModifier"
 				Filter="">
 				<File
-					RelativePath="polyModifierCmd.cpp">
+					RelativePath=".\source\polyModifierCmd.cpp">
 					<FileConfiguration
 						Name="Release_5_DEBUG|Win32">
 						<Tool
@@ -4933,7 +4914,6 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"
-							PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -5063,7 +5043,7 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="polyModifierFty.cpp">
+					RelativePath=".\source\polyModifierFty.cpp">
 					<FileConfiguration
 						Name="Release_5_DEBUG|Win32">
 						<Tool
@@ -5077,7 +5057,6 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"
-							PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -5207,7 +5186,7 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="polyModifierNode.cpp">
+					RelativePath=".\source\polyModifierNode.cpp">
 					<FileConfiguration
 						Name="Release_5_DEBUG|Win32">
 						<Tool
@@ -5221,7 +5200,6 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"
-							PreprocessorDefinitions="_DEBUG;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
