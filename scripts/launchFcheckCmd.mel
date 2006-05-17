@@ -1,0 +1,205 @@
+// Copyright (C) 1997-2004 Alias Systems Corp.
+// 
+// The information in this file is provided for the exclusive use of the
+// licensees of Alias.  Such users have the right to use, modify,
+// and incorporate this code into other products for purposes authorized
+// by the Alias license agreement, without fee.
+// 
+// ALIAS DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE,
+// INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO
+// EVENT SHALL ALIAS BE LIABLE FOR ANY SPECIAL, INDIRECT OR
+// CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE,
+// DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+// TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+// PERFORMANCE OF THIS SOFTWARE.
+
+
+
+global proc launchFcheckCmd( string $fileName, int $sequence )
+//Description
+// This procedure starts fcheck to view an image or a sequence
+// $fileName is the absolute path to an image
+// $sequence = 0 is an image
+// $sequence = 1 is a sequence
+{
+	
+	//initialize variables in case this is a sequence
+	//these 3 are required by fcheck
+	int $startFrame, $endFrame, $by;
+	string $os = `about -operatingSystem`;
+	//determine os as the system calls will vary
+	string $searchCmd;//command generated to search for files in a sequence
+	int $numFileNameComponents;//number of pieces to the file name (2 or 3)
+	int $numericComponent;//piece of the file name being accessed
+	string $fileNameBuffer[];//break the file name into pieces
+	string $filePathBuffer[];//break the file path into pieces
+	string $fcheckCmd = "fcheck ";//command to launch fcheck
+	string $filePath = "";//path to file
+	
+	if ($os != "nt"){
+		$filePath = "/";
+	}
+	
+	//determine if this is meant to be a sequence
+	if ($sequence == 1){
+		//fcheck on mac doesn't like the @ in the file name so we store a copy of the original fileName
+		string $fileNameMac = $fileName;
+		//determine range
+		//break the fileName into pieces to find the numeric component
+		//first by slashes and then by periods
+		$numFilePathComponents = `tokenize $fileName "//" $filePathBuffer`;
+		$numFileNameComponents = `tokenize $filePathBuffer[$numFilePathComponents-1] "." $fileNameBuffer`;
+		
+		if ($numFileNameComponents > 3){
+			warning "launchFcheckCmd: problem with path";
+		}
+		
+		int $i = 0;
+		$numericComponent = -1;
+		int $fileNumberTest[];//convert the string to an int and see if it is still a number
+		string $upper, $lower;
+		for ($fileNameComponent in $fileNameBuffer){
+		   // A preliminary check to see if the string is a number or not.
+		   $lower = tolower($fileNameComponent);
+		   $upper = toupper($fileNameComponent);
+		   if ($lower == $upper){  // Will be true only for a number.
+			$fileNumberTest[$i] = $fileNameComponent;
+		   }
+			//making an assumption that the number component of the file name is not 0
+			if ($fileNumberTest[$i] != 0){
+				$numericComponent = $i;
+			}
+			$i++;
+		}
+		
+		//make sure we found the numeric component
+		if ($numericComponent == -1){
+			if ($numFileNameComponents == 2){
+				error "Unknown file naming convention - cannot launch fcheck.";
+			} else {
+				int $compare = `strcmp $fileNameBuffer[1] $fileNameBuffer[2]`;
+				if ($compare == -1){
+					$numericComponent = 1;
+				} else {
+					$numericComponent = 2;
+				}
+			}
+		}
+		
+		//reassemble the filePath
+		int $assembleFilePathCounter = 0;
+		for (;$assembleFilePathCounter < ($numFilePathComponents-1);$assembleFilePathCounter++){
+			$filePath = ($filePath + $filePathBuffer[$assembleFilePathCounter] + "/");
+		}
+				
+		//reassemble fileName with @ to replace the numericComponent
+		//fcheck requires this to load a sequence, only WIL - not mac
+		$fileName = ($filePath + $fileNameBuffer[0] + ".");
+
+		int $paddingSize = `size $fileNameBuffer[$numericComponent]`;
+		string $paddingWildcard;
+		int $k;
+		for ($k = 0; $k < $paddingSize; $k++){
+			$paddingWildcard += "@";
+		}
+
+		
+		if ($numericComponent == 1){
+			$fileName = ($fileName + $paddingWildcard);
+		} else {
+			$fileName = ($fileName + $fileNameBuffer[1]);
+		}
+		
+		if ($numFileNameComponents == 3){
+			if ($numericComponent == 2){
+				$fileName = ($fileName + "." + $paddingWildcard);
+			} else {
+				$fileName = ($fileName + "." + $fileNameBuffer[2]);
+			}
+		}
+		
+		//now get the frame range to the end
+		//first do a substitution to find all images in the sequence
+		//string $fileNameForRange = `substitute "@" $fileName "*"`;
+		string $fileNameForRange = `substitute $paddingWildcard $fileName "*"`;
+
+		//reassemble the path to search for the sequence
+		string $pathBuffer[];
+		int $numPath = `tokenize $fileNameForRange "//" $pathBuffer`;
+		$filePath = "";
+		if ($os != "nt"){
+			//os other than nt starts the path to a file with a /
+			$filePath = "/";
+		}
+		int $j;
+		for ($j = 0; $j < ($numPath - 1) ; $j++){
+			if ($os == "nt"){
+				//nt requires \ in the path
+				$filePath = ($filePath + $pathBuffer[$j] + "\\");
+			} else {
+				//unix prefers /
+				$filePath = ($filePath + $pathBuffer[$j] + "/");
+			}
+		}
+		
+		//set the file to search for
+		string $file;//file to search for to determine how many images are in the sequence
+		
+		$file = ($file + $pathBuffer[$numPath-1]);
+
+		string $strTemp, $searchBuffer[], $strBuffer1[];
+		int $nTemp, $nEndFrameInitialized = 0;
+		
+		// get the file list in $filepath with $file as filter
+		$searchBuffer = `getFileList -folder $filePath -filespec $file`;
+		
+		for ($strTemp in $searchBuffer)
+		{
+			tokenize $strTemp "." $strBuffer1;
+			if (size ($strBuffer1) == $numFileNameComponents)
+			{
+				$nTemp = $strBuffer1[$numericComponent];
+				if ($nTemp > $endFrame || $nEndFrameInitialized == 0)
+				{
+					$endFrame = $nTemp;
+					$nEndFrameInitialized = 1;
+				}
+			}
+		}
+		
+		//startFrame is the frame the user selected
+		$startFrame = $fileNameBuffer[$numericComponent];
+		//assume by value of 1
+		$by = 1;
+
+		//determine time units as this is likely the speed that the user
+		//will want fcheck to playback at
+		string $time = `currentUnit -query -time`;
+		if ($time != "ntsc" && $time != "pal"){
+			$time = "film";
+		}
+		
+		//assemble fcheck command for the sequence
+		$fcheckCmd += ("-n " + $startFrame + " ");
+		$fcheckCmd += ($endFrame + " " + $by + " -r " + $time + " ");
+		if ($os == "mac"){
+			$fcheckCmd += ("\"" + $fileNameMac + "\"");
+		} else {
+			$fcheckCmd += ("\"" + $fileName + "\"");
+		}
+
+	}
+	
+	if ($sequence == 0){
+		//start fcheck for a single image
+		
+		$fcheckCmd += "\"" + $fileName + "\"";
+		
+	}
+
+	//launch fcheck
+	evalEcho ($fcheckCmd);
+	
+}
+
+

@@ -1,0 +1,865 @@
+// Copyright (C) 1997-2004 Alias Systems Corp.
+// 
+// The information in this file is provided for the exclusive use of the
+// licensees of Alias.  Such users have the right to use, modify,
+// and incorporate this code into other products for purposes authorized
+// by the Alias license agreement, without fee.
+// 
+// ALIAS DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE,
+// INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO
+// EVENT SHALL ALIAS BE LIABLE FOR ANY SPECIAL, INDIRECT OR
+// CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE,
+// DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+// TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+// PERFORMANCE OF THIS SOFTWARE.
+
+// Alias|Wavefront Script File
+// MODIFY THIS AT YOUR OWN RISK
+//
+// Creation Date:  Nov 17 1996
+//
+//  Procedure Name:
+//      FileMenu
+//
+//  Description:
+//		This procedure creates the main menubar File menu.
+//
+//  Input Arguments:
+//      None
+//
+//  Return Value:
+//      None.
+//
+//
+// ------------------------------
+//  CHANGES BY SEBASTIAN THIEL
+// ------------------------------
+//  NOTE: 	Every change has been marked with "C_ST" - just search for it to find them all.
+// 		Former code has not been deleted, but only disabled.
+//
+//
+//		#	Scripted Incremental Save disabled and replaced by API version
+//		
+//		#	Removed Optionbox from Save Menu Item
+//		
+//		#	Added general backup interface which allow easy creation of autobackups, incremental saves
+// 			and SaveSteps, as well as quick restoration
+//		
+
+
+global proc forceSavePreferences()
+// Removed for Maya 3.0 but could still be on people's shelves
+{
+	warning ("The procedure forceSavePreferences is obsolete and is no longer supported.");
+}
+
+global proc FileMenu_SaveItem()
+//
+// If the current file is named, save it.  If it
+// is still untitled, then bring up the Save As
+// dialog.
+//
+{
+	string $sceneName = `file -q -sceneName`;
+
+	// Get the name of the scene File.
+	if ( size($sceneName) == 0 ) {
+		// Then the name can't be set.
+		projectViewer SaveAs;
+	// bug fix 89970 file save
+	} else if ((`file -q -amf`) || (`file -q -ex` == 0)) {
+		/* C_ST
+		int $incrementalSave = false;
+		if(`optionVar -exists isIncrementalSaveEnabled`)
+			$incrementalSave = `optionVar -q isIncrementalSaveEnabled`;
+		if ( $incrementalSave ) {
+			// Save the scene using the Incremental Save feature.
+			//
+			incrementalSaveScene;
+		} else {
+		*/
+			string $cmd = "file -save";
+			evalEcho($cmd);
+		//}
+	} else {
+		warning ("No changes to save.");
+	}
+}
+
+
+global proc buildRecentProjectsMenu()
+{
+	string $RecentProjectsList[];
+	string $localList[];
+	int $i;
+	int $nNumItems;
+	int $nNumItemsToBeRemoved;
+	int $RecentProjectsMaxSize;
+
+	if (!`optionVar -exists "RecentProjectsList"`) return;
+
+	// get the list
+	$RecentProjectsList = `optionVar -query "RecentProjectsList"`;
+	$nNumItems = size($RecentProjectsList);
+	$RecentProjectsMaxSize = `optionVar -query "RecentProjectsMaxSize"`;
+
+	// check if there are too many items in the list
+	if ($RecentProjectsMaxSize < $nNumItems)
+	{
+		//if so, truncate the list
+		$nNumItemsToBeRemoved = $nNumItems - $RecentProjectsMaxSize;
+
+		//Begin removing items from the head of the array (least recent project in the list)
+		for ($i = 0; $i < $nNumItemsToBeRemoved; $i++)
+		{
+			optionVar -removeFromArray "RecentProjectsList" 0;
+		}
+		$RecentProjectsList = `optionVar -query "RecentProjectsList"`;
+		$nNumItems = size($RecentProjectsList);
+	}
+
+	// first, check if we are the same.
+	$localList = `menu -query -itemArray FileMenuRecentProjectItems`;
+	if ($nNumItems == size($localList))
+	{
+		for ($i = 0; $i < $nNumItems; $i++)
+		{
+			string $label = `menuItem -query -label $localList[$i]`;
+			if ($label != toNativePath($RecentProjectsList[$nNumItems-$i-1]))
+				break;
+		}
+		if ($i == $nNumItems) return;
+	}
+
+	// we are not the same, so start over.
+	menu -edit -deleteAllItems  FileMenuRecentProjectItems;
+	setParent -menu FileMenuRecentProjectItems;
+	for ($i = 0; $i < $nNumItems; $i++)
+	{
+		string $cmd = "setProject \"" + $RecentProjectsList[$nNumItems-$i-1] + "\"";
+		string $label = toNativePath($RecentProjectsList[$nNumItems-$i-1]);
+		menuItem -label $label -command $cmd;
+	}
+}
+
+global proc openRecentFile( string $file, string $fileType )
+{
+	global string $gv_operationMode; 
+	$gv_operationMode = "Open";
+	pv_performAction($file, $fileType); 
+	checkForUnknownNodes();
+}
+
+global proc  buildRecentFileMenu()
+{
+	string $RecentFilesList[];
+	string $RecentFilesTypeList[];
+	string $localList[];
+	int $i;
+	int $nNumItems;
+	int $nNumItemsToBeRemoved;
+	int $RecentFilesMaxSize;
+
+	if (!`optionVar -exists "RecentFilesList"`) return;
+
+	// get the list
+	$RecentFilesList = `optionVar -query "RecentFilesList"`;
+	$nNumItems = size($RecentFilesList);
+	$RecentFilesMaxSize = `optionVar -query "RecentFilesMaxSize"`;
+
+	// check if there are too many items in the list
+	if ($RecentFilesMaxSize < $nNumItems)
+	{
+		//if so, truncate the list
+		$nNumItemsToBeRemoved = $nNumItems - $RecentFilesMaxSize;
+
+		//Begin removing items from the head of the array (least recent file in the list)
+		for ($i = 0; $i < $nNumItemsToBeRemoved; $i++)
+		{
+			optionVar -removeFromArray "RecentFilesList" 0;
+		}
+		$RecentFilesList = `optionVar -query "RecentFilesList"`;
+		$nNumItems = size($RecentFilesList);
+	}
+
+	// The RecentFilesTypeList optionVar may not exist since it was
+	// added after the RecentFilesList optionVar. If it doesn't exist,
+	// we create it and initialize it with a guest at the file type
+	if ($nNumItems > 0 )
+	{
+		if ( !`optionVar -exists "RecentFilesTypeList"`)
+		{
+			initRecentFilesTypeList( $RecentFilesList );
+		}
+		$RecentFilesTypeList = `optionVar -query "RecentFilesTypeList"`;
+	}
+		
+
+	// first, check if we are the same.
+	$localList = `menu -query -itemArray FileMenuRecentFileItems`;
+	if ($nNumItems == size($localList))
+	{
+		for ($i = 0; $i < $nNumItems; $i++)
+		{
+			string $label = `menuItem -query -label $localList[$i]`;
+			if ($label != toNativePath($RecentFilesList[$nNumItems-$i-1]))
+				break;
+		}
+		if ($i == $nNumItems) return;
+	}
+
+	// we are not the same, so start over.
+	menu -edit -deleteAllItems  FileMenuRecentFileItems;
+	setParent -menu FileMenuRecentFileItems;
+	for ($i = 0; $i < $nNumItems; $i++)
+	{
+		string $cmd = ( "openRecentFile(\"" + $RecentFilesList[$nNumItems-$i-1] + "\", " +
+						"\"" + $RecentFilesTypeList[$nNumItems-$i-1] + "\")" );
+
+		string $label = toNativePath($RecentFilesList[$nNumItems-$i-1]);
+		menuItem -label $label -command $cmd;
+	}
+}
+
+/* C_ST
+//
+//  Procedure Name:
+//		buildIncrementalSaveMenu
+//
+//  Description:
+//      Build the sub menu in the file menu that lists the recent incremental
+//		backups that exist for the current scene
+//
+//  Input Arguments:
+//	None.
+//
+//  Return Value:
+//	None.
+//
+global proc buildIncrementalSaveMenu() 
+{
+	string $scenePath = `file -q -sceneName`;
+
+	if ( size( $scenePath ) == 0 ) return; 
+
+	string $pathInfo[] = incrementalSaveProcessPath( $scenePath );
+	string $scenePath = $pathInfo[0];
+	string $sceneExtension = $pathInfo[2];
+	string $sceneNamePrefix = $pathInfo[3];
+	string $incrementDirName = $pathInfo[5] + "/";
+
+	string $incrementDirPath = $scenePath + $incrementDirName;
+
+	// Get a list of all files in the backup directory
+	//
+	string $existingIncrements[] = `getFileList 
+		-folder $incrementDirPath 
+		-filespec ($sceneNamePrefix + ".*" + $sceneExtension)`;
+
+	// Make sure that they are sorted
+	//
+	$existingIncrements = sort( $existingIncrements );
+
+	int $numIncrementals = `optionVar -q "RecentBackupsMaxSize"`;
+
+	// Build the menu
+	//
+	int $last = size( $existingIncrements );
+	int $first = max( 0, $last - $numIncrementals );
+	menu -e -deleteAllItems FileMenuRecentBackupItems;
+	setParent -menu FileMenuRecentBackupItems;
+	for ( $i = $first; $i < $last; $i++ ) {
+		string $cmd = "file -f -open \"" + $incrementDirPath + $existingIncrements[$i] + "\"";
+		string $sceneName = `match "[^/]+$" $existingIncrements[$i]`;
+		menuItem -l $sceneName -c $cmd;
+	}
+}
+
+*/
+
+/* C_ST
+//
+//  Procedure Name:
+//		hasIncrementalSaves
+//
+//  Description:
+//      Returns true if the current file has some automatic backups
+//
+//  Input Arguments:
+//		None.
+//
+//  Return Value:
+//		None.
+//
+global proc int hasIncrementalSaves() 
+{
+	int $result = 0;
+
+	string $scenePath = `file -q -sceneName`;
+
+	if ( size( $scenePath ) > 0 ) { 
+		string $pathInfo[] = incrementalSaveProcessPath( $scenePath );
+		string $scenePath = $pathInfo[0];
+		string $sceneExtension = $pathInfo[2];
+		string $sceneNamePrefix = $pathInfo[3];
+		string $incrementDirName = $pathInfo[5] + "/";
+		
+		string $incrementDirPath = $scenePath + $incrementDirName;
+
+		// Get a list of all files in the backup directory
+		//
+		string $existingIncrements[] = `getFileList 
+			-folder $incrementDirPath 
+			-filespec ($sceneNamePrefix + ".*" + $sceneExtension)`;
+
+		$result = ( size( $existingIncrements ) > 0 );
+	}
+
+	return $result;
+}
+
+*/
+
+//
+//  Procedure Name:
+//		checkMainFileMenu
+//
+//  Description:
+//      Disables or enables the recent files, backups, and projects
+//		menus depending on whether they have contents.
+//
+//  Input Arguments:
+//		None.
+//
+//  Return Value:
+//		None.
+//
+global proc checkMainFileMenu()
+{
+
+	int $enable = false;
+	if (`optionVar -exists "RecentFilesList"`)
+	{
+		if (`optionVar -arraySize "RecentFilesList"` > 0) $enable = 1;		
+	}
+	menuItem -e -enable $enable FileMenuRecentFileItems;
+	
+	/* C_ST
+	$enable = hasIncrementalSaves();
+	menuItem -e -enable $enable FileMenuRecentBackupItems;
+	*/	
+
+	$enable = false;
+	if (`optionVar -exists "RecentProjectsList"`)
+	{
+		if (`optionVar -arraySize "RecentProjectsList"` > 0) {
+			$enable = true;		
+		}
+	}
+	menuItem -e -enable $enable FileMenuRecentProjectItems;
+
+
+	/*C_ST: 	Lets check wheter we want to show the backup submenu entries for the incremental save and autobackup
+			They will be unmanaged if the respective function is disabled and if there are no backup files to show.
+			
+			Since everything depends on the plugin, every menuitem using the command has to makeSure the plugin 
+			is loaded.
+
+			NOTE: Since the the plugin will not be loaded at the script interpretation time, BGlobals will not 
+			be known to the system, and will cause errors even if the plugin is loaded at execution time.
+			This is why every BGlobal command has to be put into an eval statement to be interpreted correctly.
+	*/
+	if( `pluginInfo -q -l "ByronsPolyTools"`)
+	{
+
+		// Make sure we are not in preview mode anymore - since we cannot get a callback like "subMenuClosed", we 
+ 		// just can try to execute this check as often as possible
+		//
+		if( `eval("BGlobals -q -pm")` ) 
+			eval("BGlobals -e -pm 0");
+		
+
+		// Plugin is loaded - lets attach all the proper commands to the entities
+		//
+		// In case it is still named as "Plugin not loaded
+		//
+		menuItem -e -l "Backup Files" -c "" ST_backupFilesItem2;
+		menuItem -e -en true ST_backupItems;
+		
+		// if the menu item above is still no submenu (because we have been in a backupfile and changed it to 
+		// a button ), then restore the menu now
+		//
+		if( ! `menuItem -q -subMenu ST_backupFilesItem2` )
+		{
+			// Delete the button first
+			//
+			deleteUI ST_backupFilesItem2;			
+			ST_createBackupShortcutMenu( );
+
+			// Delete the BackButton too
+			//
+			deleteUI ST_goBackButton;
+		}
+
+
+		// Add the proper commands to the menuItemCheckboxes and their optionboxes
+		//
+	
+		int $rVal = 0;
+		
+		// Now, try to fill all the SubMenuItems in the Files menu
+		//
+		$rVal += ST_builtBackupMenu ( "ab", "ST_autobackupFilesItem" );
+		$rVal += ST_builtBackupMenu ( "is", "ST_ISFilesItem" );
+		$rVal += ST_builtBackupMenu ( "st", "ST_sceneStepFilesItem");
+
+		
+		// We are not inside of a backup file - enable everything nessecary
+		//
+		if( ! eval( "BGlobals -q -ab -ibf") )
+		{
+
+				// Enable all the backup options
+				//
+				menuItem 
+					-e
+					-en true
+					ST_autobakEnableItem;
+
+				menuItem 
+					-e
+					-en true
+					ST_autobakEnableItemOB;
+
+				menuItem 
+					-e
+					-en true
+					ST_ISEnableItem;
+
+				menuItem 
+					-e
+					-en true
+					ST_incrementalSaveItemOB;
+
+				menuItem 
+					-e
+					-en true
+					ST_saveStepItem;
+
+					
+			// Activate the checkboxes according to the BGlobals state for ab und is
+			//
+			menuItem -e -cb `eval("BGlobals -q -ab -en")` ST_autobakEnableItem;
+			menuItem -e -cb `eval("BGlobals -q -is -en")` ST_ISEnableItem;
+
+				
+		}
+		else
+		{
+				// If we are within a backup file, we create some buttons for quick navigation
+				//
+
+				global string $gMainFileMenu;
+
+				// we have to delete the submenu to get rid of its children, and then recreate it as a button
+				//
+				deleteUI ST_backupFilesItem2;
+			
+				menuItem 
+					-l "Restore with this file..." 
+					-subMenu false 
+					-c ("ST_restoreBackupFile ( \"\")") 
+					-p $gMainFileMenu
+					-ia "ST_backupItems"
+					ST_backupFilesItem2;
+
+				// And we have to add a button which leads back to the original file
+				//
+				menuItem 
+					-l "Go Back" 
+					-subMenu false 
+					-c ("file -open -f `eval(\"BGlobals -q -ab -hintFilePath\")`" ) 
+					-p $gMainFileMenu
+					-ia "ST_backupFilesItem2"
+					ST_goBackButton;
+
+				// Disable all the unnessesary options
+				//
+				menuItem 
+					-e
+					-en false
+					ST_autobakEnableItem;
+
+				menuItem 
+					-e
+					-en false
+					ST_autobakEnableItemOB;
+
+				menuItem 
+					-e
+					-en false
+					ST_ISEnableItem;
+
+				menuItem 
+					-e
+					-en false
+					ST_incrementalSaveItemOB;
+
+				menuItem 
+					-e
+					-en false
+					ST_saveStepItem;
+
+
+			// Deactivate the checkboxes according - Autoback and is should never even look enabled :)
+			//
+			menuItem -e -cb false ST_autobakEnableItem;
+			menuItem -e -cb false ST_ISEnableItem;
+
+		}
+
+
+		// If no file was found at all, disable the ParentFileMenus and leave
+		//
+		if( $rVal == 0 )
+		{	
+
+			if( ! eval( "BGlobals -q -ab -ibf") )
+			{
+				// Deactivate the backupMenu if we are not inside of a 
+				// backup file
+				//
+				menuItem -e -en false "ST_backupFilesItem2";
+				menuItem -e -en false "ST_backupFilesItem";
+			}
+
+
+		}
+		else
+		{
+			// if we are inside of a backup file, then mutate the subMenu to a Restore This File Button
+			// But in fact, you should never get here if we are in a backupped file, since this would
+			// mean that there
+			if( eval("BGlobals -q -ab -ibf") )
+			{				
+
+				warning("This seems to be a backup file which has backups itself, which is not supposed to happen.");				
+
+			}
+			else
+			{
+				// Enable all the parentFileMenus and file the FileRoot File Menu too
+				//
+				menuItem -e -en true "ST_backupFilesItem";
+				menuItem -e -en true "ST_backupFilesItem2";
+	
+
+				ST_builtBackupMenu ( "ab", "ST_autobackupFilesItem2" );
+				ST_builtBackupMenu ( "is", "ST_ISFilesItem2" );
+				ST_builtBackupMenu ( "st", "ST_sceneStepFilesItem2");			
+			}
+
+
+
+		}	
+
+
+	}
+	else
+	{
+		// Plugin is not loaded yet - disable the new Menu entries.
+		//
+		menuItem -e -en false ST_backupItems;
+		menuItem -e -en false -l "Plugin not loaded" ST_backupFilesItem2;
+	}
+
+}
+
+
+{
+	// Make sure we have the Autobackup script sourced
+	//
+	source ByronsBackup.mel;
+
+	global string $gMainFileMenu;
+	global string $gMainWindow;
+
+	int $dimWhenNoSelect = 0;
+	menu -p $gMainWindow -l "File"
+		-allowOptionBoxes true -tearOff true 
+	    -postMenuCommand checkMainFileMenu
+		-familyImage "menuIconFile.xpm" $gMainFileMenu;
+		
+		menuItem -label "New Scene" 
+			-annotation "New Scene: Create a new scene"
+			-command ("NewScene") newProject;
+			menuItem -optionBox true 
+				-annotation "New Scene Option Box"
+				-label "New Scene Option Box"
+				-command ("performNewScene 1")
+				newFileOptions;
+
+		menuItem -label "Open Scene..." 
+			-annotation "Open Scene: Open a scene"
+			-command ("OpenScene") openProject;
+			menuItem -optionBox true 
+				-annotation "Open Scene Option Box"
+				-label "Open Scene Option Box"
+				-command ("OpenSceneOptions")
+				openFileOptions;
+
+		menuItem -divider true;
+
+		menuItem -label "Save Scene" 
+			-annotation "Save Scene: Save the current scene"
+			-command ("SaveScene") saveItem;
+
+		/* C_ST	
+		menuItem -optionBox C_ST true
+				-annotation "Save Scene Option Box"
+				-label "Save Scene Option Box"
+				-command ("SaveSceneOptions") 
+				saveOptions;
+		*/		
+
+		menuItem -l "Save Scene As..." 
+			-annotation "Save Scene As: Save the current scene under a new name or export all"
+			-command ("SaveSceneAs") saveAsItem;
+			menuItem -optionBox true 
+				-annotation "Save Scene As Option Box"
+				-label "Save Scene As Option Box"
+				-command ("SaveSceneAsOptions") 
+				saveAsOptions;
+
+
+		menuItem -ecr false -label "Save Preferences" 
+			-annotation "Save Preferences: Save the current preferences"
+			-command ("SavePreferences");
+
+		menuItem -divider true;
+		
+		menuItem -l "Optimize Scene Size"
+			-annotation "Optimize Scene Size: Remove unused items"
+			-command ("OptimizeScene") cleanUpProject;
+			menuItem -optionBox true
+				-annotation "Optimize Scene Size Option Box"
+				-label "Optimize Scene Size Option Box"
+				-command ("OptimizeSceneOptions") cleanUpSceneOptions;
+
+		menuItem -divider true;
+
+		menuItem -label "Import..." 
+			-annotation "Import: Add the file to the current scene"
+			-command ("Import") importFileItem;
+			menuItem -optionBox true 
+				-annotation "Import Option Box"
+				-label "Import Option Box"
+				-command ("ImportOptions") 
+				importFileOptions;
+
+		menuItem -label "Export All..." 
+			-annotation "Export All: Export entire scene (including contents of all references) into one file"
+			-command ("Export") exportAllFileItem;
+			menuItem -optionBox true 
+				-annotation "Export All Option Box"
+				-label "Export All Option Box"
+				-command ("ExportOptions") 
+				exportAllFileOptions;
+
+		menuItem -label "Export Selection..." 
+			-annotation "Export Selection: Export selected objects (and related info) to a new file"
+			-command ("ExportSelection") exportActiveFileItem;
+			menuItem -optionBox true 
+				-annotation "Export Selection Option Box"
+				-label "Export Selection Option Box"
+				-command ("ExportSelectionOptions") 
+				exportActiveFileOptions;
+			if( $dimWhenNoSelect )
+				dimWhen -false SomethingSelected exportActiveFileItem;
+		
+		menuItem -divider true;
+
+		menuItem -label "View Image..." 
+			-annotation ("View Image")
+			-command ("launchFcheck 0;") 
+			viewFrameItem;
+
+		menuItem -label "View Sequence..." 
+			-annotation ("View Sequence")
+			-command ("launchFcheck 1;")  
+			viewSequenceItem;
+
+		menuItem -divider true;
+
+		menuItem -label "Create Reference..." 
+			-annotation "Create Reference: Create a reference"
+			-command ("CreateReference") referenceFileItem;
+			menuItem -optionBox true 
+				-annotation "Create Reference Option Box"
+				-label "Create Reference Option Box"
+				-command ("CreateReferenceOptions")
+				referenceFileOptions;
+
+		menuItem -label "Reference Editor..." 
+			-annotation "Reference Editor: Edit the references for the current scene"
+			-command ("ReferenceEditor")
+			residentFileItem;
+
+		menuItem -subMenu true -tearOff true -allowOptionBoxes false -label "Project" projectItems;
+			menuItem -label "New..." 
+				-annotation "New Project: Create a new project and make it the current project"
+				-command ("NewProject") newProjectFileItem;
+
+			menuItem -label "Edit Current..." 
+				-annotation "Edit Project: Edit the current project"
+				-command ("EditProject") editProjectFileItem;
+
+			menuItem -label "Set..." 
+				-annotation "Set Project: Change the current project"
+				-command ("SetProject") setProjectFileItem;
+
+		setParent -m ..;
+
+		/*C_ST: Adding BackupMenu */
+
+
+		menuItem -divider true;
+
+		
+		menuItem 
+			-subMenu true 
+			-tearOff true 
+			-allowOptionBoxes true 
+			-label "Backup" 
+			-pmc "if( `eval(\"BGlobals -q -pm\")` ) eval(\"BGlobals -e -pm 0\"); "
+			ST_backupItems;
+
+
+			menuItem -label "Autobackup" 
+				-cb false
+				-annotation "If enabled, autobackups will be made in a certain time period"
+				-command ( "eval(\"BGlobals -ab -en (1 - `BGlobals -q -ab -en` ) \" )" ) 
+				ST_autobakEnableItem;
+
+			/*OPTIONBOX*/
+			menuItem -optionBox true
+				-annotation "Autobackup Option Box"
+				-label "Autobackup Option Box"
+				-command ("ST_showBackupOptionBox( \"ab\" )")
+				ST_autobakEnableItemOB;
+
+			menuItem -label "Incremental Save"
+				-cb false
+				-annotation "If enabled, a an incremental save backup will be created once you save the scene"
+				-command ( "eval(\"BGlobals -is -en (1 - `BGlobals -q -is -en` ) \" )" ) 
+				ST_ISEnableItem;
+
+			/*OPTIONBOX*/
+			menuItem -optionBox true
+				-annotation "Incremental Save Option Box"
+				-label "Incremental Save Option Box"
+				-command ("ST_showBackupOptionBox( \"is\" )")
+				ST_incrementalSaveItemOB;
+
+			menuItem -divider true;
+
+			menuItem -label "Save Step ..." 
+				-annotation "Save the scene as an annotated scene step"
+				-command "ST_preSceneStepSaveWindow( )"
+				ST_saveStepItem;
+			
+			/*OPTIONBOX*/
+			menuItem -optionBox true
+				-annotation "Save Step Option Box"
+				-label "Save Step Option Box"
+				-command ("ST_showBackupOptionBox( \"st\" )")
+				ST_saveStepItemOB;
+
+
+			menuItem -divider true;
+
+	
+
+			menuItem 
+				-subMenu true 
+				-tearOff false 
+				-allowOptionBoxes true 
+				-label "Backup Files" 
+				-pmc "if( `eval(\"BGlobals -q -pm\")` ) eval(\"BGlobals -e -pm 0\"); "
+				ST_backupFilesItem;
+
+
+				menuItem -label "Restore Most Recent..." 
+				-annotation "Restores the newest backup file found for this scene"
+				-command ("ST_restoreBackupFile  ( \"\" )") 
+				ST_restoreMostRecentItem;
+				
+				menuItem -divider true;
+
+				menuItem 
+					-subMenu true -tearOff true -allowOptionBoxes true -label "Autobackup" 
+					-pmc "if( `eval(\"BGlobals -q -pm\")` ) eval(\"BGlobals -e -pm 0\"); "
+					ST_autobackupFilesItem;
+				setParent -m ..;
+				
+				menuItem 
+					-subMenu true -tearOff true -allowOptionBoxes true -label "Incremental Save" 
+					-pmc "if( `eval(\"BGlobals -q -pm\")` ) eval(\"BGlobals -e -pm 0\"); "
+					ST_ISFilesItem;
+				setParent -m ..;				
+
+				menuItem 
+					-subMenu true -tearOff true -allowOptionBoxes true -label "Scene Steps" 
+					-pmc "if( `eval(\"BGlobals -q -pm\")` ) eval(\"BGlobals -e -pm 0\"); "
+					ST_sceneStepFilesItem;
+				setParent -m ..;				
+				
+			setParent -m ..;
+
+		setParent -m ..;
+
+
+		/*	The following menus will have exactly the same content as the Backup Files menu above and is a shortCut 
+			for the user	*/
+				
+			ST_createBackupShortcutMenu( );
+
+		menuItem -divider true;
+
+		// add recent file and project lists
+		menuItem -subMenu true -l "Recent Files"
+		  -postMenuCommand "buildRecentFileMenu" FileMenuRecentFileItems;
+		setParent -m ..;
+
+		/* C_ST
+		menuItem -subMenu true -l "Recent Increments" -postMenuCommand "buildIncrementalSaveMenu" FileMenuRecentBackupItems;
+		setParent -m ..;
+		*/
+
+		menuItem -subMenu true -l "Recent Projects" -postMenuCommand "buildRecentProjectsMenu" FileMenuRecentProjectItems;
+		setParent -m ..;
+
+		if (!`about -mac`) {
+			menuItem -divider true;
+			
+			// Do not add any other code to the quit or you will not
+			// have it executed for some types of quitting - like
+			// quitting through the command language or by double-clicking
+			// the main Maya window.
+			//
+			menuItem -l "Exit" 
+				-annotation "Exit: Exit Maya"
+				-command ("Quit") quitItem;
+
+			if (`about -nt`)
+			{
+				menuItem -e -mn "O" openProject;
+				menuItem -e -mn "S" saveItem;
+				menuItem -e -mn "A" saveAsItem;
+				menuItem -e -mn	"x" quitItem;
+			}
+		}
+	
+	setParent -m ..;
+}
+

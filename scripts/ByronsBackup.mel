@@ -1,0 +1,1037 @@
+
+
+//
+//  Procedure Name:
+//		ST_builtBackupMenu
+//
+//  Description:
+//      	Creates Submenu entries for the specified Submenu, which will contain a fileName and a command
+//		which will load that file.
+//
+//  Input Arguments:
+//		string mode
+//			Can be eiter "ab", "is" or "st"
+//
+//		string subMenuName
+//			The name of the submenu to be filled with menuItems whose names equal the filenames
+//			and which will load the respective scene if clicked. They are ordered newest first.
+//
+//  Return Value:
+//		bool 
+//			True, if at least one entry has been created, or false if not
+//
+// -------------------------------------------------------------
+global proc 
+int
+ST_builtBackupMenu (string $mode, string $subMenuName)
+// -------------------------------------------------------------
+{
+
+	string $commandBase = "BGlobals -q -gbf ";
+	
+	// Will store the fileNames and pathes
+	//
+	string $fileName[];
+	string $filePath[];
+
+
+	// First, check if there are any files in the current mode
+	//
+	$fileName = eval( ($commandBase + "-" + $mode ) );
+
+	if(  size($fileName) == 1 && $fileName[0] == "0" )
+	{
+		// There was no file for that backup mode - we keep the last entries which may still be present
+		// This is nice to have since it allow the navigation between backup files even if you are within
+		// one.
+		//
+		// Deactivate the Menuitem, only if we are NOT in a backup file - we want to keep 
+		// the navigation alive
+		//
+		if( ! eval( "BGlobals -q -ab -ibf") )
+			menuItem -e -en false $subMenuName;
+		else
+		{
+			// But we have to remove the "clear" item since we don`t want the user to possibly clear
+			// a file that is currently loaded
+			// 
+			if( `menuItem -ex ("STUI_clearItem" + $mode )` )
+				deleteUI ("STUI_clearItem" + $mode );
+			
+			// The Warning Item, which is in the ST Mode only, should be deleted too then
+			//
+			if( $mode == "st" && `menuItem -ex STUI_stepWarningItem`)
+				deleteUI STUI_stepWarningItem;
+				
+		}
+
+		return 0;
+	}
+
+
+	// activate the Menuitem
+	//
+	menuItem -e -en true $subMenuName;
+
+	
+
+	// Okay - lets built the Menu
+	//
+	// Now get the full Path names needed to construct a load command
+	//
+	$filePath = eval( ( $commandBase + "-flp -" + $mode )  );
+
+
+	// First set the parent to be the subMenu so that every new item is created inside of it, and delete all previous items
+	//
+	setParent -m $subMenuName;	
+
+
+
+	menu -e -deleteAllItems $subMenuName;
+
+
+	// Now we want a "restore Last" button, which will get the newest file afer confirmation
+	//
+	menuItem 
+		-label "Restore Last..." 
+		-c ("ST_restoreBackupFile ( \"" + $mode +"\" )");
+
+
+	// The optionBox beside the MenuItem will load the options the function ( ab, is, s ) and its meant to be a shortcut
+	//
+	menuItem 
+		-ob true
+		-c ("ST_showBackupOptionBox( \"" + $mode + "\" )");
+
+	menuItem -divider true;
+
+	// Now we create the PreviewMode button, which will allow the user to enter and exit preview mode.
+	// This is only nessecary because I need some sort of callback to be able to reset the layout
+	//
+	string $previewModeName = ("menuItem_" + $mode + "_previewModeItem" );
+	menuItem 
+		-label "Restore UI Layout" 
+		-c "eval(\"BGlobals -pm false \")"
+		$previewModeName;
+
+	
+	menuItem -divider true;
+
+
+	// Helps us to determine wheter there is at least one Preview available
+	//	
+	int $previewFileFound = 0;
+
+	// The last two entries are the sizes of the backupfiles and the previewfiles, in that order - we don't need them
+	//
+	int $length = size( $fileName ) - 2;
+	for( $i = 0; $i < $length; ++$i ) 
+	{
+		// If the file has a preview, then it will receive an optionbox which will load it on click. The original menuitem itself 
+		// will load the scene as expected
+		//
+		int $hasPreview = eval( "BGlobals -hpr \"" + $filePath[$i] + "\"" );
+
+		$previewFileFound += $hasPreview;
+
+
+		menuItem -l $fileName[$i] 
+			-c ("file -f -open \"" + $filePath[$i] + "\" ");
+
+		if( $hasPreview )
+		{
+			// We create an optionbox which will load the preview
+			//
+			menuItem 
+				-ob true
+				-c ("eval( \"BGlobals -sp \\\"" + $filePath[$i] + "\\\"\" )");
+			
+		}
+	}
+
+
+	// Deactivate the Preview Enabler if there are not previews at all
+	//
+	if( ! $previewFileFound )
+	{
+		menuItem -e -en false $previewModeName;
+	}	
+
+
+	// At the end, we want to have a "clear", which allows to clear the files
+	//
+	// But only if we are not in StepMode - we will never delete Custom Steps ... they serve a purpose and are not considered to
+	// be intermediate data
+	//
+	
+	menuItem -divider true;
+	
+	
+
+	
+	if( $mode != "st" )
+	{
+		menuItem -label "Clear..." -c ( "ST_clearBackupMenu ( \"" + $mode + "\", \"The following files are supposed to be deleted: \\n\\n\" )" )
+			 ("STUI_clearItem" + $mode );
+	}
+	else
+	{
+		// We will make an extra warning !
+		//
+		menuItem -en 0 -l "Warning" STUI_stepWarningItem;
+		menuItem -label "Clear..." -c ( "warning(\"The files you are about to delete can not be considered to be intermediate ! \"); ST_clearBackupMenu ( \"" + $mode + "\", \"WARNING: The following files have been created manually and are *not* intermediate:\\nDo you really want to delete them ? \\n\\n\" )" )
+			 ("STUI_clearItem" + $mode );
+	}
+
+	
+	
+
+	// Done 
+	//
+	return 1;
+}
+
+
+
+//
+//  Procedure Name:
+//		ST_restoreBackupFile
+//
+//  Description:
+//      	If $mode is "", it will restore the most recent backuped file, be it an icremental save, an autobackup
+//		or a saved step.
+//		If $mode is "is" or "ab", it will restore the most recent file of the respective backup folder.
+//		It will ask before restoring in any case.
+//
+//  Input Arguments:
+//		string mode
+//			Can be eiter "ab", "is" or "st"
+//
+//  Return Value:
+//		None
+//
+// -------------------------------------------------------------
+global proc 
+ST_restoreBackupFile (string $mode )
+// -------------------------------------------------------------
+{
+	// Get the information about the files to be restored
+	//
+	string $files[];	// [0] will be the file to be restored, and [1] the file to be restored with
+
+
+
+
+	if( $mode != "" )
+		$files = eval( "BGlobals -q -" + $mode + "-r" );
+	else	
+		$files = eval( "BGlobals -q -r" );
+
+
+
+	if( size($files) == 1 )
+	{
+		// If size is not two, an error occoured and the restoreFiles could not be located
+		//
+		error("Restoration Failed.");
+		return;
+	}
+
+
+	// Now construct a confiamDialog window using the above strings
+	//
+	// If we are not inside of the file with which we want to restore the original file, then show an additional ViewFileButton
+	// to allow the user to first examine the scene that is supposed to be restored
+	//
+	string $rVal;
+
+	if( `file -q -sn` == $files[0] )
+	{
+	$rVal = `confirmDialog 
+		-title "Confirm Restoration" 
+		-message ("On confirmation, the scene: \n\n" + $files[1] + "\n\nwould be restored using this file: \n\n" + $files[0] + "\n\nAre you sure ?")
+    		-button "Restore" 
+		-button "Cancel" 
+		-defaultButton "Cancel"
+    		-cancelButton "Cancel"
+		-ma "center" `;
+	}
+	else
+	{
+	$rVal = `confirmDialog 
+		-title "Confirm Restoration" 
+		-message ("On confirmation, the scene: \n\n" + $files[1] + "\n\nwould be restored using this file: \n\n" + $files[0] + "\n\nAre you sure ?")
+    		-button "Restore" 
+		-button "Open File"
+		-button "Cancel" 
+		-defaultButton "Cancel"
+    		-cancelButton "Cancel"
+		-ma "center" `;
+	}
+
+
+	if( $rVal == "Restore" )
+	{
+		// Simply initiate the command without the query mode
+		//
+		if( $mode != "" )
+			$files = eval( "BGlobals -r -" + $mode );
+		else	
+			$files = eval( "BGlobals -r" );
+	}
+	else if( $rVal == "Open File" )
+	{
+		file -open -f $files[0];
+	}
+	
+
+}
+
+
+//
+//  Procedure Name:
+//		ST_clearBackupMenu
+//
+//  Description:
+//      	Creates a confirmdialog. If true, then the backup dir defined by $mode will be physically
+// 		deleted and the subMenu Items will be erased
+//
+//  Input Arguments:
+//		string mode
+//			Can be eiter "ab", "is" or "s"
+//
+//		string subMenuName
+//			The name of the submenu to be filled with menuItems whose names equal the filenames
+//			and which will load the respective scene if clicked. They are ordered newest first.
+//
+//  Return Value:
+//		None
+//
+// -------------------------------------------------------------
+global proc 
+ST_clearBackupMenu (string $mode, string $inMessage)
+// -------------------------------------------------------------
+{
+	// Get the information about the files to be deleted
+	//
+	string $files[];
+
+
+
+
+	$files = eval( "BGlobals -q -" + $mode + " -gbf -flp" );
+
+
+	// We don`t have to check the fileSize as we would never have gotten so far if
+	// there were no files ... anyway
+	//
+	if(  size($files) == 1 && $files[0] == "0" )
+	{
+		// There was no file for that backup mode
+		//
+		// Deactivate the Menuitem
+		//
+		warning("No files found to be cleared.");
+
+		return;
+	}
+
+
+	// Lets construct a string which will be the message for the confirm dialog. It will contain all the 
+	// Files to be deleted
+	//
+	string $message = $inMessage; 
+
+
+	// The last two enties contain sizes of the backupFiles and the previewFiles which will be used later in the message
+	//
+	int $l = size($files) - 2;
+	for( $i = 0; $i < $l; $i++ )
+	{
+		$message = $message + $files[$i] + "\n";
+	}
+
+
+	$message += "---------------------------------------------------------------------\n";
+	$message += $files[$l] + " KB for backup files\n";
+	$message += "---------------------------------------------------------------------\n";
+	$message += $files[$l+1] + " KB for preview files\n";
+	$message += "---------------------------------------------------------------------\n";
+	$message += "\n Do you want to continue ?";
+
+	// Now construct a confiamDialog window using the above strings
+	//
+
+	string $deleteAllButtonName = "Delete Backup Files and Previews";
+	string $deletePreviewsOnlyButtonName = "Delete Previews only";
+
+	string $rVal;
+	$rVal = `confirmDialog 
+		-title "Confirm Deletion Of Backup Files" 
+		-message $message
+    		-button $deleteAllButtonName
+		-button $deletePreviewsOnlyButtonName
+		-button "Cancel" 
+		-defaultButton "Cancel"
+    		-cancelButton "Cancel"
+		-ma "center" `;
+
+
+	if( $rVal == $deleteAllButtonName )
+	{
+		// Simply Call clear ...	
+		//
+		eval( ("BGlobals -clr -" + $mode ) );
+	}
+	else if( $rVal == $deletePreviewsOnlyButtonName )
+	{
+		// Simply Call clear with additional flag
+		//
+		eval( ("BGlobals -clr -pfo -" + $mode ) );
+	}
+
+
+}
+
+
+//  Description:
+//      	This Callback simply puts the given path into the textLine
+//
+// ----------------------------------------------------------
+global proc 
+int
+ST_setBackupPathCallback (string $path, string $type)
+// ----------------------------------------------------------
+{
+	// Check, wether we have been called by the optionWindow or by the fileBrowser
+	//
+	if( $type == "directory" )
+	{
+		textField -e -text $path textField_path;
+	}
+	else
+	{
+		string $command;
+		string $temp;		
+
+		if( $path != "st" )
+		{
+			$command = "BGlobals -e -" + $path + " -en " + `checkBox -q -v checkBox_isEnabled` + " -aws " + `checkBox -q -v checkBox_aws` + " ";
+		}
+		else
+		{
+			$command = "BGlobals -e -" + $path + " ";	
+		}
+		
+		
+		
+		
+		$temp = `textField -q -text textField_path`;
+		
+
+		// We will add the path anyway, since it can be deactivated only by passing an empty string 
+		//
+
+		$command = $command + "-fp \"" + $temp + "\" ";
+		
+
+
+		// Now check wether the previous path, which is still not updated, was a userdefined one (if it has changed)
+		//
+
+		if( 	( eval( "BGlobals -q -fp -" + $path ) != "" )
+			&&
+		 	( eval( "BGlobals -q -fp -" + $path ) != $temp ) )
+		{
+			// Yes - so ask the user if he wants to delete the left files
+			//
+			ST_clearBackupMenu ( $path , "You are about to leave a path which still has backup files in it.\nDelete them ? \n\n" );
+
+		}
+
+
+		$temp = `textField -q -text textField_fileBaseName`;
+
+
+
+		// We will add the path anyway, since it can be deactivated only by passing an empty string 
+		//
+		$command = $command + "-fn \"" + $temp + "\"";
+
+
+
+		// Can we also update the interval ?
+		//
+		if( $path == "ab" )
+		{
+			// Definitely :)
+			//
+			
+			// Add Flag to the command
+			//
+			$command = $command + "-interval " + `floatSliderGrp -q -v floatSlider_interval` + " ";			
+	
+		}
+
+
+		// Now finally add the maxFile and the maxStorageCommand - both invalid for the Step Command
+		//
+		if( $path != "st" )
+		{
+			$command += "-mxf " + `intSliderGrp -q -v intSlider_maxFiles` + " ";
+			
+			$command += "-mxs " + `intSliderGrp -q -v intSlider_maxStorage`;
+		}
+
+		// And execute the command to force it update everything	
+		//
+		eval( $command );
+
+
+		// Now we have to check the preview options. An extra command has to be generated for them since you cannot
+		// set preview options and mode options ( ab, is, st ) in one turn
+		//
+
+		$command = "BGlobals -e -" + $path + " -pre ";
+		
+		// EnableState
+		//
+		$command += ( "-en " + `checkBox -q -v checkBox_createPreviews` );
+
+
+		// MaxStorage - available only if not in Step mode
+		// 
+		if( $path != "st" )
+		{
+			$command += ( " -mxs " + `intSliderGrp -q -v intSlider_maxPreviewStorage` );
+		}
+
+
+		// Execute the command
+		//		
+		eval( $command );		
+	}
+	
+	return true;
+}
+
+
+//  Description:
+//      	Creates an Optionbox which gives access to all the flags available for the BGlobals -backup command.
+//
+//  Input Arguments
+//	$mode
+//		May be either "ab" or "is" - the Optionbox will modifiy the optionbox accordingly
+// 
+// ---------------------------------
+global proc
+ST_showBackupOptionBox( string $mode )
+// ---------------------------------
+{
+
+if(`window -ex ST_backupOptionsWindow`)
+{
+	// Before closing the window, make sure that the changes are set
+	// Acutally, we push the button ourselves :)
+	//
+	eval(`button -q -c "ST_applyAndClose"`);
+
+}
+
+	string $name;
+	
+	if( $mode == "is" )
+
+		$name = "Incremental Save";
+
+	else if( $mode == "ab" )
+
+		$name = "Autobackup";
+	else
+
+		$name = "Save Step";
+		
+		
+
+	window 
+		-title ($name + " Options") 
+		-w 400 
+		-h 100 
+		-s 1 
+		"ST_backupOptionsWindow";
+
+		rowLayout -numberOfColumns 3
+		-columnWidth 1 10 
+		-columnWidth 2 380 
+		-columnWidth 3 10 
+		rowLayout_path;		
+		
+		separator -style "none";
+
+		columnLayout;
+
+		// Get some space
+		// 
+		separator -style "none" -h 10;
+
+
+	if( $mode != "st" )
+	{
+
+		
+		checkBox 
+			-label ($name + " Enabled")
+			-align "left"
+			-v `eval("BGlobals -q -" + $mode + " -en")`
+			-onc ("columnLayout -e -m 1 columnLayout_main; window -e -w 400 -h `ST_backupOptionWindowgetHeigth( \""+ $mode + "\")`  ST_backupOptionsWindow;")
+			-ofc "columnLayout -e -m 0 columnLayout_main; window -e -w 400 -h 100 ST_backupOptionsWindow;"
+			checkBox_isEnabled;
+				
+		
+
+		// Is the Flag associated with the scene ? We can also set this if the mode is disabled, just to 
+		// remove the scriptNode carries the command
+		//
+
+		checkBox 
+			-label "Associate With Scene"
+			-align "left"
+			-v `eval("BGlobals -q -" + $mode + " -aws")`
+			checkBox_aws;
+	
+	
+
+
+
+		// Main Layout helps to hide everything if Autobak is disabled
+		//
+		
+	
+		columnLayout 
+			-m `eval("BGlobals -q -" + $mode + " -en")`
+			columnLayout_main;
+	}
+	else
+	{
+		columnLayout 
+			-m 1
+			columnLayout_main;
+	}
+		
+
+
+		frameLayout 	-l ($name + " Customizations (Optional) ") 
+				-w 375 
+				frameLayout_customizations;
+
+
+		columnLayout;
+		
+		
+
+		// Now we create some named textfields including a browsing window
+		//
+		rowLayout -numberOfColumns 3
+		-columnWidth 2 212 
+		-columnWidth 3 25 
+		rowLayout_path;
+
+		text -label "File Path" ;
+
+		textField 
+			-w 200
+			-text `eval( ("BGlobals -q -" + $mode + " -fp") )` 
+			textField_path;
+
+		symbolButton 
+			-image "navButtonBrowse.xpm"
+			-command "fileBrowser \"ST_setBackupPathCallback\" \"Set Path\" \"\" 4;"
+			newFileSymbolButton;
+
+		setParent ..;
+
+		separator -style "none" -h 3;		
+
+		rowLayout -numberOfColumns 2 
+		-columnWidth 2 212 
+		rowLayout_file;
+		
+		text -label "File Base Name" ;
+
+		textField 	
+			-w 200 
+			-text `eval( ("BGlobals -q -" + $mode + " -fn") )` 
+			textField_fileBaseName;
+
+		
+		setParent ..;	// RowColumn
+
+		setParent ..;	// Column
+
+		setParent ..;	// FrameLayout Customizations
+
+
+		// In Autobackup mode we need to know how many minutes between the backups should pass
+		//		
+		if( $mode == "ab" )
+		{
+			frameLayout 		
+				-l "Minutes Between Autobackups" 
+				-w 375 
+				frameLayout_interval;
+			
+			rowColumnLayout 
+   				-cw 1 75
+   				-cw 2 225
+   				-cw 3 75
+				-nc 3
+				rowColumnLayout_interval;	
+
+		
+			text -l "";    
+		
+			floatSliderGrp  
+				-field true
+    				-minValue 0.5 
+				-maxValue 30
+    				-value `eval( ("BGlobals -q -ab -itv") )` 
+				-ss 0.5
+    				floatSlider_interval;		
+
+			setParent ..;	// RowColumnLayout	
+		
+			setParent ..;	// FrameLayout interval
+		}
+
+
+
+
+		if( $mode != "st" )
+		{
+		
+		frameLayout 	-l "Maximum Files"  
+				-w 375
+				frameLayout_maximumFiles;	
+
+		rowColumnLayout 
+   		-cw 1 75
+   		-cw 2 225
+   		-cw 3 75
+		-nc 3
+		rowColumnLayout_maxFiles;	
+
+		
+		text -l "";    				
+
+		intSliderGrp  
+			-field true
+    			-minValue 3 
+			-maxValue 20
+    			-value `eval( "BGlobals -q -" + $mode + " -mxf")`
+    			intSlider_maxFiles;
+	
+		setParent ..;		
+
+		setParent ..;
+
+		checkBox 
+			-label "Limit Storage Space"
+			-align "left"
+			-v `eval("BGlobals -q -" + $mode + " -mxs")`
+			-onc "intSliderGrp -e -v 10 intSlider_maxStorage; frameLayout -e -m 1 frameLayout_maximumStorage; window -e -h (`window -q -h ST_backupOptionsWindow` + 40) ST_backupOptionsWindow;"
+			-ofc "intSliderGrp -e -v 0 intSlider_maxStorage; frameLayout -e -m 0 frameLayout_maximumStorage; window -e -h (`window -q -h ST_backupOptionsWindow` - 40) ST_backupOptionsWindow;"
+			checkBox_mxs;
+
+		frameLayout 	-l "Maximum Storage"  
+				-w 375
+				-m `eval("BGlobals -q -" + $mode + " -mxs")`
+				frameLayout_maximumStorage;	
+
+		rowColumnLayout 
+   		-cw 1 75
+   		-cw 2 225
+   		-cw 3 75
+		-nc 3
+		rowColumnLayout_maxStorage;	
+
+		
+		text -l "";    				
+
+		intSliderGrp  
+			-field true
+    			-minValue 0 
+    			-value `eval( "BGlobals -q -" + $mode + " -mxs")`
+    			intSlider_maxStorage;
+	
+		setParent ..;		
+
+		setParent ..;
+
+		
+		// All about preview, if not in StepMode, then we can also set a maxStorage Value ...
+		//
+		 
+		checkBox 
+			-label "Create Previews"
+			-align "left"
+			-v `eval("BGlobals -q -" + $mode + " -en -pre")`
+			-onc "frameLayout -e -m 1 frameLayout_maximumPreviewStorage; window -e -h (`window -q -h ST_backupOptionsWindow` + 40) ST_backupOptionsWindow;"
+			-ofc "frameLayout -e -m 0 frameLayout_maximumPreviewStorage; window -e -h (`window -q -h ST_backupOptionsWindow` - 40) ST_backupOptionsWindow;"
+			checkBox_createPreviews;
+
+
+		frameLayout 	-l "Maximum Preview Storage"
+				-w 375
+				-m `eval("BGlobals -q -" + $mode + " -pre -en")`
+				frameLayout_maximumPreviewStorage;	
+
+
+		rowColumnLayout 
+   		-cw 1 75
+   		-cw 2 225
+   		-cw 3 75
+		-nc 3
+		rowColumnLayout_maxPreviewStorage;	
+
+		
+		text -l "";    				
+
+		intSliderGrp  
+			-field true
+    			-minValue 0 
+    			-value `eval( "BGlobals -q -" + $mode + " -pre -mxs")`
+    			intSlider_maxPreviewStorage;
+	
+		setParent ..;		
+
+		setParent ..;
+
+
+		
+		}
+		else
+		{
+			// ... else If in Step mode,  then we can only enable and disable it
+			//
+			checkBox 
+				-label "Create Previews"
+				-align "left"
+				-v `eval("BGlobals -q -" + $mode + " -en -pre")`
+			checkBox_createPreviews;
+
+		}
+
+
+		setParent ..;	// MainLayout ends here
+
+		
+		
+   		rowColumnLayout 
+   		-cw 1 125
+   		-cw 2 125
+   		-cw 3 125
+		-nc 3
+		rowColumnLayout_buttons;
+		
+			button 
+				-l "Apply and Close" 
+				-c ("ST_setBackupPathCallback(\"" + $mode + "\",\"\"); deleteUI ST_backupOptionsWindow;") 
+				ST_applyAndClose;
+			button -l "Apply" -c ("ST_setBackupPathCallback(\"" + $mode + "\",\"\")");
+			button -l "Cancel" -c "deleteUI ST_backupOptionsWindow"; 
+		
+		setParent ..;
+	
+		separator -style "none" -h 7;
+		
+		showWindow;
+	
+		if( $mode != "st")
+		{
+			window -e -w 400 -h `ST_backupOptionWindowgetHeigth($mode)` ST_backupOptionsWindow;
+		}
+		else
+			window -e -w 400 -h 150 ST_backupOptionsWindow;
+	
+}
+
+
+//  Description:
+//      	Helperroutine which calculates the proper option window heigth
+//		and returns it
+//
+// ---------------------------------------------------------
+global proc 
+int 
+ST_backupOptionWindowgetHeigth( string $mode )
+// ---------------------------------------------------------
+{
+	int $heigth = 100;
+			
+	if( `checkBox -q -v checkBox_isEnabled` )
+	{
+		$heigth += 135;
+
+		if( $mode == "ab" )
+			$heigth += 40;
+
+		if( `checkBox -q -v checkBox_mxs`)
+			$heigth += 40;
+
+		if( `checkBox -q -v checkBox_createPreviews` )
+			$heigth += 40;
+	
+	}
+	
+
+	return $heigth;
+}
+
+
+//  Description:
+//      	Creates a window which allows text input. On confirmation, this input will be used
+//		as an annotation in a scene Step save
+//
+// ---------------------------------
+global proc
+ST_preSceneStepSaveWindow( )
+// ---------------------------------
+{
+
+if(`window -ex ST_sceneStepWindow`)
+{
+	// Before closing the window, make sure that the changes are set
+	// Acutally, we push the button ourselves :)
+	//
+	deleteUI ST_sceneStepWindow;
+
+}
+
+
+
+	window -title "Save Scene Step ..." -w 400 -h 400 -s 1 "ST_sceneStepWindow";
+
+		
+
+
+		paneLayout 
+			-configuration "horizontal2" 
+			-ps 1 100 10 
+			-smc "paneLayout -e -ps 1 100 7 paneLayout_myPanes"
+			paneLayout_myPanes;
+		
+		scrollField 
+			-wordWrap true 
+			-editable false
+			-font "boldLabelFont"
+			-text "You can enter an annotation in the input field below to automatically annotate the scene step.";
+		
+		columnLayout -w 390 ;
+
+		scrollField 
+			-w 390
+			-h 300
+			-wordWrap true 
+			-editable true
+			scrollField_sceneAnnotation;
+
+		
+		rowColumnLayout 
+   		-cw 1 193
+   		-cw 2 193
+		-nc 2
+		rowColumnLayout_buttonRows ;
+		
+			button 
+				-l "Save Step and Close" 
+				-c ("BGlobals -st -cr " + "`scrollField -q -text scrollField_sceneAnnotation`; deleteUI ST_sceneStepWindow; " ) 
+				ST_ss_applyAndClose;
+			button 
+				-l "Cancel" 
+				-c "deleteUI ST_sceneStepWindow;"; 
+		
+
+		setParent ..; // RowColumn
+
+
+		setParent ..; // Column
+
+
+		setParent ..; // PaneLayout
+		
+		
+	
+	
+
+		
+		showWindow;
+
+			window -e -w 400 -h 400 ST_sceneStepWindow;
+	
+}
+
+//  Description:
+//      	Create the BackupFile Shortcut Menu directly below the Backups Menu Item
+// 
+// ---------------------------------
+global proc
+ST_createBackupShortcutMenu( )
+// ---------------------------------
+{
+	
+	global string $gMainFileMenu;
+	
+
+	
+	// The PMC makes sure he disables the preview mode (thus restoring the original UI ) if the user enters a new menu
+	//
+
+	
+	menuItem -subMenu true -tearOff true -allowOptionBoxes true -label "Backup Files" 
+			-p $gMainFileMenu
+			-ia "ST_backupItems"
+			-pmc "if( `eval(\"BGlobals -q -pm\")` ) eval(\"BGlobals -e -pm 0\"); "
+			ST_backupFilesItem2;
+	
+		
+		menuItem -label "Restore With Most Recent..." 
+		-annotation "Restores the newest backup file found for this scene"
+		-command ("ST_restoreBackupFile  ( \"\" )") 
+		ST_restoreMostRecentItem2;
+
+		menuItem -divider true;
+			  
+	
+		menuItem 
+			-subMenu true 
+			-tearOff true 
+			-allowOptionBoxes true 
+			-label "Autobackup" 
+			-pmc "if( `eval(\"BGlobals -q -pm\")` ) eval(\"BGlobals -e -pm 0\"); "
+			ST_autobackupFilesItem2;
+		setParent -m ..;				
+	
+		menuItem 
+			-subMenu true 
+			-tearOff true 
+			-allowOptionBoxes true 
+			-label "Incremental Save" 
+			-pmc "if( `eval(\"BGlobals -q -pm\")` ) eval(\"BGlobals -e -pm 0\"); "
+			ST_ISFilesItem2;
+		setParent -m ..;
+
+		menuItem 
+			-subMenu true 
+			-tearOff true 
+			-allowOptionBoxes true 
+			-label "Scene Steps" 
+			-pmc "if( `eval(\"BGlobals -q -pm\")` ) eval(\"BGlobals -e -pm 0\"); "
+			ST_sceneStepFilesItem2;
+		setParent -m ..;				
+	setParent -m ..;
+
+}
+
+
+
