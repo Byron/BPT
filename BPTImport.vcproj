@@ -291,17 +291,18 @@
 		</Configuration>
 		<Configuration
 			Name="Release_7_static|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(B_TMP_PATH)/$(ProjectName)/$(ConfigurationName)"
+			IntermediateDirectory="$(B_TMP_PATH)/$(ProjectName)/$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			CharacterSet="0">
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/O2 /Og /Oi /Os"
 				Optimization="0"
 				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\7.0\include&quot;;.\;&quot;$(B_SDK_BYRONIMO)\include&quot;;&quot;$(B_SDK_BYRONIMO)\source&quot;;&quot;$(B_SDK_FREETYPE)\include\&quot;"
-				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM"
+				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
 				StringPooling="TRUE"
 				BasicRuntimeChecks="0"
 				SmallerTypeCheck="FALSE"
@@ -322,11 +323,11 @@
 				Name="VCLinkerTool"
 				IgnoreImportLibrary="FALSE"
 				AdditionalOptions="/GZ /export:initializePlugin /ex /export:uninitializePlugin "
-				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib Byronimo_static.lib Glu32.lib opengl32.lib"
+				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib Byronimo_static.lib freetypeMT.lib Glu32.lib opengl32.lib"
 				OutputFile="$(B_RELEASE_OUTPATH)\7.0\ByronsPolyTools.mll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\7.0\lib&quot;;&quot;$(B_SDK_BYRONIMO)\lib&quot;"
+				AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\7.0\lib&quot;;&quot;$(B_SDK_BYRONIMO)\lib&quot;;&quot;$(B_SDK_FREETYPE)\lib&quot;"
 				GenerateDebugInformation="FALSE"
 				ProgramDatabaseFile="$(OutDir)\$(ProjectName).pdb"
 				ImportLibrary=""
@@ -501,8 +502,7 @@
 						Name="Release_7_static|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							Optimization="0"
-							BasicRuntimeChecks="3"/>
+							Optimization="0"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_65|Win32">
@@ -568,8 +568,7 @@
 							Name="Release_7_static|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								Optimization="0"
-								BasicRuntimeChecks="3"/>
+								Optimization="0"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_65|Win32">
@@ -612,8 +611,7 @@
 							Name="Release_7_static|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								Optimization="0"
-								BasicRuntimeChecks="3"/>
+								Optimization="0"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_65|Win32">
@@ -656,8 +654,7 @@
 							Name="Release_7_static|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								Optimization="0"
-								BasicRuntimeChecks="3"/>
+								Optimization="0"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_65|Win32">
@@ -700,8 +697,7 @@
 							Name="Release_7_static|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								Optimization="0"
-								BasicRuntimeChecks="3"/>
+								Optimization="0"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_65|Win32">
@@ -744,8 +740,7 @@
 							Name="Release_7_static|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								Optimization="0"
-								BasicRuntimeChecks="3"/>
+								Optimization="0"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_65|Win32">
@@ -788,8 +783,7 @@
 							Name="Release_7_static|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								Optimization="0"
-								BasicRuntimeChecks="3"/>
+								Optimization="0"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_65|Win32">
@@ -836,8 +830,7 @@
 							Name="Release_7_static|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								Optimization="0"
-								BasicRuntimeChecks="3"/>
+								Optimization="0"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_65|Win32">
@@ -885,8 +878,7 @@
 						Name="Release_7_static|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							Optimization="0"
-							BasicRuntimeChecks="3"/>
+							Optimization="0"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_65|Win32">
@@ -929,8 +921,7 @@
 						Name="Release_7_static|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							Optimization="0"
-							BasicRuntimeChecks="3"/>
+							Optimization="0"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_65|Win32">
@@ -981,8 +972,7 @@
 							ExcludedFromBuild="TRUE">
 							<Tool
 								Name="VCCLCompilerTool"
-								Optimization="0"
-								BasicRuntimeChecks="3"/>
+								Optimization="0"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_65|Win32"
@@ -1026,8 +1016,7 @@
 							Name="Release_7_static|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								Optimization="0"
-								BasicRuntimeChecks="3"/>
+								Optimization="0"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_65|Win32">
@@ -1070,8 +1059,7 @@
 							Name="Release_7_static|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								Optimization="0"
-								BasicRuntimeChecks="3"/>
+								Optimization="0"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_65|Win32">
@@ -1114,8 +1102,7 @@
 							Name="Release_7_static|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								Optimization="0"
-								BasicRuntimeChecks="3"/>
+								Optimization="0"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_65|Win32">
@@ -1163,8 +1150,7 @@
 						Name="Release_7_static|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							Optimization="0"
-							BasicRuntimeChecks="3"/>
+							Optimization="0"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_65|Win32">
@@ -1207,8 +1193,7 @@
 						Name="Release_7_static|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							Optimization="0"
-							BasicRuntimeChecks="3"/>
+							Optimization="0"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_65|Win32">
@@ -1255,8 +1240,7 @@
 						Name="Release_7_static|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							Optimization="0"
-							BasicRuntimeChecks="3"/>
+							Optimization="0"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_65|Win32">
@@ -1299,8 +1283,7 @@
 						Name="Release_7_static|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							Optimization="0"
-							BasicRuntimeChecks="3"/>
+							Optimization="0"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_65|Win32">
@@ -1343,8 +1326,7 @@
 						Name="Release_7_static|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							Optimization="0"
-							BasicRuntimeChecks="3"/>
+							Optimization="0"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_65|Win32">
@@ -1391,8 +1373,7 @@
 						Name="Release_7_static|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							Optimization="0"
-							BasicRuntimeChecks="3"/>
+							Optimization="0"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_65|Win32">
@@ -1435,8 +1416,7 @@
 						Name="Release_7_static|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							Optimization="0"
-							BasicRuntimeChecks="3"/>
+							Optimization="0"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_65|Win32">
@@ -1482,8 +1462,7 @@
 							Name="Release_7_static|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								Optimization="0"
-								BasicRuntimeChecks="3"/>
+								Optimization="0"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_65|Win32">
@@ -1526,8 +1505,7 @@
 							Name="Release_7_static|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								Optimization="0"
-								BasicRuntimeChecks="3"/>
+								Optimization="0"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_65|Win32">
@@ -1570,8 +1548,7 @@
 							Name="Release_7_static|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								Optimization="0"
-								BasicRuntimeChecks="3"/>
+								Optimization="0"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_65|Win32">
@@ -1619,8 +1596,7 @@
 						Name="Release_7_static|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							Optimization="0"
-							BasicRuntimeChecks="3"/>
+							Optimization="0"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_65|Win32">
@@ -1663,8 +1639,7 @@
 						Name="Release_7_static|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							Optimization="0"
-							BasicRuntimeChecks="3"/>
+							Optimization="0"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_65|Win32">
@@ -1707,8 +1682,7 @@
 						Name="Release_7_static|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							Optimization="0"
-							BasicRuntimeChecks="3"/>
+							Optimization="0"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_65|Win32">
