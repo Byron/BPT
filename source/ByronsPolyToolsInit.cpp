@@ -764,15 +764,15 @@ MStatus initializePlugin( MObject obj )
 	MStatus   status;
 
 #ifdef ALPHA 
-	MFnPlugin plugin( obj, "Sebastian Thiel", "1.0 RV ALPHA", "5.0");
+	MFnPlugin plugin( obj, "Sebastian Thiel", "1.0 RV ALPHA");
 #endif
 
 #ifdef BETA  
-	MFnPlugin plugin( obj, "Sebastian Thiel", "1.0 RV BETA", "5.0");
+	MFnPlugin plugin( obj, "Sebastian Thiel", "1.0 RV BETA");
 #endif
 
 #ifdef RELEASE 
-	MFnPlugin plugin( obj, "Sebastian Thiel", "1.0 RV", "5.0");
+	MFnPlugin plugin( obj, "Sebastian Thiel", "1.0 RV");
 #endif
 
 	

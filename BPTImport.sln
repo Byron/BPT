@@ -6,16 +6,19 @@ EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
+		Release_65 = Release_65
 		Release_7 = Release_7
 		Release_7_static = Release_7_static
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Debug.ActiveCfg = Release_6|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Debug.Build.0 = Release_6|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_65.ActiveCfg = Release_65|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_65.Build.0 = Release_65|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_7.ActiveCfg = Release_7|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_7.Build.0 = Release_7|Win32
-		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_7_static.ActiveCfg = Release_7_static|Win32
-		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_7_static.Build.0 = Release_7_static|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_7_static.ActiveCfg = M6RELEASE2SCHOOLNoEXPIRE|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_7_static.Build.0 = M6RELEASE2SCHOOLNoEXPIRE|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
