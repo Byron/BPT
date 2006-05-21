@@ -1,0 +1,413 @@
+
+BEFORE INSTALLING THE NEW VERSION:
+PLEASE NOTE: 	Before installing the new version, make sure to delete the history on meshes you are going to work on 
+		 with the new version. This is because the new version may be incompatible with the previous one,
+		 and the scene fails to load due to node incompatibilities.
+
+
+GENERAL LIMITATIONs SO FAR:
+-------------------------------
+- it will only keep one UVSet - I simply cannot write my modified UVSets back to the mesh :(.
+- perPolygon shader assignments will be lost - Maya , for some reason doesn't allow me to get and save the shadingSets :((. I think it has to do with
+	the fact, that DGStuff has to be evaluated to do that, but this doesn`t work while inside the compute method of a node ... .
+- No support for holed polygons or nGons that contain a certain vtxID at least twice - the API doesn`t allow me to create such polygons
+
+
+
+
+
+BETA 1.0 RV:		Release Date: 20-05-2006	
+--------------------------------------------------------------------------------------
+# 	First version which runs on Maya 7 and above.  I will take what I have, clean it and prepare a proper release.
+
+
+ALPHA 6.6:			Release Date: 09-14-2004	Valid for: no expiration
+--------------------------------------------------------------------------------------
+
+#Note:
+	Due to my work at BFC, and my jobs for other companies, I am currently not able to release new versions
+	of BPT every 45 days. This is why this version will not expire since this does not make sense anymore.
+
+#Added:
+-	The sceneStepAnnotations are now saved in the preview file and will be shown in the help line if you hover over an 
+	annotated scene step file.
+
+#Bugfixes:
+-	The STT falloff visualization sometimes disapeared, which has been fixed
+
+-	If the period of autobackup was set below 1, it was clipped to zero which led to a "permanent" autobackup.
+
+- 	The visualization of the falloffs in general now looks better due to the use of alphablending
+
+-	Added the definition of pathes for the "Save Step ..." function
+
+-	Improved the recognition of backup files
+
+-	Restore file now uses a save way to overwrite the original file, so there won`t be dataloss if the process
+	is aborted during writing. This is because he now writes a temporary file first, and once this 
+	is completed successfully, it will rename it the name of the file to be restored after deleting that file.
+
+- 	The "Byronimo.dll: Could not find font" error will not show up anymore ( this is because the BPT font is 
+	now included in the dll ).
+
+-	added a custom path attribute for scene steps, so you can decide yourself where to put the files
+
+-	added additional space usage Information in "clear..." option menu
+
+-	You can now limit the space to be used by the backup system.
+
+
+
+--	Previews: You can enable the preview feature for incremental saves, autobackup and scene steps. This allows the 
+	quick preview of scenes, no matter how large they are. If a preview is available for a scene file, you 
+	will see an optionbox next to the filename in the backupfiles submenu, which will show the preview if you click on it.
+	Hit the "Restore UI" item to restore your own layout.
+
+
+-	BackupSystem
+
+	Since everything takes longer than I expected, I decided to implement an autobackup to help you deal
+	with not too stable alphas.
+	As done by the incremental save functionality , it creates a backup of your scene file.
+	Therefore your scene will be saved after a certain period of time, and then copied to a backupfolder, uniquely
+	named.
+	Autobackup in combination with incremental save will be your protection 
+	from data loss of any kind. I also implemented incremental save with the API which allows it to be even better.
+	All the file`s backups can be accessed directly through the Maya UI, and can restored or cleared.
+	It is up to you whether you whish to open a backuped scene and then restore it
+	with a single hit on a button, or wheter you want to get the most recent backupped version
+	of the current scene.
+	
+	
+	- Feature Overview
+
+	#	Optionally configure filepath and filename for the backup if you prefer consistent filenaming
+
+	#	It will save only if nessecary - if you do not do anything, there won`t be an autosave
+
+	#	The timer will be reset after a manual save, this will be handy for large scenes and
+		prevent unnessecary saves.
+	
+	# 	Associate the autobackup functionality with the scene, so you don`t have to set it up
+		manually all the time.
+
+	# 	Backup is now a part of the file menu, which allows you to browse your backups, and 
+		restore them as needed.
+
+	#	Save annotated step files, managed by the plugin
+
+
+	The new functionality is encapsulated in the
+	
+	BGlobals
+	
+	MEL Command.
+
+	The flags can all be found in the scripts I supply, and are not relevant to the user since
+	everything can be accessed through the UI.
+
+	The backup system will stay in BPT as long as it in alpha and beta state.
+
+
+	@RELEASE NOTES
+		If you use "Save Step..." and enter an annotation, then browse to another file
+		and return to the original file afterwards, you will see an annotation node which
+		was not there before.
+
+		This is, because it actually has been saved with your scene, and deleted afterwards, 
+		but at save time, it of course has still been there.
+
+		Workaround:
+			Save your scene after you saved a step.
+
+
+
+ALPHA 6.5 V2:			Release Date: 07-30-2004	Valid for: 45 Days
+--------------------------------------------------------------------------------------
+
+Note: 	This compile does not add additional functionality, but only resets the timer to give additional
+	45 days.
+
+	This was nessecary since my work on the Byronimoengine was unexpected in regards to it`s extend.
+	
+	Especially the font system takes some time, but it will be worth it :) !
+
+	In future, BPT and other plugins of mine will be able to create interfaces and ways of interaction
+	that would never be possible with MEL or the default Maya stuff, so the overall workflow will be
+	improved.
+	
+Remarks:
+	You cannot jump back to previous versions which are able to timeout after you started this version
+	at least once.
+	This is because there is a versioncontrol which prohibits older versions to run, even if they didn`t
+	timeout yet.
+
+
+ALPHA 6.5:			Release Date: 06-16-2004	Valid for: 45 Days
+--------------------------------------------------------------------------------------
+
+
+-	New Design:				BPT is now dependent on my new support Platform Byronimo.dll . It has to be located in the 
+			Maya/bin 
+						directory and contains the new UIInterface, which is disabled in this point release.
+
+-	Expiration: 
+	This is the first version which is limited in use - it will expire in 45 days.
+	Once this version has expired, some restrictions apply:
+
+	- The softTransformationTool won`t be available. A script error will occour saying the tool was not found. This is because it does not exist
+	  anymore then.
+
+	- The ByronsPolyTools command which actually triggers all the functions won`t work
+	
+	- Scenes with BPT Nodes in it will load properly.
+
+	This is meant to impose some sort of deadline to me because I will have to supply the next version in quite exactly 45 days
+
+
+
+-	Note: Since the SoftTransformationTool was supposed to be revised next, one change has been already made: The visualization has been improved and
+	is conform to the one of the softTransformationEngine now, althoug still the old node is in use.
+
+
+
+- 	New SofttransformationEngine (STE):	I completely redesigned evrerything that has to do with softTransformation. All BPT Nodes now have a common
+						softTransformation interface.
+						The visualization is not dependent on vertex colors anymore, but pure openGl, so it looks better, isfaster
+						an safer since there is no chance of VtxColors retaining on the mesh.
+
+						About STE:
+							STE is based on the STEngine which is located on the Node, either BPTNode or insertVtxNode.
+
+
+						STE
+						Attributes:	
+							showWeights: 	Activates or deactivates the graphical display.
+								Remarks: 	If the object is selected, you can click the BPT Nodes in the channelbox
+										to see its influence.
+										If the object is highlighted, the topmost BPTNode will always visualize
+										the STWeights, even if the BPTNode is not selected in the channelbox.
+										You can click any other BPTNode in the channelbox to see its STWeights 
+										additionally.
+							
+							Distance: 	The radius of influence for the softSelection.
+
+							EdgeDistance: 	The number of edges the softSelection will be based on.
+									Remarks: If this parameter is not equal to 0, the distance parameter
+									will be ignored, and the EdgeDistance parameter will be used instead.
+
+							push:		Push the affected vertices along the normals.
+
+							pushRelativeToFaceSize: The bigger the size of the underlying face, the stronger the push will be.
+
+							falloffType:	Defines the curve which resamples the weights, which are linear initially.
+									Values are: Linear, Smooth, Spike, Dome
+
+
+							MaximumWeights:	Determines the maximum count of parent vertices that contribute to the influence
+									of that vertex. It can be compared to the number of joints that influence the 
+									vertex of a skin.
+									The higher the value, the smoother the deformation.
+
+																	
+							Smoothen:	The higher this value, the smoother the look of the deformation will be.
+
+							matrix:		Connect a transformationMatrix to this attribute and use it at a cluster.
+									This will be automated in the next alpha.
+
+							meshMatrix:	Matrix to control the drawing of the weights. This is nessecary since 
+									the softTransformationEngine is a DG Node, but needs to draw in the viewport, 
+									so that this matrix determines the transformation of the drawing.
+								
+
+							UseMatrixRotation:	If true, then the matrix rotation will be used, which will give a better 
+										look.
+							
+							
+
+	
+							
+
+-	BPT_insertVtxNode:		I attached the softTransformationEngine to it, so it will have the same softTransformation capabilities as the 
+					BPT Node (i.e. BPT_connect)
+
+
+-	NEW NODE:
+	Byronimo			This node is a helper that will drive the drawings of the softTransformationWeights in the viewport. Only one node
+					may exist per scene and it will be created automatically if needed.
+					You *can* delete it, but if you do so, BPT won`t be able to draw into the viewport anymore at all.
+					This is why deleting that node is *not recommended*.
+
+
+-	BugFix#1:	Internal failure if you applied BPT on a deformed object with a multiMesh attribute upstream of the mesh itsself, 
+			as a cluster for example. This will work now.
+
+
+-	BugFix#2:	Due to the new softTransformationEngine and some other changes, loading a mesh with BPT History can now be considered safe
+			with all combinations of parameters ( tweak, slide and whatever ).
+
+
+
+ALPHA 6:			Release Date:
+--------------------------------------------------
+
+-	Preferences:	The former preferences style got too cluttered with the time, so I decided to integrate it into the default Maya preferences.
+			I do that in a way that does not need to overwrite the originial files - it integrates the BPT prefs on the fly :).
+
+-	KeepUVs/Normals: 	These options have been removed - and are always on now. Since I remove flags from time to time, please do only use
+				dynamic hotkeys (those which use the eval(generateCmdString( ... ) style), so you won`t need to change the hotkeys.
+				
+			GENERAL INFO: The only thing kept by BPT is the "hard" status of edges. Real individual normals will therefore be lost.
+			
+
+-	(Solid)Chamfer:	The Bevel algos have been revised and are supposed to give much better results. 
+			Beveling on BorderEdges shouldn`t be a prolem anymore, and complex constellations of "endEdges" will work properly too now.
+			Besides that, they will keep the UVs.
+			On complicated Bevels, they may be more or less intense distortions.
+			But I still have Ideas on how to improve the results :), so I will do soon.
+
+-	Connect Bug: 	I fixed a cnnect bug that occoured with UVs on borderedges and caused a crash.
+
+-	More safety:	Every node is now protected in some way: Severe Errors will be cought, and the user will be informed about that (including the
+			suggestion to write a bug report and/or to undo and save the work.
+			This doesn`t seem to work on LINUX yet.
+
+-	ProgressBar:	Tweakprocessing can take some time, especially on large Meshes. This is why I formerly printed progressMessages into 
+			the outPutWindow, which could cause it to popUp.
+			Now, the main maya progress bar will be used instead.
+
+
+-	BugFix #1:	If you selected a vertex, then an edge, and then a vertex again and applied a connect, only th first two components
+			would have been used for the split. 
+			This will work now.
+
+
+-NOTES:
+	-->Algo for determining the UVs not final yet so UV Positions are not 100% correct
+	-->Will probably create too many UVs (for example creates two UVs even though they have the same position)
+	-->On undo, the newly created UVs will stay in the meshShape, although unused then.
+
+SMART SPLIT: I found out that I introduced a lot of new bugs when I tried to fix old ones, so SmartSplit tends to leave create Vertices
+		 that are not connected to adjecent faces.
+		Since SmartSplit is the first splitalgo I ever wrote, there is much I can do better now, so I will give it a rewrite as soon as possible
+		
+
+
+LINUX: This is the first BPT version which runs on Linux too. Its not really tested. One thing I found out: IMPORTANT:
+
+	CHAMFER IS STILL WIP, AND NOT READY AT ALL. 
+	IF YOU USE IT, IT WILL PROBABLY CRASH.
+	IN WINDOWS; THIS IS NOT A PROBLEM SINCE THE ERROR WILL BE COUGHT, BUT
+	IN LINUX; WHOLE MAYA CRASHES WITH BPT.
+	
+	I WILL FIND OUT WHY THIS HAPPENS AND FIX IT, BUT UNTIL THEN:
+
+	PLEASE DO NOT USE THE CHAMFER (SOLID CHAMFER WORKS)
+
+
+
+ALPHA 5:
+------------------------
+
+- New Functionality: 	edgebased smart split, or connect :). It is basically an BPT_insertVtx node which can, as the name implies, 
+			insert vertices into edges. See the "Split" Submenu for some buttons to click on.
+
+			- Parameters that are new:
+				*count: 		how many vertices should be inserted into the edge?
+				*spin:			Only show an effect if AutoConnect is on and allows you to change the connect's result 
+
+
+
+- New Connect Algo: 	The aforementioned InsertVtx Node can automatically connect the newly inserted vertices using this new connect algo.
+			Again, refer to the split submenu.
+
+
+
+- Smartsplit: 		formerly it could only connect two vertices sharing one face. It uses the new connect routine now, so the number of vertices
+			to connect per face do not play a role.
+
+
+
+- New NodeNames: 	BPT uses exactly two nodes: The ByronsPolyToolsNode and the BPT_InsertVertex Node. Though every node can have several modes
+			(  {Solid}Chamfer, SMC, SmartSplit respectively InsertVertices oder Connect ), the node names will now be named as their mode implies.
+			This way you see what you did if you watch your stack, instead of having dozens of BPTNodes :).
+
+
+
+- {Solid}Chamfer: 	I finally got the idea on how to get the new faces direction right, so there is no need for these extra MayaNodes on the stack
+			once you create a bevel. This makes sliding faster, because there is no extra history that has to be evaluated.
+
+
+- New (possible) workflow: 	In the preferences you may activate the: "SmartSplit: Distuingish Component Types" option. 
+				If you select edges now and hit smartSplit, it will actually create a ConnectNode for you. This means, that a 
+				smartSplit will be available only with faceSelections
+
+
+- New Option: "Connect: CenterEdges" - Due to the nature of the connect, a slidevalue of 1 refers to a centered edge (instead of 0.5 with smartSplit).
+			This option simply overrides the slideValue for the smartSplit and replaces it with one, so you get expected results if
+			you use connect.
+
+
+- Another new (possible) workflow: 	(if "SmartSplit: Distuingish Component Types" is set true) Select an edge (or edges) AND a vertex (or vertices)
+					and hit smartSplit to insert a vtx into the edge and connect the new vertex(ices) to the vertex(ices)
+					you selected. Change the spin or count afterwards to switch between different results.
+
+					If the aforementioned flag is not set, you have to explicitly invoke a "connect".
+
+
+- And there are some other Options in the "Split" Menu which are selfexplaining as I think :)
+
+
+
+
+ALPHA 4:
+------------------------
+
+- Normals should work now for smartSplit
+
+- UVs have a great performance improvement now - you won't even notice that they are being calculated, even on real big meshes
+- fixed some UV bugs
+
+
+
+ALPHA 3:
+------------------------
+
+SoftTransformation Tool:
+
+- press Ctrl + LMB and drag to change the distance attribute, or press and drag Ctrl + LMB + MMB to change the mask size
+
+
+
+
+
+Auto Select:
+
+-please take at the preferences - Auto-Select. There you will find options to determine which type of components will be selected after your operation
+
+
+
+
+
+UVs:
+
+-"Keep UVs" Option (default on) in the preferences: Will work for SmartSplit only at the moment and generate UVs for you, so you won't loose them anymore
+
+Please note: This will only work for the default UVSet, so any extra UVSet will be lost afterwards (internally I calculate UVs for every UVSet, 
+but cannot apply them unfortunately )
+
+
+
+Normals
+
+-Implemented for SmartSplit, but cannot apply them (therefore you do not have a option for this at the moment).
+
+
+ALPHA 2:
+------------------------
+-internal - more or less ;)
+
+ALPHA 1:
+------------------------
+-internal - more or less ;)
+

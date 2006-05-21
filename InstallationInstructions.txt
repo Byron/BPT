@@ -1,0 +1,45 @@
+
+How to install BPT:
+
+1.	Copy every file from the archives
+
+	./bin 
+
+	directory to
+
+	x:\yourMayaDirectory\bin
+
+
+2.	Copy every file from the archives
+
+	./plug-ins 
+
+	directory to
+
+	x:\yourMayaDirectory\bin\plug-ins
+
+
+3.	Copy every file from the archives
+
+	./scripts 
+
+	directory to
+
+	 c:\documents and settings\<User name>\my documents\maya\scripts
+
+
+
+Initalizing the Plug-In
+
+There are two ways to initialize the plugin:
+
+Type "ByronsPolyToolsMenu" into the command line and hit enter.
+
+OR
+
+   1. Press Window ---->Settings/preferences--->Plugin Manager
+   2. In the list of Maya plugin files your should see "ByronsPolyTools"
+      in the list. Check the Auto Load and Loaded box next to the entry which will
+      load the plugin during the current and all subsequent sessions of Maya.
+   3. You should see the BPT1.0 menu pop up in the top title bar if
+      you are in modeling layout.
