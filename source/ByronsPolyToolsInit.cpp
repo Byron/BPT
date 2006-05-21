@@ -768,7 +768,7 @@ MStatus initializePlugin( MObject obj )
 #endif
 
 #ifdef BETA  
-	MFnPlugin plugin( obj, "Sebastian Thiel", "1.0 RV BETA");
+	MFnPlugin plugin( obj, "Sebastian Thiel", "1.0 RV BETA 1");
 #endif
 
 #ifdef RELEASE 
