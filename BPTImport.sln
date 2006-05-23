@@ -1,24 +1,32 @@
 Microsoft Visual Studio Solution File, Format Version 8.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BPTImport", "BPTImport.vcproj", "{FD894094-15F1-4BB9-BC88-263810486BE4}"
 	ProjectSection(ProjectDependencies) = postProject
+		{CC443BEF-9C8F-449C-AACC-671BB88F30F8} = {CC443BEF-9C8F-449C-AACC-671BB88F30F8}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Byronimo", "..\..\Byronimo\current\Byronimo.vcproj", "{CC443BEF-9C8F-449C-AACC-671BB88F30F8}"
+	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
-		Release_65 = Release_65
 		Release_7 = Release_7
 		Release_7_static = Release_7_static
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
-		{FD894094-15F1-4BB9-BC88-263810486BE4}.Debug.ActiveCfg = Release_6|Win32
-		{FD894094-15F1-4BB9-BC88-263810486BE4}.Debug.Build.0 = Release_6|Win32
-		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_65.ActiveCfg = Release_65|Win32
-		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_65.Build.0 = Release_65|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Debug.ActiveCfg = Debug|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Debug.Build.0 = Debug|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_7.ActiveCfg = Release_7|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_7.Build.0 = Release_7|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_7_static.ActiveCfg = Release_7_static|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_7_static.Build.0 = Release_7_static|Win32
+		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Debug.ActiveCfg = Debug|Win32
+		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Debug.Build.0 = Debug|Win32
+		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_7.ActiveCfg = Release|Win32
+		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_7.Build.0 = Release|Win32
+		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_7_static.ActiveCfg = Release_static|Win32
+		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_7_static.Build.0 = Release_static|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

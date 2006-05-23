@@ -132,7 +132,7 @@
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="xcopy  /S $(ProjectDir)\scripts $(B_DEBUG_OUTPATH)\7.0\scripts"/>
+				CommandLine="xcopy  /S  /Y$(ProjectDir)\scripts $(B_DEBUG_OUTPATH)\7.0\scripts"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -140,143 +140,6 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
-				Culture="1031"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Release_6|Win32"
-			OutputDirectory="./compileFiles/$(ConfigurationName)"
-			IntermediateDirectory="./compileFiles/$(ConfigurationName)"
-			ConfigurationType="2"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="E:\Grafik\Maya6\include,./"
-				PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_USRDLL;ALPHA"
-				StringPooling="TRUE"
-				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\compilefiles\PrecompiledHeaders\$(ConfigurationName).PCH"
-				AssemblerListingLocation=".\compileFiles\$(ConfigurationName)\"
-				ObjectFile=".\compileFiles\$(ConfigurationName)\"
-				ProgramDataBaseFileName=".\compileFiles\$(ConfigurationName)\"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalOptions="/export:initializePlugin /export:uninitializePlugin "
-				AdditionalDependencies="Glu32.lib opengl32.lib odbc32.lib odbccp32.lib E:\Grafik\Maya6\lib\Foundation.lib E:\Grafik\Maya6\lib\OpenMaya.lib E:\Grafik\Maya6\lib\OpenMayaAnim.lib E:\Grafik\Maya6\lib\OpenMayaUI.lib"
-				OutputFile="E:\P-R-O-J-E-K-T-E\PROGRAMMIEREN\_Plugins\ByronsPolyTools_M6.mll"
-				LinkIncremental="1"
-				SuppressStartupBanner="TRUE"
-				ProgramDatabaseFile=".\compileFiles\ProgramDataBaser\$(ConfigurationName).pdb"
-				ImportLibrary=".\BPTImport___Win32_Release_6/ByronsPolyToolsM6.lib"
-				TargetMachine="1"/>
-			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="NDEBUG"
-				MkTypLibCompatible="TRUE"
-				SuppressStartupBanner="TRUE"
-				TargetEnvironment="1"
-				TypeLibraryName=".\BPTImport___Win32_Release_6/BPTImport.tlb"
-				HeaderFileName=""/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1031"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="M6RELEASE2SCHOOLNoEXPIRE|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="2"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2"
-			WholeProgramOptimization="TRUE">
-			<Tool
-				Name="VCCLCompilerTool"
-				AdditionalOptions="/O2 /Og /Oi /Os"
-				Optimization="0"
-				EnableFiberSafeOptimizations="FALSE"
-				AdditionalIncludeDirectories="./;.\MayaDevFiles\6.0\include;../../../Byronimo;&quot;../../../Byronimo/freetype-2.1.9/include&quot;"
-				PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_USRDLL;ALPHA;NOMINMAX;VISMESHNODE;SCHOOL;$(NOINHERIT)"
-				StringPooling="TRUE"
-				RuntimeLibrary="2"
-				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough=""
-				PrecompiledHeaderFile=".\compilefiles\PrecompiledHeaders\$(ConfigurationName).PCH"
-				AssemblerOutput="0"
-				AssemblerListingLocation=".\compileFiles\$(ConfigurationName)\"
-				ObjectFile=".\compileFiles\$(ConfigurationName)\"
-				ProgramDataBaseFileName=".\compileFiles\$(ConfigurationName)\"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="0"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalOptions="/GZ /export:initializePlugin /ex /export:uninitializePlugin "
-				AdditionalDependencies=".\MayaDevFiles\6.0\lib\Foundation.lib .\MayaDevFiles\6.0\lib\OpenMaya.lib .\MayaDevFiles\6.0\lib\OpenMayaAnim.lib .\MayaDevFiles\6.0\lib\OpenMayaUI.lib Glu32.lib opengl32.lib ../../../Byronimo/LIB/Byronimo.lib"
-				OutputFile="E:\P-R-O-J-E-K-T-E\PROGRAMMIEREN\_Plugins\ByronsPolyTools_M6.mll"
-				LinkIncremental="1"
-				SuppressStartupBanner="TRUE"
-				GenerateDebugInformation="FALSE"
-				ProgramDatabaseFile=".\compileFiles\ProgramDataBaser\$(ConfigurationName).pdb"
-				ImportLibrary=""
-				TargetMachine="1"/>
-			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="NDEBUG"
-				MkTypLibCompatible="TRUE"
-				SuppressStartupBanner="TRUE"
-				TargetEnvironment="1"
-				TypeLibraryName=".\BPTImport___Win32_Release_45_DEBUG/BPTImport.tlb"
-				HeaderFileName=""/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
 				Culture="1031"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
@@ -342,78 +205,7 @@
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="xcopy  /S $(ProjectDir)\scripts $(B_DEBUG_OUTPATH)\7.0\scripts"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="1031"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Release_65|Win32"
-			OutputDirectory="$(B_TMP_PATH)/$(ProjectName)/$(ConfigurationName)"
-			IntermediateDirectory="$(B_TMP_PATH)/$(ProjectName)/$(ConfigurationName)"
-			ConfigurationType="2"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="0">
-			<Tool
-				Name="VCCLCompilerTool"
-				AdditionalOptions="/O2 /Og /Oi /Os"
-				Optimization="0"
-				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\6.5\include&quot;;.\;&quot;$(B_SDK_BYRONIMO)\include&quot;;&quot;$(B_SDK_BYRONIMO)\source&quot;;&quot;$(B_SDK_FREETYPE)\include\&quot;"
-				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_USRDLL;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM"
-				StringPooling="TRUE"
-				BasicRuntimeChecks="0"
-				RuntimeLibrary="2"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile="$(OutDir)\$(ProjectName).PCH"
-				AssemblerOutput="0"
-				AssemblerListingLocation="$(OutDir)\"
-				ObjectFile="$(OutDir)\"
-				ProgramDataBaseFileName="$(OutDir)\"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLinkerTool"
-				IgnoreImportLibrary="FALSE"
-				AdditionalOptions="/GZ /export:initializePlugin /ex /export:uninitializePlugin "
-				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib Byronimo.lib Glu32.lib opengl32.lib"
-				OutputFile="$(B_RELEASE_OUTPATH)\6.5\ByronsPolyTools.mll"
-				LinkIncremental="1"
-				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\6.5\lib&quot;;&quot;$(B_SDK_BYRONIMO)\lib&quot;"
-				GenerateDebugInformation="FALSE"
-				ProgramDatabaseFile="$(OutDir)\$(ProjectName).pdb"
-				ImportLibrary=""
-				TargetMachine="1"/>
-			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="_DEBUG"
-				MkTypLibCompatible="TRUE"
-				SuppressStartupBanner="TRUE"
-				TargetEnvironment="1"
-				TypeLibraryName=".\Debug/BPTImport.tlb"
-				HeaderFileName=""/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="xcopy  /S /Y $(ProjectDir)\scripts $(B_RELEASE_OUTPATH)\6.5\scripts"/>
+				CommandLine="xcopy  /S  /Y $(ProjectDir)\scripts $(B_DEBUG_OUTPATH)\7.0\scripts"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -484,28 +276,7 @@
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
-						Name="Release_6|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="2"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""/>
-					</FileConfiguration>
-					<FileConfiguration
 						Name="Release_7_static|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release_65|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"/>
@@ -550,28 +321,7 @@
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
-							Name="Release_6|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="2"
-								AdditionalIncludeDirectories=""
-								PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"
-								AdditionalIncludeDirectories=""/>
-						</FileConfiguration>
-						<FileConfiguration
 							Name="Release_7_static|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release_65|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"/>
@@ -593,28 +343,7 @@
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
-							Name="Release_6|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="2"
-								AdditionalIncludeDirectories=""
-								PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"
-								AdditionalIncludeDirectories=""/>
-						</FileConfiguration>
-						<FileConfiguration
 							Name="Release_7_static|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release_65|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"/>
@@ -636,28 +365,7 @@
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
-							Name="Release_6|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="2"
-								AdditionalIncludeDirectories=""
-								PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"
-								AdditionalIncludeDirectories=""/>
-						</FileConfiguration>
-						<FileConfiguration
 							Name="Release_7_static|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release_65|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"/>
@@ -679,28 +387,7 @@
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
-							Name="Release_6|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="2"
-								AdditionalIncludeDirectories=""
-								PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"
-								AdditionalIncludeDirectories=""/>
-						</FileConfiguration>
-						<FileConfiguration
 							Name="Release_7_static|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release_65|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"/>
@@ -722,28 +409,7 @@
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
-							Name="Release_6|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="2"
-								AdditionalIncludeDirectories=""
-								PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"
-								AdditionalIncludeDirectories=""/>
-						</FileConfiguration>
-						<FileConfiguration
 							Name="Release_7_static|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release_65|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"/>
@@ -765,28 +431,7 @@
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
-							Name="Release_6|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="2"
-								AdditionalIncludeDirectories=""
-								PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"
-								AdditionalIncludeDirectories=""/>
-						</FileConfiguration>
-						<FileConfiguration
 							Name="Release_7_static|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release_65|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"/>
@@ -812,28 +457,7 @@
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
-							Name="Release_6|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="2"
-								AdditionalIncludeDirectories=""
-								PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"
-								AdditionalIncludeDirectories=""/>
-						</FileConfiguration>
-						<FileConfiguration
 							Name="Release_7_static|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release_65|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"/>
@@ -860,28 +484,7 @@
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
-						Name="Release_6|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="2"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""/>
-					</FileConfiguration>
-					<FileConfiguration
 						Name="Release_7_static|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release_65|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"/>
@@ -903,28 +506,7 @@
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
-						Name="Release_6|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="2"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""/>
-					</FileConfiguration>
-					<FileConfiguration
 						Name="Release_7_static|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release_65|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"/>
@@ -951,31 +533,7 @@
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
-							Name="Release_6|Win32"
-							ExcludedFromBuild="TRUE">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="2"
-								AdditionalIncludeDirectories=""
-								PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="M6RELEASE2SCHOOLNoEXPIRE|Win32"
-							ExcludedFromBuild="TRUE">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"
-								AdditionalIncludeDirectories=""/>
-						</FileConfiguration>
-						<FileConfiguration
 							Name="Release_7_static|Win32"
-							ExcludedFromBuild="TRUE">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release_65|Win32"
 							ExcludedFromBuild="TRUE">
 							<Tool
 								Name="VCCLCompilerTool"
@@ -998,28 +556,7 @@
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
-							Name="Release_6|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="2"
-								AdditionalIncludeDirectories=""
-								PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"
-								AdditionalIncludeDirectories=""/>
-						</FileConfiguration>
-						<FileConfiguration
 							Name="Release_7_static|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release_65|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"/>
@@ -1041,28 +578,7 @@
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
-							Name="Release_6|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="2"
-								AdditionalIncludeDirectories=""
-								PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"
-								AdditionalIncludeDirectories=""/>
-						</FileConfiguration>
-						<FileConfiguration
 							Name="Release_7_static|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release_65|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"/>
@@ -1084,28 +600,7 @@
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
-							Name="Release_6|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="2"
-								AdditionalIncludeDirectories=""
-								PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"
-								AdditionalIncludeDirectories=""/>
-						</FileConfiguration>
-						<FileConfiguration
 							Name="Release_7_static|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release_65|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"/>
@@ -1132,28 +627,7 @@
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
-						Name="Release_6|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="2"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""/>
-					</FileConfiguration>
-					<FileConfiguration
 						Name="Release_7_static|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release_65|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"/>
@@ -1175,28 +649,7 @@
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
-						Name="Release_6|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="2"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""/>
-					</FileConfiguration>
-					<FileConfiguration
 						Name="Release_7_static|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release_65|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"/>
@@ -1222,28 +675,7 @@
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
-						Name="Release_6|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="2"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""/>
-					</FileConfiguration>
-					<FileConfiguration
 						Name="Release_7_static|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release_65|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"/>
@@ -1265,28 +697,7 @@
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
-						Name="Release_6|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="2"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""/>
-					</FileConfiguration>
-					<FileConfiguration
 						Name="Release_7_static|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release_65|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"/>
@@ -1308,28 +719,7 @@
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
-						Name="Release_6|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="2"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""/>
-					</FileConfiguration>
-					<FileConfiguration
 						Name="Release_7_static|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release_65|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"/>
@@ -1355,28 +745,7 @@
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
-						Name="Release_6|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="2"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""/>
-					</FileConfiguration>
-					<FileConfiguration
 						Name="Release_7_static|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release_65|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"/>
@@ -1398,28 +767,7 @@
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
-						Name="Release_6|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="2"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""/>
-					</FileConfiguration>
-					<FileConfiguration
 						Name="Release_7_static|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release_65|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"/>
@@ -1444,28 +792,7 @@
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
-							Name="Release_6|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="2"
-								AdditionalIncludeDirectories=""
-								PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"
-								AdditionalIncludeDirectories=""/>
-						</FileConfiguration>
-						<FileConfiguration
 							Name="Release_7_static|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release_65|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"/>
@@ -1487,28 +814,7 @@
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
-							Name="Release_6|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="2"
-								AdditionalIncludeDirectories=""
-								PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"
-								AdditionalIncludeDirectories=""/>
-						</FileConfiguration>
-						<FileConfiguration
 							Name="Release_7_static|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release_65|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"/>
@@ -1530,28 +836,7 @@
 								BasicRuntimeChecks="3"/>
 						</FileConfiguration>
 						<FileConfiguration
-							Name="Release_6|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="2"
-								AdditionalIncludeDirectories=""
-								PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"
-								AdditionalIncludeDirectories=""/>
-						</FileConfiguration>
-						<FileConfiguration
 							Name="Release_7_static|Win32">
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release_65|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
 								Optimization="0"/>
@@ -1578,28 +863,7 @@
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
-						Name="Release_6|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="2"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""/>
-					</FileConfiguration>
-					<FileConfiguration
 						Name="Release_7_static|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release_65|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"/>
@@ -1621,28 +885,7 @@
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
-						Name="Release_6|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="2"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""/>
-					</FileConfiguration>
-					<FileConfiguration
 						Name="Release_7_static|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release_65|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"/>
@@ -1664,28 +907,7 @@
 							BasicRuntimeChecks="3"/>
 					</FileConfiguration>
 					<FileConfiguration
-						Name="Release_6|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="2"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions="NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_MBCS;_USRDLL;ALPHA;$(NoInherit)"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="M6RELEASE2SCHOOLNoEXPIRE|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""/>
-					</FileConfiguration>
-					<FileConfiguration
 						Name="Release_7_static|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release_65|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
 							Optimization="0"/>
