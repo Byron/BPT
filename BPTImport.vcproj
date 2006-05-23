@@ -63,7 +63,10 @@
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="xcopy  /S /Y $(ProjectDir)\scripts $(B_RELEASE_OUTPATH)\7.0\scripts"/>
+				CommandLine="del /S $(B_RELEASE_OUTPATH)\7.0\BPT\scripts
+mkdir $(B_RELEASE_OUTPATH)\7.0\BPT\plug-ins
+xcopy  /S  /Y $(ProjectDir)\scripts $(B_RELEASE_OUTPATH)\7.0\BPT\scripts\
+copy  $(TargetPath) $(B_RELEASE_OUTPATH)\7.0\BPT\plug-ins\"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -132,7 +135,10 @@
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="xcopy  /S  /Y$(ProjectDir)\scripts $(B_DEBUG_OUTPATH)\7.0\scripts"/>
+				CommandLine="del /S $(B_DEBUG_OUTPATH)\7.0\BPT\scripts
+mkdir $(B_DEBUG_OUTPATH)\7.0\BPT\plug-ins
+xcopy  /S  /Y $(ProjectDir)\scripts $(B_DEBUG_OUTPATH)\7.0\BPT\scripts\
+copy  $(TargetPath) $(B_DEBUG_OUTPATH)\7.0\BPT\plug-ins\"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -205,7 +211,10 @@
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="xcopy  /S  /Y $(ProjectDir)\scripts $(B_DEBUG_OUTPATH)\7.0\scripts"/>
+				CommandLine="del /S $(B_RELEASE_OUTPATH)\7.0\BPT\scripts
+mkdir $(B_RELEASE_OUTPATH)\7.0\BPT\plug-ins
+xcopy  /S  /Y $(ProjectDir)\scripts $(B_RELEASE_OUTPATH)\7.0\BPT\scripts\
+copy  $(TargetPath) $(B_RELEASE_OUTPATH)\7.0\BPT\plug-ins\"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
