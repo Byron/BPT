@@ -1,16 +1,8 @@
 
 How to install BPT:
 
+
 1.	Copy every file from the archives
-
-	./bin 
-
-	directory to
-
-	x:\yourMayaDirectory\bin
-
-
-2.	Copy every file from the archives
 
 	./plug-ins 
 
@@ -19,7 +11,7 @@ How to install BPT:
 	x:\yourMayaDirectory\bin\plug-ins
 
 
-3.	Copy every file from the archives
+2.	Copy every file from the archives
 
 	./scripts 
 
