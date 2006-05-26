@@ -11,18 +11,28 @@ EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
+		Release_60_static = Release_60_static
+		Release_65_static = Release_65_static
 		Release_7 = Release_7
 		Release_7_static = Release_7_static
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Debug.ActiveCfg = Debug|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Debug.Build.0 = Debug|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_60_static.ActiveCfg = Release_60_static|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_60_static.Build.0 = Release_60_static|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_65_static.ActiveCfg = Release_7_static|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_65_static.Build.0 = Release_7_static|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_7.ActiveCfg = Release_7|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_7.Build.0 = Release_7|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_7_static.ActiveCfg = Release_7_static|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_7_static.Build.0 = Release_7_static|Win32
 		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Debug.ActiveCfg = Debug|Win32
 		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Debug.Build.0 = Debug|Win32
+		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_60_static.ActiveCfg = Release_static_60|Win32
+		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_60_static.Build.0 = Release_static_60|Win32
+		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_65_static.ActiveCfg = Release_static|Win32
+		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_65_static.Build.0 = Release_static|Win32
 		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_7.ActiveCfg = Release|Win32
 		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_7.Build.0 = Release|Win32
 		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_7_static.ActiveCfg = Release_static|Win32
