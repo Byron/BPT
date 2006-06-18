@@ -47,7 +47,7 @@
 
 #include    <MACROS.h>
 
-#include	<BPTGlobalPrequesites.h>
+#include	<ByronimoGlobalPrequesites.h>
 
 #include	<UI_container.h>
 
