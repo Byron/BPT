@@ -425,11 +425,11 @@ menuItem -divider true;
 	setParent -m ..;
 	menuItem -divider true;
 
-	menuItem -l "ITV Tool"
-	-ann "Interactively change values of the selected Nodes"
-	-echoCommand false
-	-c "setToolTo interactiveTweakValueTool1"
-	ITVTItem;
+	//menuItem -l "ITV Tool"
+	//-ann "Interactively change values of the selected Nodes"
+	//-echoCommand false
+	//-c "setToolTo interactiveTweakValueTool1"
+	//ITVTItem;
 
 
 	menuItem -divider true;
