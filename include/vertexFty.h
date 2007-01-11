@@ -13,7 +13,7 @@
 #include <maya/MPointArray.h>
 
 
-#include <list.h>
+#include <list>
 
 using std::list;
 
