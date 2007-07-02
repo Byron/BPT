@@ -627,6 +627,109 @@
 				CommandLine="del /S $(B_RELEASE_OUTPATH)\8.0\BPT\scripts&#x0D;&#x0A;mkdir $(B_RELEASE_OUTPATH)\8.0\BPT\plug-ins&#x0D;&#x0A;xcopy  /S  /Y $(ProjectDir)\scripts $(B_RELEASE_OUTPATH)\8.0\BPT\scripts\&#x0D;&#x0A;copy  $(TargetPath) $(B_RELEASE_OUTPATH)\8.0\BPT\plug-ins\&#x0D;&#x0A;"
 			/>
 		</Configuration>
+		<Configuration
+			Name="Release_static_45|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="0"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName=".\Debug/BPTImport.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/O2 /Og /Oi /Os"
+				Optimization="0"
+				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\4.5\include&quot;;.\;&quot;$(B_SDK_BYRONIMO)\include&quot;;&quot;$(B_SDK_BYRONIMO)\source&quot;;&quot;$(B_SDK_FREETYPE)\include\&quot;"
+				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
+				StringPooling="true"
+				BasicRuntimeChecks="0"
+				SmallerTypeCheck="false"
+				RuntimeLibrary="2"
+				EnableEnhancedInstructionSet="2"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile="$(OutDir)\$(ProjectName).PCH"
+				AssemblerOutput="0"
+				AssemblerListingLocation="$(OutDir)\"
+				ObjectFile="$(OutDir)\"
+				ProgramDataBaseFileName="$(OutDir)\"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1031"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				IgnoreImportLibrary="false"
+				AdditionalOptions="/GZ /export:initializePlugin /ex /export:uninitializePlugin "
+				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib Byronimo_static_45.lib freetypeMT.lib Glu32.lib opengl32.lib User32.lib"
+				OutputFile="$(B_RELEASE_OUTPATH)\4.5\ByronsPolyTools.mll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\4.5\lib&quot;;&quot;$(B_SDK_BYRONIMO)\lib&quot;;&quot;$(B_SDK_FREETYPE)\lib&quot;"
+				GenerateDebugInformation="false"
+				ProgramDatabaseFile="$(OutDir)\$(ProjectName).pdb"
+				ImportLibrary=""
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine="del /S $(B_RELEASE_OUTPATH)\6.0\BPT\scripts&#x0D;&#x0A;mkdir $(B_RELEASE_OUTPATH)\6.0\BPT\plug-ins&#x0D;&#x0A;xcopy  /S  /Y $(ProjectDir)\scripts $(B_RELEASE_OUTPATH)\6.0\BPT\scripts\&#x0D;&#x0A;copy  $(TargetPath) $(B_RELEASE_OUTPATH)\6.0\BPT\plug-ins\&#x0D;&#x0A;"
+			/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -722,6 +825,14 @@
 							Optimization="0"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_static_45|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
 				</File>
 				<Filter
 					Name="STT"
@@ -803,6 +914,14 @@
 								Optimization="0"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_static_45|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\source\edgeFaceData.cpp"
@@ -850,6 +969,14 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_8_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_static_45|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -909,6 +1036,14 @@
 								Optimization="0"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_static_45|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\source\nSelEdge.cpp"
@@ -956,6 +1091,14 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_8_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_static_45|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -1015,6 +1158,14 @@
 								Optimization="0"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_static_45|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\source\selEdge.cpp"
@@ -1062,6 +1213,14 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_8_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_static_45|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -1126,6 +1285,14 @@
 								Optimization="0"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_static_45|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
 					</File>
 				</Filter>
 			</Filter>
@@ -1184,6 +1351,14 @@
 							Optimization="0"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_static_45|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\source\vertexFty.cpp"
@@ -1231,6 +1406,14 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_8_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_static_45|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
@@ -1299,6 +1482,15 @@
 								Optimization="0"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_static_45|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\source\BPTfty.cpp"
@@ -1346,6 +1538,14 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_8_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_static_45|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -1405,6 +1605,14 @@
 								Optimization="0"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_static_45|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\source\BPTftyAction.cpp"
@@ -1452,6 +1660,14 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_8_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_static_45|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -1516,6 +1732,14 @@
 							Optimization="0"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_static_45|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\source\ByronsPolyToolsInit.cpp"
@@ -1563,6 +1787,14 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_8_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_static_45|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
@@ -1626,6 +1858,14 @@
 							Optimization="0"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_static_45|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\source\IVMeshCreator.cpp"
@@ -1679,6 +1919,14 @@
 							Optimization="0"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_static_45|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\source\meshCreator.cpp"
@@ -1726,6 +1974,14 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_8_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_static_45|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
@@ -1789,6 +2045,14 @@
 							Optimization="0"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_static_45|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\source\dData.cpp"
@@ -1836,6 +2100,14 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_8_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_static_45|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
@@ -1898,6 +2170,14 @@
 								Optimization="0"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_static_45|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\source\linkedNode.cpp"
@@ -1951,6 +2231,14 @@
 								Optimization="0"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_static_45|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\source\simpleLinkedList.cpp"
@@ -1998,6 +2286,14 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_8_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_static_45|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -2062,6 +2358,14 @@
 							Optimization="0"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_static_45|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\source\polyModifierFty.cpp"
@@ -2115,6 +2419,14 @@
 							Optimization="0"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_static_45|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\source\polyModifierNode.cpp"
@@ -2162,6 +2474,14 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_8_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_static_45|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"

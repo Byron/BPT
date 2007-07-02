@@ -15,6 +15,7 @@ Global
 		Release_7_static|Win32 = Release_7_static|Win32
 		Release_7|Win32 = Release_7|Win32
 		Release_8_static|Win32 = Release_8_static|Win32
+		Release_static_45|Win32 = Release_static_45|Win32
 		Release_static_60|Win32 = Release_static_60|Win32
 		Release_static|Win32 = Release_static|Win32
 		Release|Win32 = Release|Win32
@@ -32,8 +33,10 @@ Global
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_7|Win32.Build.0 = Release_7|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_8_static|Win32.ActiveCfg = Release_8_static|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_8_static|Win32.Build.0 = Release_8_static|Win32
-		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_static_60|Win32.ActiveCfg = Release_60_static|Win32
-		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_static_60|Win32.Build.0 = Release_60_static|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_static_45|Win32.ActiveCfg = Release_static_45|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_static_45|Win32.Build.0 = Release_static_45|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_static_60|Win32.ActiveCfg = Release_static_45|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_static_60|Win32.Build.0 = Release_static_45|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_static|Win32.ActiveCfg = Release_60_static|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_static|Win32.Build.0 = Release_60_static|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release|Win32.ActiveCfg = Release_60_static|Win32
@@ -50,8 +53,10 @@ Global
 		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_7|Win32.Build.0 = Release|Win32
 		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_8_static|Win32.ActiveCfg = Release_static|Win32
 		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_8_static|Win32.Build.0 = Release_static|Win32
-		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_static_60|Win32.ActiveCfg = Release_static_60|Win32
-		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_static_60|Win32.Build.0 = Release_static_60|Win32
+		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_static_45|Win32.ActiveCfg = Release_static_45|Win32
+		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_static_45|Win32.Build.0 = Release_static_45|Win32
+		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_static_60|Win32.ActiveCfg = Release_static|Win32
+		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_static_60|Win32.Build.0 = Release_static|Win32
 		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_static|Win32.ActiveCfg = Release_static|Win32
 		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release_static|Win32.Build.0 = Release_static|Win32
 		{CC443BEF-9C8F-449C-AACC-671BB88F30F8}.Release|Win32.ActiveCfg = Release|Win32
