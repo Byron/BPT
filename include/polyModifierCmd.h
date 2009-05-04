@@ -355,15 +355,11 @@
 #include <maya/MDagModifier.h>
 #include <maya/MPlug.h>
 #include <maya/MFnAnimCurve.h>
-
+#include <maya/MPxCommand.h>
 #include <MACROS.h>
 
 // Proxies
 //
-#include <maya/MPxCommand.h>
-
-#include <progressBar.h>
-#include <BGlobals.h>
 
 
 class polyModifierCmd : public MPxCommand

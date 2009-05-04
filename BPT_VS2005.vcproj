@@ -49,7 +49,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/O2 /Og /Oi /Os"
 				Optimization="0"
-				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\7.0\include&quot;;.\;&quot;$(B_SDK_BYRONIMO)\include&quot;;&quot;$(B_SDK_BYRONIMO)\source&quot;;&quot;$(B_SDK_FREETYPE)\include\&quot;"
+				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\7.0\include&quot;;.\;&quot;$(B_SDK_FREETYPE)\include\&quot;"
 				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;_USRDLL;BETA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM"
 				StringPooling="true"
 				BasicRuntimeChecks="0"
@@ -149,7 +149,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\7.0\include&quot;;.\;&quot;$(B_SDK_BYRONIMO)\include&quot;;&quot;$(B_SDK_BYRONIMO)\source&quot;;&quot;$(B_SDK_FREETYPE)\include\&quot;"
+				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\7.0\include&quot;;.\;&quot;$(B_SDK_FREETYPE)\include\&quot;"
 				PreprocessorDefinitions="_DEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;_USRDLL;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -249,7 +249,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/O2 /Og /Oi /Os"
 				Optimization="0"
-				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\7.0\include&quot;;.\;&quot;$(B_SDK_BYRONIMO)\include&quot;;&quot;$(B_SDK_BYRONIMO)\source&quot;;&quot;$(B_SDK_FREETYPE)\include\&quot;"
+				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\7.0\include&quot;;.\;&quot;$(B_SDK_FREETYPE)\include\&quot;"
 				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
 				StringPooling="true"
 				BasicRuntimeChecks="0"
@@ -281,11 +281,11 @@
 				Name="VCLinkerTool"
 				IgnoreImportLibrary="false"
 				AdditionalOptions="/GZ /export:initializePlugin /ex /export:uninitializePlugin "
-				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib Byronimo_static.lib freetypeMT.lib Glu32.lib opengl32.lib User32.lib"
+				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib  Glu32.lib opengl32.lib User32.lib"
 				OutputFile="$(B_RELEASE_OUTPATH)\7.0\ByronsPolyTools.mll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\7.0\lib&quot;;&quot;$(B_SDK_BYRONIMO)\lib&quot;;&quot;$(B_SDK_FREETYPE)\lib&quot;"
+				AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\7.0\lib&quot;;&quot;$(B_SDK_BYRONIMO)\lib&quot;$(B_SDK_FREETYPE)\lib&quot;"
 				GenerateDebugInformation="false"
 				ProgramDatabaseFile="$(OutDir)\$(ProjectName).pdb"
 				ImportLibrary=""
@@ -352,7 +352,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/O2 /Og /Oi /Os"
 				Optimization="0"
-				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\6.5\include&quot;;.\;&quot;$(B_SDK_BYRONIMO)\include&quot;;&quot;$(B_SDK_BYRONIMO)\source&quot;;&quot;$(B_SDK_FREETYPE)\include\&quot;"
+				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\6.5\include&quot;;.\;&quot;$(B_SDK_FREETYPE)\include\&quot;"
 				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
 				StringPooling="true"
 				BasicRuntimeChecks="0"
@@ -384,11 +384,11 @@
 				Name="VCLinkerTool"
 				IgnoreImportLibrary="false"
 				AdditionalOptions="/GZ /export:initializePlugin /ex /export:uninitializePlugin "
-				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib Byronimo_static.lib freetypeMT.lib Glu32.lib opengl32.lib User32.lib"
+				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib  Glu32.lib opengl32.lib User32.lib"
 				OutputFile="$(B_RELEASE_OUTPATH)\6.5\ByronsPolyTools.mll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\6.5\lib&quot;;&quot;$(B_SDK_BYRONIMO)\lib&quot;;&quot;$(B_SDK_FREETYPE)\lib&quot;"
+				AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\6.5\lib&quot;;&quot;$(B_SDK_BYRONIMO)\lib&quot;$(B_SDK_FREETYPE)\lib&quot;"
 				GenerateDebugInformation="false"
 				ProgramDatabaseFile="$(OutDir)\$(ProjectName).pdb"
 				ImportLibrary=""
@@ -455,7 +455,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/O2 /Og /Oi /Os"
 				Optimization="0"
-				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\6.0\include&quot;;.\;&quot;$(B_SDK_BYRONIMO)\include&quot;;&quot;$(B_SDK_BYRONIMO)\source&quot;;&quot;$(B_SDK_FREETYPE)\include\&quot;"
+				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\6.0\include&quot;;.\;&quot;$(B_SDK_FREETYPE)\include\&quot;"
 				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
 				StringPooling="true"
 				BasicRuntimeChecks="0"
@@ -491,7 +491,7 @@
 				OutputFile="$(B_RELEASE_OUTPATH)\6.0\ByronsPolyTools.mll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\6.0\lib&quot;;&quot;$(B_SDK_BYRONIMO)\lib&quot;;&quot;$(B_SDK_FREETYPE)\lib&quot;"
+				AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\6.0\lib&quot;;&quot;$(B_SDK_BYRONIMO)\lib&quot;$(B_SDK_FREETYPE)\lib&quot;"
 				GenerateDebugInformation="false"
 				ProgramDatabaseFile="$(OutDir)\$(ProjectName).pdb"
 				ImportLibrary=""
@@ -525,8 +525,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release_8_static|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(B_TMP_PATH)/$(ProjectName)/$(ConfigurationName)"
+			IntermediateDirectory="$(B_TMP_PATH)/$(ProjectName)/$(ConfigurationName)"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
@@ -558,7 +558,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/O2 /Og /Oi /Os"
 				Optimization="0"
-				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\8.0\include&quot;;.\;&quot;$(B_SDK_BYRONIMO)\include&quot;;&quot;$(B_SDK_BYRONIMO)\source&quot;;&quot;$(B_SDK_FREETYPE)\include\&quot;"
+				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\8.0\include&quot;;.\;&quot;$(B_SDK_FREETYPE)\include\&quot;"
 				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
 				StringPooling="true"
 				BasicRuntimeChecks="0"
@@ -590,11 +590,11 @@
 				Name="VCLinkerTool"
 				IgnoreImportLibrary="false"
 				AdditionalOptions="/GZ /export:initializePlugin /ex /export:uninitializePlugin "
-				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib IMF.lib OpenMayaUI.lib Byronimo_static.lib freetypeMT.lib Glu32.lib opengl32.lib User32.lib"
+				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib  Glu32.lib opengl32.lib User32.lib"
 				OutputFile="$(B_RELEASE_OUTPATH)\8.0\ByronsPolyTools.mll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\8.0\lib&quot;;&quot;$(B_SDK_BYRONIMO)\lib&quot;;&quot;$(B_SDK_FREETYPE)\lib&quot;"
+				AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\8.0\lib&quot;;&quot;$(B_SDK_BYRONIMO)\lib&quot;$(B_SDK_FREETYPE)\lib&quot;"
 				IgnoreDefaultLibraryNames="LIBCMT"
 				GenerateDebugInformation="false"
 				ProgramDatabaseFile="$(OutDir)\$(ProjectName).pdb"
@@ -662,7 +662,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/O2 /Og /Oi /Os"
 				Optimization="0"
-				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\4.5\include&quot;;.\;&quot;$(B_SDK_BYRONIMO)\include&quot;;&quot;$(B_SDK_BYRONIMO)\source&quot;;&quot;$(B_SDK_FREETYPE)\include\&quot;"
+				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\4.5\include&quot;;.\;&quot;$(B_SDK_FREETYPE)\include\&quot;"
 				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
 				StringPooling="true"
 				BasicRuntimeChecks="0"
@@ -698,7 +698,7 @@
 				OutputFile="$(B_RELEASE_OUTPATH)\4.5\ByronsPolyTools.mll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\4.5\lib&quot;;&quot;$(B_SDK_BYRONIMO)\lib&quot;;&quot;$(B_SDK_FREETYPE)\lib&quot;"
+				AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\4.5\lib&quot;;&quot;$(B_SDK_BYRONIMO)\lib&quot;$(B_SDK_FREETYPE)\lib&quot;"
 				GenerateDebugInformation="false"
 				ProgramDatabaseFile="$(OutDir)\$(ProjectName).pdb"
 				ImportLibrary=""
@@ -730,6 +730,319 @@
 				CommandLine="del /S $(B_RELEASE_OUTPATH)\6.0\BPT\scripts&#x0D;&#x0A;mkdir $(B_RELEASE_OUTPATH)\6.0\BPT\plug-ins&#x0D;&#x0A;xcopy  /S  /Y $(ProjectDir)\scripts $(B_RELEASE_OUTPATH)\6.0\BPT\scripts\&#x0D;&#x0A;copy  $(TargetPath) $(B_RELEASE_OUTPATH)\6.0\BPT\plug-ins\&#x0D;&#x0A;"
 			/>
 		</Configuration>
+		<Configuration
+			Name="Release_85_static|Win32"
+			OutputDirectory="$(B_TMP_PATH)/$(ProjectName)/$(ConfigurationName)"
+			IntermediateDirectory="$(B_TMP_PATH)/$(ProjectName)/$(ConfigurationName)"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="0"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName=".\Debug/BPT_VS2005.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/O2 /Og /Oi /Os"
+				Optimization="0"
+				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\8.5\include&quot;;.\;&quot;$(B_SDK_FREETYPE)\include\&quot;"
+				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
+				StringPooling="true"
+				BasicRuntimeChecks="0"
+				SmallerTypeCheck="false"
+				RuntimeLibrary="2"
+				EnableEnhancedInstructionSet="2"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile="$(OutDir)\$(ProjectName).PCH"
+				AssemblerOutput="0"
+				AssemblerListingLocation="$(OutDir)\"
+				ObjectFile="$(OutDir)\"
+				ProgramDataBaseFileName="$(OutDir)\"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1031"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				IgnoreImportLibrary="false"
+				LinkLibraryDependencies="false"
+				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib  Glu32.lib opengl32.lib User32.lib"
+				OutputFile="$(B_RELEASE_OUTPATH)\8.5\ByronsPolyTools.mll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\8.5\lib&quot;;&quot;$(B_SDK_BYRONIMO)\lib&quot;$(B_SDK_FREETYPE)\lib&quot;"
+				IgnoreDefaultLibraryNames=""
+				GenerateDebugInformation="false"
+				ProgramDatabaseFile=""
+				ResourceOnlyDLL="false"
+				ImportLibrary=""
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine="del /S $(B_RELEASE_OUTPATH)\8.5\BPT\scripts&#x0D;&#x0A;mkdir $(B_RELEASE_OUTPATH)\8.5\BPT\plug-ins&#x0D;&#x0A;xcopy  /S  /Y $(ProjectDir)\scripts $(B_RELEASE_OUTPATH)\8.5\BPT\scripts\&#x0D;&#x0A;copy  $(TargetPath) $(B_RELEASE_OUTPATH)\8.5\BPT\plug-ins\&#x0D;&#x0A;"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release_2008_static|Win32"
+			OutputDirectory="$(B_TMP_PATH)/$(ProjectName)/$(ConfigurationName)"
+			IntermediateDirectory="$(B_TMP_PATH)/$(ProjectName)/$(ConfigurationName)"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="0"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName=".\Debug/BPT_VS2005.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/O2 /Og /Oi /Os"
+				Optimization="0"
+				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\8.0\include&quot;;.\;&quot;$(B_SDK_FREETYPE)\include\&quot;"
+				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
+				StringPooling="true"
+				BasicRuntimeChecks="0"
+				SmallerTypeCheck="false"
+				RuntimeLibrary="2"
+				EnableEnhancedInstructionSet="2"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile="$(OutDir)\$(ProjectName).PCH"
+				AssemblerOutput="0"
+				AssemblerListingLocation="$(OutDir)\"
+				ObjectFile="$(OutDir)\"
+				ProgramDataBaseFileName="$(OutDir)\"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1031"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				IgnoreImportLibrary="false"
+				AdditionalOptions="/GZ /export:initializePlugin /ex /export:uninitializePlugin "
+				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib  Glu32.lib opengl32.lib User32.lib"
+				OutputFile="$(B_RELEASE_OUTPATH)\8.0\ByronsPolyTools.mll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\8.0\lib&quot;;&quot;$(B_SDK_BYRONIMO)\lib&quot;$(B_SDK_FREETYPE)\lib&quot;"
+				IgnoreDefaultLibraryNames="LIBCMT"
+				GenerateDebugInformation="false"
+				ProgramDatabaseFile="$(OutDir)\$(ProjectName).pdb"
+				ImportLibrary=""
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine="del /S $(B_RELEASE_OUTPATH)\8.0\BPT\scripts&#x0D;&#x0A;mkdir $(B_RELEASE_OUTPATH)\8.0\BPT\plug-ins&#x0D;&#x0A;xcopy  /S  /Y $(ProjectDir)\scripts $(B_RELEASE_OUTPATH)\8.0\BPT\scripts\&#x0D;&#x0A;copy  $(TargetPath) $(B_RELEASE_OUTPATH)\8.0\BPT\plug-ins\&#x0D;&#x0A;"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release_2009_static|Win32"
+			OutputDirectory="$(B_TMP_PATH)/$(ProjectName)/$(ConfigurationName)"
+			IntermediateDirectory="$(B_TMP_PATH)/$(ProjectName)/$(ConfigurationName)"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="0"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName=".\Debug/BPT_VS2005.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/O2 /Og /Oi /Os"
+				Optimization="0"
+				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\8.0\include&quot;;.\;&quot;$(B_SDK_FREETYPE)\include\&quot;"
+				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
+				StringPooling="true"
+				BasicRuntimeChecks="0"
+				SmallerTypeCheck="false"
+				RuntimeLibrary="2"
+				EnableEnhancedInstructionSet="2"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile="$(OutDir)\$(ProjectName).PCH"
+				AssemblerOutput="0"
+				AssemblerListingLocation="$(OutDir)\"
+				ObjectFile="$(OutDir)\"
+				ProgramDataBaseFileName="$(OutDir)\"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1031"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				IgnoreImportLibrary="false"
+				AdditionalOptions="/GZ /export:initializePlugin /ex /export:uninitializePlugin "
+				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib  Glu32.lib opengl32.lib User32.lib"
+				OutputFile="$(B_RELEASE_OUTPATH)\8.0\ByronsPolyTools.mll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\8.0\lib&quot;;&quot;$(B_SDK_BYRONIMO)\lib&quot;$(B_SDK_FREETYPE)\lib&quot;"
+				IgnoreDefaultLibraryNames="LIBCMT"
+				GenerateDebugInformation="false"
+				ProgramDatabaseFile="$(OutDir)\$(ProjectName).pdb"
+				ImportLibrary=""
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine="del /S $(B_RELEASE_OUTPATH)\8.0\BPT\scripts&#x0D;&#x0A;mkdir $(B_RELEASE_OUTPATH)\8.0\BPT\plug-ins&#x0D;&#x0A;xcopy  /S  /Y $(ProjectDir)\scripts $(B_RELEASE_OUTPATH)\8.0\BPT\scripts\&#x0D;&#x0A;copy  $(TargetPath) $(B_RELEASE_OUTPATH)\8.0\BPT\plug-ins\&#x0D;&#x0A;"
+			/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -738,10 +1051,6 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
-			<File
-				RelativePath=".\source\MACROS.cpp"
-				>
-			</File>
 			<Filter
 				Name="Nodes"
 				>
@@ -773,67 +1082,6 @@
 			<Filter
 				Name="Tools"
 				>
-				<File
-					RelativePath=".\source\interactiveValueTweakTool.cpp"
-					>
-					<FileConfiguration
-						Name="Release_7|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							BasicRuntimeChecks="3"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release_7_static|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release_65_static|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release_60_static|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release_8_static|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release_static_45|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-						/>
-					</FileConfiguration>
-				</File>
 				<Filter
 					Name="STT"
 					>
@@ -922,6 +1170,30 @@
 								Optimization="0"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_85_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2008_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2009_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\source\edgeFaceData.cpp"
@@ -977,6 +1249,30 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_static_45|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_85_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2008_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2009_static|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -1044,6 +1340,30 @@
 								Optimization="0"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_85_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2008_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2009_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\source\nSelEdge.cpp"
@@ -1099,6 +1419,30 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_static_45|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_85_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2008_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2009_static|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -1166,6 +1510,30 @@
 								Optimization="0"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_85_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2008_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2009_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\source\selEdge.cpp"
@@ -1227,17 +1595,8 @@
 								Optimization="0"
 							/>
 						</FileConfiguration>
-					</File>
-				</Filter>
-				<Filter
-					Name="Split"
-					Filter="cpp"
-					>
-					<File
-						RelativePath=".\source\face.cpp"
-						>
 						<FileConfiguration
-							Name="Release_7|Win32"
+							Name="Release_85_static|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -1245,16 +1604,7 @@
 							/>
 						</FileConfiguration>
 						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"
-								BasicRuntimeChecks="3"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release_7_static|Win32"
+							Name="Release_2008_static|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -1262,31 +1612,7 @@
 							/>
 						</FileConfiguration>
 						<FileConfiguration
-							Name="Release_65_static|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release_60_static|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release_8_static|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								Optimization="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release_static_45|Win32"
+							Name="Release_2009_static|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -1359,6 +1685,30 @@
 							Optimization="0"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_85_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2008_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2009_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\source\vertexFty.cpp"
@@ -1414,6 +1764,30 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_static_45|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_85_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2008_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2009_static|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
@@ -1491,6 +1865,33 @@
 								Optimization="0"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_85_static|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2008_static|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2009_static|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\source\BPTfty.cpp"
@@ -1546,6 +1947,30 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_static_45|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_85_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2008_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2009_static|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -1613,6 +2038,30 @@
 								Optimization="0"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_85_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2008_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2009_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\source\BPTftyAction.cpp"
@@ -1668,6 +2117,30 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_static_45|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_85_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2008_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2009_static|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -1740,6 +2213,30 @@
 							Optimization="0"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_85_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2008_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2009_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\source\ByronsPolyToolsInit.cpp"
@@ -1795,6 +2292,30 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_static_45|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_85_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2008_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2009_static|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
@@ -1866,6 +2387,30 @@
 							Optimization="0"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_85_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2008_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2009_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\source\IVMeshCreator.cpp"
@@ -1921,6 +2466,30 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_static_45|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_85_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2008_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2009_static|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
@@ -1988,11 +2557,133 @@
 							Optimization="0"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_85_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2008_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2009_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
 				</File>
+				<Filter
+					Name="Split"
+					Filter="cpp"
+					>
+					<File
+						RelativePath=".\source\face.cpp"
+						>
+						<FileConfiguration
+							Name="Release_7|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+								BasicRuntimeChecks="3"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_7_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_65_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_60_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_8_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_static_45|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_85_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2008_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2009_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="Helpers"
 				>
+				<File
+					RelativePath=".\source\BPT_BA.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\source\BPT_Helpers.cpp"
+					>
+				</File>
 				<File
 					RelativePath=".\source\componentConverter.cpp"
 					>
@@ -2047,6 +2738,30 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_static_45|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_85_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2008_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2009_static|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
@@ -2108,6 +2823,30 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_static_45|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_85_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2008_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2009_static|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
@@ -2178,6 +2917,30 @@
 								Optimization="0"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_85_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2008_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2009_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\source\linkedNode.cpp"
@@ -2239,6 +3002,30 @@
 								Optimization="0"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_85_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2008_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2009_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\source\simpleLinkedList.cpp"
@@ -2294,6 +3081,30 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release_static_45|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_85_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2008_static|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								Optimization="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release_2009_static|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -2366,6 +3177,30 @@
 							Optimization="0"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_85_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2008_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2009_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\source\polyModifierFty.cpp"
@@ -2427,6 +3262,30 @@
 							Optimization="0"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_85_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2008_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2009_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\source\polyModifierNode.cpp"
@@ -2482,6 +3341,30 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release_static_45|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_85_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2008_static|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_2009_static|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"

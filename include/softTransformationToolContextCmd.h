@@ -63,8 +63,6 @@
 /////////////////////////
 
 #include	<MACROS.h>
-#include	<progressBar.h>
-#include	<BGlobals.h>		// Maya 6.5 Fix
 #include	<softTransformationToolContext.h>
 
 

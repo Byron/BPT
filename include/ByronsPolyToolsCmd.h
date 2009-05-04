@@ -16,9 +16,6 @@
 
 #include <maya/M3dView.h>
 
-#include <BPTNodeManip.h>
-
-
 
 
 

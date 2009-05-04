@@ -59,12 +59,10 @@
 #include	<math.h>
 
 ///////////////////////////
-// EIGENE INCLUDES	   ///
+// EIGENE INCLUDES	   ///d
 /////////////////////////
 
 #include	<MACROS.h>
-#include	<progressBar.h>
-#include	<BGlobals.h>
 #include	<softTransformationToolCmd.h>
 #include	<softTransformationToolMoveM.h>
 

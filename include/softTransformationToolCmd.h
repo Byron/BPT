@@ -56,8 +56,6 @@
 #include	<math.h>
 
 #include	<MACROS.h>
-#include	<progressBar.h>
-#include	<BGlobals.h>
 
 
 

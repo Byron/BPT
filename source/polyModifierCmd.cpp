@@ -13,6 +13,7 @@
 //////////////
 
 #include "polyModifierCmd.h"
+#include "progressBar.h"
 
 // General Includes
 //
@@ -1051,9 +1052,6 @@ MStatus polyModifierCmd::connectNodes( MObject modifierNode )
 
 
 
-	// erstmal schauen, ob eine ByronimoNode vorhanden ist:
-	//
-	BCallbacks::createByronimo( fDGModifier );
 	
 	
 

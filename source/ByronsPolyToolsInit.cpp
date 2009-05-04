@@ -24,9 +24,6 @@
 #include "fastTrgNode.h"
 #include "BPT_BA.h"
 
-#include <UIMouseAttributeChangeData.h>
-
-#include "interactiveValueTweakTool.h"
 
 #include <maya/MSelectionList.h>
 #include <maya/MItSelectionList.h>
@@ -408,9 +405,6 @@ MStatus ByronsPolyTools::initModifierNode(MObject modifierNode)
 	MFnDependencyNode	FnDepNode( modifierNode );
 	MObject objTmp;
 
-#ifdef EXPIRES
-	checkExpires();
-#endif
 
 	switch(operationMode)
 	{
@@ -682,8 +676,15 @@ MStatus ByronsPolyTools::directModifier(MObject mesh)
 }
 
 
+#ifdef WIN32
+	#define MAYAEXPORT __declspec( dllexport )
+#else
+	#define MAYAEXPORT extern "C"
+#endif
+
+
 //-----------------------------------------------------------------
-MStatus initializePlugin( MObject obj )
+MAYAEXPORT MStatus initializePlugin( MObject obj )
 //-----------------------------------------------------------------
 
 { 
@@ -730,35 +731,6 @@ MStatus initializePlugin( MObject obj )
 	cout<<"Byron's Poly Tools v1.0 initialized"<<endl;
 
 
-#ifdef EXPIRES
-	uint rVal = checkExpires();
-	bool isNotExpired = (bool)rVal;
-
-	if ( isNotExpired )
-	{
-		uint tVal;
-		uint days = ( rVal - (rVal % 86400) ) / 86400;
-
-		tVal =  rVal - ( days * 86400 ) ;
-		uint hours =  ( tVal  - ( tVal % 3600 ) ) / 3600;
-		
-		tVal = rVal - ( ( days * 86400 ) + ( hours* 3600 ) );
-		uint minutes = ( tVal  - ( tVal % 60 ) ) / 60;
-
-		
-		uint secs = rVal - ( ( days * 86400 ) + ( hours* 3600 ) + ( minutes * 60 ) );
-		cout<<"This version will expire in \n"	<<days<<" days"<<endl
-												<<hours<<" hours"<<endl
-												<<minutes<<" minutes"<<endl
-												<<secs<<" seconds "<<endl;
-	}
-	else
-	{
-		cout<<"This version has expired. Scenes will load properly, but "<<endl<<"the softTransformationTool is deactivated and no command will work anymore."<<endl<<
-				"Please obtain a new version on the membersection of www.byronimo.de ."<<endl;
-
-	}
-#endif
 
 
 	MStatus   status;
@@ -780,7 +752,6 @@ MStatus initializePlugin( MObject obj )
 	// WICHTIG
 	// Erstmal die globals initialisieren
 	//#####################################
-	BGlobals::initialize( plugin );
 
 
 	// ***************
@@ -851,9 +822,6 @@ MStatus initializePlugin( MObject obj )
 	// **********
 	// ** STT ****
 	// **********
-#ifdef EXPIRES
-	if( isNotExpired )
-#endif
    status = plugin.registerContextCommand("softTransformationTool",
 											&softTransformationToolCtxCommand::creator,
 										   "softTransformationToolCmd", 
@@ -863,23 +831,7 @@ MStatus initializePlugin( MObject obj )
         return status;
     }
 
-	
-
-	// ***********
-	// ** ITVT ****
-	// ***********
-#ifdef ITVTOOL
-	status = plugin.registerContextCommand("interactiveTweakValueTool",
-											&interactiveValueTweakCtxCommand::creator,
-										   "interactiveValueTweakCmd", 
-										   &interactiveValueTweakCmd::creator);
-    if (!status) {
-        status.perror("registerContextCommand");
-        return status;
-    }
-#endif
-	
-	
+		
 	
 	// ****************
 	// ** STT MANIP ****
@@ -906,59 +858,19 @@ MStatus initializePlugin( MObject obj )
                  						fastTrgNode::initialize);
 
 
-	/*
-	// *********************
-	// ** BPTNODE MANIP  ****
-	// *********************
-	
-	status = plugin.registerNode("ByronsPolyToolsNodeManip", 
-								 ByronsPolyToolsNodeManip::id, 
-								 &ByronsPolyToolsNodeManip::creator, 
-								 &ByronsPolyToolsNodeManip::initialize,
-								 MPxNode::kLocatorNode);
-    if (!status) {
-        status.perror("registerNode");
-        return status;
-    }
-	*/
-
-
-
-#ifdef SCHOOL
-		cout<<endl;
-		cout<<"---------------------------------------------------------------"<<endl;
-		cout<<"This license of BPT is for educational purposes only, reselling"<<endl
-			<<"and usage in comercial projects is prohibited!"<<endl;
-		
-		cout<<"This license is locally restricted to the campus of the this school and may not be used outside this area"<<endl;
-		cout<<"If you have been sold this program, please report this to: "<<endl;
-		cout<<"Sebastian.Thiel@byronimo.de"<<endl;
-#endif
-
-
-#ifdef DEMO
-		cout<<"DEMO VERSION: This license is for evaluation only and my not be used comercially!"<<endl;
-#endif
 
 	
 	//tools erzeugen, aber nur, wenn die session noch nicht abgelaufen ist
 	//
-#ifdef EXPIRES
-	if( isNotExpired )
-#endif
 	MGlobal::executeCommand("softTransformationTool softTransformationTool1",false,false);
 	
-
-#ifdef ITVTOOL
-	MGlobal::executeCommand("interactiveTweakValueTool interactiveTweakValueTool1",false,false);
-#endif
 
 	return status;
 }
 
 
 //-----------------------------------------------------------------
-MStatus uninitializePlugin( MObject obj )
+MAYAEXPORT MStatus uninitializePlugin( MObject obj )
 //-----------------------------------------------------------------
 {
 	MStatus   status;
@@ -969,7 +881,6 @@ MStatus uninitializePlugin( MObject obj )
 	// WICHTIG
 	// Erstmal die globals deinitialisieren
 	//#####################################
-	BGlobals::deinitialize( plugin );
 
 
 	status = plugin.deregisterCommand( "ByronsPolyTools" );
@@ -1011,9 +922,6 @@ MStatus uninitializePlugin( MObject obj )
 
 	MStatus stat = plugin.deregisterNode(fastTrgNode::id);
 
-#ifdef EXPIRES
-	if( checkExpires() )
-#endif
 	status = plugin.deregisterContextCommand("softTransformationTool", "softTransformationToolCmd");
     if (!status) {
         status.perror("deregisterContextCommand");
@@ -1021,13 +929,6 @@ MStatus uninitializePlugin( MObject obj )
     }
 	
 
-#ifdef ITVTOOL
-	status = plugin.deregisterContextCommand("interactiveTweakValueTool", "interactiveValueTweakCmd");
-    if (!status) {
-        status.perror("deregisterContextCommand");
-        return status;
-    }
-#endif
 	
 	/*
 	status = plugin.deregisterNode(ByronsPolyToolsNodeManip::id);
