@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual C++ Express 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BPTImport", "BPTImport.vcproj", "{FD894094-15F1-4BB9-BC88-263810486BE4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BPT_VS2005", "BPT_VS2005.vcproj", "{FD894094-15F1-4BB9-BC88-263810486BE4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{CC443BEF-9C8F-449C-AACC-671BB88F30F8} = {CC443BEF-9C8F-449C-AACC-671BB88F30F8}
 	EndProjectSection

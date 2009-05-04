@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="BPTImport"
+	Name="BPT_VS2005"
 	ProjectGUID="{FD894094-15F1-4BB9-BC88-263810486BE4}"
-	RootNamespace="BPTImport"
+	RootNamespace="BPT_VS2005"
 	>
 	<Platforms>
 		<Platform
@@ -42,7 +42,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Debug/BPTImport.tlb"
+				TypeLibraryName=".\Debug/BPT_VS2005.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -50,7 +50,7 @@
 				AdditionalOptions="/O2 /Og /Oi /Os"
 				Optimization="0"
 				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\7.0\include&quot;;.\;&quot;$(B_SDK_BYRONIMO)\include&quot;;&quot;$(B_SDK_BYRONIMO)\source&quot;;&quot;$(B_SDK_FREETYPE)\include\&quot;"
-				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_USRDLL;BETA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM"
+				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;_USRDLL;BETA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM"
 				StringPooling="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="2"
@@ -143,14 +143,14 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Debug/BPTImport.tlb"
+				TypeLibraryName=".\Debug/BPT_VS2005.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\7.0\include&quot;;.\;&quot;$(B_SDK_BYRONIMO)\include&quot;;&quot;$(B_SDK_BYRONIMO)\source&quot;;&quot;$(B_SDK_FREETYPE)\include\&quot;"
-				PreprocessorDefinitions="_DEBUG;NT_PLUGIN;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;_USRDLL;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM"
+				PreprocessorDefinitions="_DEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;_USRDLL;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
@@ -242,7 +242,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Debug/BPTImport.tlb"
+				TypeLibraryName=".\Debug/BPT_VS2005.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -250,7 +250,7 @@
 				AdditionalOptions="/O2 /Og /Oi /Os"
 				Optimization="0"
 				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\7.0\include&quot;;.\;&quot;$(B_SDK_BYRONIMO)\include&quot;;&quot;$(B_SDK_BYRONIMO)\source&quot;;&quot;$(B_SDK_FREETYPE)\include\&quot;"
-				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
+				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
 				StringPooling="true"
 				BasicRuntimeChecks="0"
 				SmallerTypeCheck="false"
@@ -345,7 +345,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Debug/BPTImport.tlb"
+				TypeLibraryName=".\Debug/BPT_VS2005.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -353,7 +353,7 @@
 				AdditionalOptions="/O2 /Og /Oi /Os"
 				Optimization="0"
 				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\6.5\include&quot;;.\;&quot;$(B_SDK_BYRONIMO)\include&quot;;&quot;$(B_SDK_BYRONIMO)\source&quot;;&quot;$(B_SDK_FREETYPE)\include\&quot;"
-				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
+				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
 				StringPooling="true"
 				BasicRuntimeChecks="0"
 				SmallerTypeCheck="false"
@@ -448,7 +448,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Debug/BPTImport.tlb"
+				TypeLibraryName=".\Debug/BPT_VS2005.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -456,7 +456,7 @@
 				AdditionalOptions="/O2 /Og /Oi /Os"
 				Optimization="0"
 				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\6.0\include&quot;;.\;&quot;$(B_SDK_BYRONIMO)\include&quot;;&quot;$(B_SDK_BYRONIMO)\source&quot;;&quot;$(B_SDK_FREETYPE)\include\&quot;"
-				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
+				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
 				StringPooling="true"
 				BasicRuntimeChecks="0"
 				SmallerTypeCheck="false"
@@ -551,7 +551,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Debug/BPTImport.tlb"
+				TypeLibraryName=".\Debug/BPT_VS2005.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -559,7 +559,7 @@
 				AdditionalOptions="/O2 /Og /Oi /Os"
 				Optimization="0"
 				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\8.0\include&quot;;.\;&quot;$(B_SDK_BYRONIMO)\include&quot;;&quot;$(B_SDK_BYRONIMO)\source&quot;;&quot;$(B_SDK_FREETYPE)\include\&quot;"
-				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
+				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
 				StringPooling="true"
 				BasicRuntimeChecks="0"
 				SmallerTypeCheck="false"
@@ -655,7 +655,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Debug/BPTImport.tlb"
+				TypeLibraryName=".\Debug/BPT_VS2005.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -663,7 +663,7 @@
 				AdditionalOptions="/O2 /Og /Oi /Os"
 				Optimization="0"
 				AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\4.5\include&quot;;.\;&quot;$(B_SDK_BYRONIMO)\include&quot;;&quot;$(B_SDK_BYRONIMO)\source&quot;;&quot;$(B_SDK_FREETYPE)\include\&quot;"
-				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPTIMPORT_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
+				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
 				StringPooling="true"
 				BasicRuntimeChecks="0"
 				SmallerTypeCheck="false"
