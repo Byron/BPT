@@ -439,12 +439,7 @@ MStatus 	meshCreator::createMesh(MObject& newMeshData)
 	MFnMeshData	FnMeshData;
 
 	newMeshData = FnMeshData.create();
-	
 	meshCreator.create(vtxPoints->length(),offsets->length(), *vtxPoints, *offsets, *faceVtxIDs,newMeshData,&status);
-
-
-
-
 	
 	
 	//jetzt die UVs aufs mesh übertragen 
@@ -460,8 +455,7 @@ MStatus 	meshCreator::createMesh(MObject& newMeshData)
 	{
 		status = meshCreator.createUVSet(UVSetNames[i]);
 		INVIS(status.perror("UV-PROBLEM, CreateSet"););
-	}
-	
+	}	
 	
 	//Iteratoren für UVPositions holen
 	std::list<MFloatArray>::iterator UIter = Us->begin();

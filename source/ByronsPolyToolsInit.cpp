@@ -605,44 +605,6 @@ MStatus ByronsPolyTools::initModifierNode(MObject modifierNode)
 				
 
 	bptNode = modifierNode;
-
-	/*
-
-	// zuguterletzt noch einen MouseCallback initialisieren, so dass die geeigneten parameter 
-	// gleich mit der Maus gesetzt werden können
-	//
-
-	// ClientData initlalisieren
-	//
-	mouseAttributeChangeData* md = new mouseAttributeChangeData();
-
-	float scaleFactor = 0.02f;
-
-	
-	md->initAttrMap(	mouseAttributeChangeData::EventType::kMouseMove, 
-						MPlug(bptNode, FnDepNode.attribute("slide")),
-						scaleFactor	);
-	
-
-	md->initAttrMap(	mouseAttributeChangeData::EventType::kLMBDown, 
-						MPlug(bptNode, FnDepNode.attribute("alongNormal")),
-						scaleFactor	);
-
-	md->initAttrMap(	mouseAttributeChangeData::EventType::kMMBDown, 
-						MPlug(bptNode, FnDepNode.attribute("distance")),
-						scaleFactor	);
-	
-
-	md->setWrapAroundMode(true);
-
-	// Jetzt das MouseEvent samt der dazugehörigen Funktion registrieren
-	//
-	BGlobals::addMouseCallback( md );
-
-	*/
-
-
-
 	return status;
 }
 
