@@ -20,7 +20,7 @@ namespace BPT
 	
 */
 
-class BYRONIMO_API BPT_BA
+class BPT_BA
 {
 
 //--------------------------

@@ -15,7 +15,7 @@ namespace BPT
 /** Diese Klasse erlaubt die Verwendung der MainMayaProgressBar auf bequeme art und weise
 
 */
-class BYRONIMO_API progressBar
+class progressBar
 {
 
 public:

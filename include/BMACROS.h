@@ -112,24 +112,6 @@ using namespace BPT;
 
 #	define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
 
-// Wenn nur eine statische Library erzeugt werden soll, muss man nichts weiter machen, außer ein
-// entsprechendes Projekt zu erstellen und diesen Switch zu setzen
-//
-#	ifdef BYRONIMO_STATIC_LIB
-#		define	BYRONIMO_API
-#	else
-
-#		ifdef BYRONIMO_EXPORTS
-#			define BYRONIMO_API __declspec(dllexport)
-#		else
-#			define BYRONIMO_API __declspec(dllimport)
-#		endif
-	
-#	endif
-
-#		include <windows.h>
-
-
 #else
 
 // Linux unterstützt exportSymbole nicht - da muss dann wohl ne def file verwendet werden

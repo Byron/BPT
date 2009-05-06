@@ -33,7 +33,7 @@ using std::string;
 */
 
 // -----------------------------
-class BYRONIMO_API timer
+class timer
 // -----------------------------
 {
 

@@ -735,17 +735,8 @@ MAYAEXPORT MStatus initializePlugin( MObject obj )
 
 	MStatus   status;
 
-#ifdef ALPHA 
-	MFnPlugin plugin( obj, "Sebastian Thiel", "1.0 RV ALPHA");
-#endif
 
-#ifdef BETA  
-	MFnPlugin plugin( obj, "Sebastian Thiel", "1.0 RV BETA 1");
-#endif
-
-#ifdef RELEASE 
 	MFnPlugin plugin( obj, "Sebastian Thiel", "1.0 RV");
-#endif
 
 	
 	//#####################################

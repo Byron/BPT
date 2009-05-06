@@ -16,7 +16,7 @@ namespace BPT
 /** Einfache KapselKlasse, welche hilfsmethoden beinhaltet und von vielen BPT Klassen verwendet wird
 
 */
-class BYRONIMO_API BPT_Helpers
+class BPT_Helpers
 {
 public:
 	BPT_Helpers(void);
