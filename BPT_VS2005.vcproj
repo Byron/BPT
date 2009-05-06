@@ -144,15 +144,6 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/O2 /Og /Oi /Os"
-				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
-				BasicRuntimeChecks="0"
-				SmallerTypeCheck="false"
-				EnableEnhancedInstructionSet="2"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile="$(OutDir)\$(ProjectName).PCH"
-				AssemblerOutput="0"
-				AssemblerListingLocation="$(OutDir)\"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -167,12 +158,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/GZ /export:initializePlugin /ex /export:uninitializePlugin "
-				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib  Glu32.lib opengl32.lib User32.lib"
-				GenerateDebugInformation="false"
-				ProgramDatabaseFile="$(OutDir)\$(ProjectName).pdb"
 				ImportLibrary=""
-				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -230,15 +216,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/O2 /Og /Oi /Os"
-				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
-				BasicRuntimeChecks="0"
-				SmallerTypeCheck="false"
 				EnableEnhancedInstructionSet="2"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile="$(OutDir)\$(ProjectName).PCH"
-				AssemblerOutput="0"
-				AssemblerListingLocation="$(OutDir)\"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -253,12 +231,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/GZ /export:initializePlugin /ex /export:uninitializePlugin "
-				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib  Glu32.lib opengl32.lib User32.lib"
-				GenerateDebugInformation="false"
-				ProgramDatabaseFile="$(OutDir)\$(ProjectName).pdb"
 				ImportLibrary=""
-				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -316,15 +289,6 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/O2 /Og /Oi /Os"
-				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
-				BasicRuntimeChecks="0"
-				SmallerTypeCheck="false"
-				EnableEnhancedInstructionSet="2"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile="$(OutDir)\$(ProjectName).PCH"
-				AssemblerOutput="0"
-				AssemblerListingLocation="$(OutDir)\"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -339,12 +303,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/GZ /export:initializePlugin /ex /export:uninitializePlugin "
-				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib Byronimo_static_60.lib freetypeMT.lib Glu32.lib opengl32.lib User32.lib"
-				GenerateDebugInformation="false"
-				ProgramDatabaseFile="$(OutDir)\$(ProjectName).pdb"
 				ImportLibrary=""
-				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -402,15 +361,6 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/O2 /Og /Oi /Os"
-				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
-				BasicRuntimeChecks="0"
-				SmallerTypeCheck="false"
-				EnableEnhancedInstructionSet="2"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile="$(OutDir)\$(ProjectName).PCH"
-				AssemblerOutput="0"
-				AssemblerListingLocation="$(OutDir)\"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -425,13 +375,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/GZ /export:initializePlugin /ex /export:uninitializePlugin "
-				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib  Glu32.lib opengl32.lib User32.lib"
-				IgnoreDefaultLibraryNames="LIBCMT"
-				GenerateDebugInformation="false"
-				ProgramDatabaseFile="$(OutDir)\$(ProjectName).pdb"
+				IgnoreDefaultLibraryNames=""
 				ImportLibrary=""
-				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -489,15 +434,6 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/O2 /Og /Oi /Os"
-				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;BPT_VS2005_EXPORTS;WIN32;_WINDOWS;ALPHA;NOMINMAX;VISMESHNODE;REQUIRE_IOSTREAM;BYRONIMO_STATIC_LIB"
-				BasicRuntimeChecks="0"
-				SmallerTypeCheck="false"
-				EnableEnhancedInstructionSet="2"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile="$(OutDir)\$(ProjectName).PCH"
-				AssemblerOutput="0"
-				AssemblerListingLocation="$(OutDir)\"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -512,12 +448,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/GZ /export:initializePlugin /ex /export:uninitializePlugin "
-				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib Byronimo_static_45.lib freetypeMT.lib Glu32.lib opengl32.lib User32.lib"
-				GenerateDebugInformation="false"
-				ProgramDatabaseFile="$(OutDir)\$(ProjectName).pdb"
 				ImportLibrary=""
-				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -575,15 +506,6 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/O2 /Og /Oi /Os"
-				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_USRDLL;NOMINMAX;REQUIRE_IOSTREAM;$(NOINHERIT)"
-				BasicRuntimeChecks="0"
-				SmallerTypeCheck="false"
-				EnableEnhancedInstructionSet="2"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile="$(OutDir)\$(ProjectName).PCH"
-				AssemblerOutput="0"
-				AssemblerListingLocation="$(OutDir)\"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -598,15 +520,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				LinkLibraryDependencies="false"
-				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib  Glu32.lib opengl32.lib User32.lib"
 				IgnoreDefaultLibraryNames=""
-				GenerateDebugInformation="false"
 				ProgramDatabaseFile=""
 				ProfileGuidedDatabase=""
 				ResourceOnlyDLL="false"
 				ImportLibrary=""
-				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -664,8 +582,6 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/O2 /Og /Oi /Os"
-				AssemblerOutput="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -680,13 +596,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/GZ /export:initializePlugin /ex /export:uninitializePlugin "
-				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib  Glu32.lib opengl32.lib User32.lib"
-				IgnoreDefaultLibraryNames="LIBCMT"
-				GenerateDebugInformation="false"
-				ProgramDatabaseFile="$(OutDir)\$(ProjectName).pdb"
+				IgnoreDefaultLibraryNames=""
 				ImportLibrary=""
-				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -744,15 +655,6 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/O2 /Og /Oi /Os"
-				PreprocessorDefinitions="_NDEBUG;NT_PLUGIN;WIN32;_WINDOWS;_USRDLL;NOMINMAX;REQUIRE_IOSTREAM;$(NOINHERIT)"
-				BasicRuntimeChecks="0"
-				SmallerTypeCheck="false"
-				EnableEnhancedInstructionSet="2"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile="$(OutDir)\$(ProjectName).PCH"
-				AssemblerOutput="0"
-				AssemblerListingLocation="$(OutDir)\"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -767,13 +669,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/GZ /export:initializePlugin /ex /export:uninitializePlugin "
-				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib  Glu32.lib opengl32.lib User32.lib"
-				IgnoreDefaultLibraryNames="LIBCMT"
-				GenerateDebugInformation="false"
-				ProgramDatabaseFile="$(OutDir)\$(ProjectName).pdb"
+				IgnoreDefaultLibraryNames=""
 				ImportLibrary=""
-				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
