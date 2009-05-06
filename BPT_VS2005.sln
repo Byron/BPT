@@ -16,8 +16,8 @@ Global
 		Release_static|Win32 = Release_static|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_2008_static|Win32.ActiveCfg = Release_7_static|Win32
-		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_2008_static|Win32.Build.0 = Release_7_static|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_2008_static|Win32.ActiveCfg = Release_2008_static|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_2008_static|Win32.Build.0 = Release_2008_static|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_2009_static|Win32.ActiveCfg = Release_2009_static|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_2009_static|Win32.Build.0 = Release_2009_static|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_60_static|Win32.ActiveCfg = Release_60_static|Win32
@@ -28,8 +28,8 @@ Global
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_7_static|Win32.Build.0 = Release_7_static|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_8_static|Win32.ActiveCfg = Release_8_static|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_8_static|Win32.Build.0 = Release_8_static|Win32
-		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_85_static|Win32.ActiveCfg = Release_2008_static|Win32
-		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_85_static|Win32.Build.0 = Release_2008_static|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_85_static|Win32.ActiveCfg = Release_85_static|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_85_static|Win32.Build.0 = Release_85_static|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_static_45|Win32.ActiveCfg = Release_static_45|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_static_45|Win32.Build.0 = Release_static_45|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_static_60|Win32.ActiveCfg = Release_static_45|Win32

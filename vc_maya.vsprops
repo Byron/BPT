@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="vc_maya"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		Optimization="3"
+		InlineFunctionExpansion="2"
+		FavorSizeOrSpeed="1"
+		WholeProgramOptimization="true"
+		AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\$(MayaVersion)\include&quot;;.\"
+		PreprocessorDefinitions="WIN32;_WINDOWS;_USRDLL;NT_PLUGIN;REQUIRE_IOSTREAM;NOMINMAX;$(NOINHERIT)"
+		StringPooling="true"
+		MinimalRebuild="false"
+		ExceptionHandling="0"
+		RuntimeLibrary="2"
+		SuppressStartupBanner="true"
+		DebugInformationFormat="0"
+	/>
+	<Tool
+		Name="VCLinkerTool"
+		RegisterOutput="false"
+		IgnoreImportLibrary="false"
+		AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib Glu32.lib opengl32.lib"
+		OutputFile="$(B_RELEASE_OUTPATH)\$(MayaVersion)\ByronsPolyTools.mll"
+		LinkIncremental="1"
+		SuppressStartupBanner="true"
+		AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\$(MayaVersion)\lib&quot;"
+	/>
+	<Tool
+		Name="VCPostBuildEventTool"
+		CommandLine="del /S $(B_RELEASE_OUTPATH)\$(MayaVersion)\BPT\scripts&#x0D;&#x0A;mkdir $(B_RELEASE_OUTPATH)\$(MayaVersion)\BPT\plug-ins&#x0D;&#x0A;xcopy  /S  /Y $(ProjectDir)\scripts $(B_RELEASE_OUTPATH)\$(MayaVersion)\BPT\scripts\&#x0D;&#x0A;copy  $(TargetPath) $(B_RELEASE_OUTPATH)\$(MayaVersion)\BPT\plug-ins\&#x0D;&#x0A;"
+	/>
+</VisualStudioPropertySheet>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="vc_BPT_release"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		Optimization="3"
+		InlineFunctionExpansion="2"
+		FavorSizeOrSpeed="1"
+		WholeProgramOptimization="true"
+		PreprocessorDefinitions="_NDEBUG;"
+		StringPooling="true"
+		MinimalRebuild="false"
+		ExceptionHandling="0"
+		RuntimeLibrary="2"
+		WarningLevel="1"
+		SuppressStartupBanner="true"
+		DebugInformationFormat="0"
+	/>
+	<Tool
+		Name="VCLinkerTool"
+		RegisterOutput="false"
+		IgnoreImportLibrary="false"
+		LinkIncremental="1"
+		SuppressStartupBanner="true"
+	/>
+</VisualStudioPropertySheet>
