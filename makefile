@@ -7,8 +7,12 @@
 # default for m2008 and m2009
 maya_versions ?= 8.5 2008 2009
 B_TMP_PATH ?= builddata
+# separate subfolder for BPT in case the folder is used by others
+BPT_TMP_PATH = $(B_TMP_PATH)/BPT
 CXX ?= g++412
+CXX_FLAGS ?= 
 VPATH ?= $(shell find . -type d -not -wholename "*/.*" )
+OBJS ?= # defined by file from 'depends' rule
 
 PLATFORM ?= $(shell uname -m)
 ifeq ($(PLATFORM),x86_64)
@@ -19,10 +23,16 @@ endif
 
 BUILDLIB ?= ./buildlib.sh
 
-MAYA_BASE ?= $(MAYA_VERSION)$(PLATFORM)
-INCLUDE_FLAGS ?= -I. -I./include -I$(B_MAYA_SDK)/$(MAYA_BASE)/include
-LINK_FLAGS ?= -L$(B_MAYA_SDK)/$(MAYA_BASE)/lib
-DEFINE_FLAGS ?= -DLINUX
+MAYA_BASE = $(MAYA_VERSION)$(PLATFORM)
+SDK_PATH = $(B_MAYA_SDK)/$(MAYA_BASE)
+INCLUDE_FLAGS = -I. -I./include -I$(SDK_PATH)/include
+LINK_FLAGS = -L$(SDK_PATH)/lib -lFoundation -lOpenMaya -lOpenMayaAnim -lOpenMayaUI
+DEFINE_FLAGS ?= -DLINUX -DREQUIRE_IOSTREAM -D_BOOL
+
+# fully qualified path to catch all our output
+COMPILE_PATH = $(BPT_TMP_PATH)/$(MAYA_BASE)
+OUTPUT_PATH = $(BPT_TMP_PATH)/$(MAYA_BASE)
+LIB_PATH = $(OUTPUT_PATH)/plug-ins/ByronsPolyTools.so
 
 
 FILECOUNT = $(shell find . -type f -name "*.h" -or -name "*.cpp" | wc -l )
@@ -42,14 +52,14 @@ include $(DEPFILE)
 
 # redirect rule
 dep : depends
-depends : $(DEPFILE)
+depends : .checkargs $(DEPFILE)
 
 
 # DEPENDENCY GENERATION
-$(DEPFILE): .checkargs
+$(DEPFILE):
 # delete old depfiles that might exist as the filecount has changed
 	-rm $(DEPFILE_BASE)* &>/dev/null
-	$(BUILDLIB) call makeDepends $(CXX) $@ $(B_TMP_PATH)/$(MAYA_BASE) $(INCLUDE_FLAGS) $(DEFINE_FLAGS)
+	$(BUILDLIB) call makeDepends $(CXX) $@ $(COMPILE_PATH) $(INCLUDE_FLAGS) $(DEFINE_FLAGS)
 	
 
 default:
@@ -69,21 +79,28 @@ ifndef MAYA_VERSION
 	@echo "MAYA_VERSION needs to be the maya version you want to process"
 	false
 endif 
+ifndef CXX
+	@echo "CXX needs to be set to match the compiler requirements for maya$(MAYA_VERSION)"
+	false
+endif
 
 # BUILD COMMON
 # Rule on how to build the binary
-.buildcommon : 
+.buildcommon : $(LIB_PATH)
+
+$(LIB_PATH) : $(OBJS)
+	@echo $(LIB_PATH)
+	@echo $(OUTPUT_PATH)
+	@echo $(MAYA_BASE)
+	mkdir -p `dirname $@`
+	$(CXX) -shared -o $@ $^ $(LINK_FLAGS) -O2 -Wall -g3 -O2 $(EXT_LIBS)
 
 
+	
 # .releasecommon 
-.releasecommon : 
+.releasecommon : .buildcommon 
 
-
-
-
-
+	
 clean:
 	-rm $(DEPFILE_BASE)*
-
-# @$(CXX) -shared -o $@ $(OBJS) $(ADOBJS) $(LINKFLAGS) -O2 -Wall -g3 -O2 $(EXT_LIBS) >>$(ROOTPATH)/log/error.$(PROJECTNAME).log 2>>$(ROOTPATH)/log/error.$(PROJECTNAME).log
-# @strip $(BINTARGETPATH)/release/$(LIB) 2>>$(ROOTPATH)/log/error.$(PROJECTNAME).log
+	-rm -Rf $(BPT_TMP_PATH)

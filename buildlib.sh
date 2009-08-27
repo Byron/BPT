@@ -21,7 +21,7 @@ function makeDepends () {
 	local data=()
 	local dl=0
 	
-	echo "Library dependencies" >> $make_include_file
+	echo "# Library dependencies" >> $make_include_file
 	echo "OBJS = \\" >> $make_include_file
 	for cfile in `find . -regex ".*/.*\.cpp\|c\|C"`
 	do
@@ -53,6 +53,10 @@ function makeDepends () {
 		echo "# $basename" >> $make_include_file
 		echo "$ofile = " >> $make_include_file
 		g++ $@ -MT $ofile -MM $cfile >> $make_include_file
+		
+		# put the make rule in here - it is hard to tell make a general rule considering the O files are somewhere else
+		echo "	mkdir -p \`dirname \$@\`" >> $make_include_file
+		echo "	\$(CXX) \$< -c \$(CXX_FLAGS) \$(INCLUDE_FLAGS) \$(DEFINE_FLAGS) -o \$@" >> $make_include_file
 	done 
 	
 }
