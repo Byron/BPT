@@ -1,7 +1,7 @@
 
 # VARIABLE DEFINITION
 ######################
-.PHONY = default clean dep depends .buildcommon .releasecommon .checkargs
+.PHONY = default clean dep depends .buildcommon .releasecommon .checkargs .module
 .DEFAULT_GOAL = default
 
 # default for m2008 and m2009
@@ -86,11 +86,15 @@ endif
 
 # BUILD COMMON
 # Rule on how to build the binary
-.buildcommon : $(LIB_PATH)
+.buildcommon : .checkargs .module 
 
-$(LIB_PATH) : $(OBJS)
+.module : $(LIB_PATH)
+# make a fully functional module by copying scripts
+	@ln -sf $$(cd scripts; echo $$PWD) $(OUTPUT_PATH)
+	
+$(LIB_PATH) : $(OBJS) 
 	mkdir -p `dirname $@`
-	$(CXX) -shared -o $@ $^ $(LINK_FLAGS) -O2 -Wall -g3 -O2 $(EXT_LIBS)
+	$(CXX) -shared -o $@ $(OBJS) $(LINK_FLAGS) -O2 -Wall -g3 -O2 $(EXT_LIBS)
 
 
 	
