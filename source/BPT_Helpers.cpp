@@ -344,7 +344,7 @@ void		BPT_Helpers::memoryPrune(MIntArray& orig)
 {
 
 
-	/*
+	
 	int l = orig.length();
 	int	biggest = 0;
 	int smallest = 166666666;
@@ -368,7 +368,7 @@ void		BPT_Helpers::memoryPrune(MIntArray& orig)
 
 
 //	MemArray eventuell zu normalem Feld machen
-	i = 0;
+	int i = 0;
 	MIntArray* memArray = new MIntArray( ( (biggest + 1) - smallest +1) ,-1);
 
 	
@@ -387,8 +387,8 @@ void		BPT_Helpers::memoryPrune(MIntArray& orig)
 			orig.append( (*memArray)[i]);
 		
 	delete memArray;
-
-	*/
+	return;
+	
 
 	BPT_BA mem(orig,true);
 	
