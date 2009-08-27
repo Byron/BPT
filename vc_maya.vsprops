@@ -6,31 +6,17 @@
 	>
 	<Tool
 		Name="VCCLCompilerTool"
-		Optimization="3"
-		InlineFunctionExpansion="2"
-		FavorSizeOrSpeed="1"
-		WholeProgramOptimization="true"
-		AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\$(MayaVersion)\$(MayaBits)\include&quot;;.\"
+		AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\$(MayaVersion)x$(MayaBits)\include&quot;;.\"
 		PreprocessorDefinitions="WIN32;_WINDOWS;_USRDLL;NT_PLUGIN;REQUIRE_IOSTREAM;NOMINMAX;$(NOINHERIT)"
-		StringPooling="true"
-		MinimalRebuild="false"
-		ExceptionHandling="0"
-		RuntimeLibrary="2"
-		SuppressStartupBanner="true"
-		DebugInformationFormat="0"
 	/>
 	<Tool
 		Name="VCLinkerTool"
-		RegisterOutput="false"
-		IgnoreImportLibrary="false"
 		AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib Glu32.lib opengl32.lib"
-		OutputFile="$(B_RELEASE_OUTPATH)\$(MayaVersion)\$(MayaBits)\ByronsPolyTools.mll"
-		LinkIncremental="1"
-		SuppressStartupBanner="true"
-		AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\$(MayaVersion)\$(MayaBits)\lib&quot;"
+		OutputFile="$(B_RELEASE_OUTPUT_PATH)\plugins\ByronsPolyTools_$(MayaVersion)x$(MayaBits).mll"
+		AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\$(MayaVersion)x$(MayaBits)\lib&quot;"
 	/>
 	<Tool
 		Name="VCPostBuildEventTool"
-		CommandLine="del /S $(B_RELEASE_OUTPATH)\$(MayaVersion)\BPT\scripts&#x0D;&#x0A;mkdir $(B_RELEASE_OUTPATH)\$(MayaVersion)\BPT\plug-ins&#x0D;&#x0A;xcopy  /S  /Y $(ProjectDir)\scripts $(B_RELEASE_OUTPATH)\$(MayaVersion)\BPT\scripts\&#x0D;&#x0A;copy  $(TargetPath) $(B_RELEASE_OUTPATH)\$(MayaVersion)\BPT\plug-ins\&#x0D;&#x0A;"
+		CommandLine="del /S $(B_RELEASE_OUTPUT_PATH)\$(MayaVersion)x$(MayaBits)\BPT\scripts&#x0D;&#x0A;mkdir $(B_RELEASE_OUTPUT_PATH)\$(MayaVersion)x$(MayaBits)\BPT\plug-ins&#x0D;&#x0A;xcopy  /S  /Y $(ProjectDir)\scripts $(B_RELEASE_OUTPUT_PATH)\$(MayaVersion)x$(MayaBits)\BPT\scripts\&#x0D;&#x0A;copy  $(TargetPath) $(B_RELEASE_OUTPUT_PATH)\$(MayaVersion)x$(MayaBits)\BPT\plug-ins\ByronsPolyTools.mll&#x0D;&#x0A;"
 	/>
 </VisualStudioPropertySheet>

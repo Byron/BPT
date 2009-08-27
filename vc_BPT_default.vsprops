@@ -3,8 +3,8 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="vc_BPT_default"
-	OutputDirectory="$(B_TMP_PATH)/$(ProjectName)/$(ConfigurationName)"
-	IntermediateDirectory="$(B_TMP_PATH)/$(ProjectName)/$(ConfigurationName)"
+	OutputDirectory="$(B_TMP_PATH)/$(ProjectName)$(PlatformName)/$(ConfigurationName)"
+	IntermediateDirectory="$(B_TMP_PATH)/$(ProjectName)$(PlatformName)/$(ConfigurationName)"
 	>
 	<Tool
 		Name="VCCLCompilerTool"
@@ -12,5 +12,6 @@
 		ObjectFile="$(OutDir)\"
 		ProgramDataBaseFileName="$(OutDir)\"
 		XMLDocumentationFileName="$(OutDir)\"
+		ExceptionHandling="1"
 	/>
 </VisualStudioPropertySheet>
