@@ -342,60 +342,9 @@ void			BPT_Helpers::pruneIntArray(MIntArray& orig)
 void		BPT_Helpers::memoryPrune(MIntArray& orig)
 //-----------------------------------------------------------------
 {
-
-
-	
-	int l = orig.length();
-	int	biggest = 0;
-	int smallest = 166666666;
-
-//	wenns zu speicherintesiv wird, einfach noch den kleinsten Wert ermitteln
-//	und die ArrayGröße auf [biggest - smallest] stellen.
-//	beim zuweisen der Werte = orig[i] - smallest
-//	beim wiedereintragen on orig.append(x + smallest)
-
-//	größtes und kleinstes element holen
-	for(int i = 0; i < l; i++)
-	{
-		if(orig[i] > biggest)
-			biggest = orig[i];
-		
-		if(orig[i] < smallest)
-			smallest = orig[i];
-	}
-
-
-
-
-//	MemArray eventuell zu normalem Feld machen
-	int i = 0;
-	MIntArray* memArray = new MIntArray( ( (biggest + 1) - smallest +1) ,-1);
-
-	
-//	indices eintragen
-	for(;i < l; i++ )
-		(*memArray)[orig[i] - smallest] = orig[i];
-
-	i = 0;
-	l = memArray->length();
-
-	////cout<<l <<" == Länge memArray"<<endl;
-	orig.clear();
-//	nullen rausschmeißen
-	for(;i < l; i++)
-		if( (*memArray)[i] != -1)
-			orig.append( (*memArray)[i]);
-		
-	delete memArray;
-	return;
-	
-
 	BPT_BA mem(orig,true);
-	
-
 	orig.clear();
 	mem.getIntArray(orig);
-	
 }
 
 //-----------------------------------------------------------------

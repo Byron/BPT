@@ -212,8 +212,6 @@ bool				performLogicalOperation(const MIntArray& rhs,
 private:
 //--------------------------
 
-static 	const int numBits;	//!< number of bits per chunk 
-
 ULONG		lowBound;	//!< da unter Umständen auch mehr Bits bearbeitet werden, als "offiziell" im Array gespeichert werden, muss im nachhinein noch dafür gesorgt
 						//!< werden, dass diese Bits wieder 0 gesetzt werden - dies geschieht mit lowBound, um zu wissen, wo die untere Grenze ist
 
@@ -234,6 +232,7 @@ ULONG*		 array;		//!< zeigt auf den Begin des zugrundeliegenden LongArrays - es 
 
 //Konstanten (damit diese nich immer als literale konstanten erzeugt werden, um dann wieder verworfen zu werden
 //------------------
+static const int   nBitsInUlong;	//!< number of bits per chunk
 static const ULONG null;
 static const ULONG one;
 static const ULONG fulllong;
