@@ -10,7 +10,7 @@
 		InlineFunctionExpansion="2"
 		FavorSizeOrSpeed="1"
 		WholeProgramOptimization="true"
-		AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\$(MayaVersion)\include&quot;;.\"
+		AdditionalIncludeDirectories=".\include;&quot;$(B_SDK_MAYA)\$(MayaVersion)\$(MayaBits)\include&quot;;.\"
 		PreprocessorDefinitions="WIN32;_WINDOWS;_USRDLL;NT_PLUGIN;REQUIRE_IOSTREAM;NOMINMAX;$(NOINHERIT)"
 		StringPooling="true"
 		MinimalRebuild="false"
@@ -24,10 +24,10 @@
 		RegisterOutput="false"
 		IgnoreImportLibrary="false"
 		AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaAnim.lib OpenMayaUI.lib Glu32.lib opengl32.lib"
-		OutputFile="$(B_RELEASE_OUTPATH)\$(MayaVersion)\ByronsPolyTools.mll"
+		OutputFile="$(B_RELEASE_OUTPATH)\$(MayaVersion)\$(MayaBits)\ByronsPolyTools.mll"
 		LinkIncremental="1"
 		SuppressStartupBanner="true"
-		AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\$(MayaVersion)\lib&quot;"
+		AdditionalLibraryDirectories="&quot;$(B_SDK_MAYA)\$(MayaVersion)\$(MayaBits)\lib&quot;"
 	/>
 	<Tool
 		Name="VCPostBuildEventTool"

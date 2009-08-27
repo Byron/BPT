@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="vc_maya_bits_32"
+	>
+	<UserMacro
+		Name="MayaBits"
+		Value="32"
+		PerformEnvironmentSet="true"
+	/>
+</VisualStudioPropertySheet>
