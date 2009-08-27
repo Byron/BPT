@@ -978,7 +978,7 @@ MStatus BPTfty::doIt()//int slideInt)
 		}
 	case 6:
 		{	
-			#include "BPT_SMC.cpp"
+			#include "BPT_SMC.cpp.inc"
 
 				break;
 			}

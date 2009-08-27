@@ -62,20 +62,22 @@ MStatus ByronsPolyToolsNodeManip::createChildren()
 
 	fSideToggle = addToggleManip("sideToggleManip","side");
 
+	MVector nullVector(0.0,0.0,0.0);
+	
 	MFnToggleManip	toggleFn(fSideToggle);
-		toggleFn.setDirection(MVector(0.0,0.0,0.0) );
+		toggleFn.setDirection( nullVector );
 		toggleFn.setLength(0.0);
 
 	
 	fAbsToggle = addToggleManip("absToggleManip","absolute");
 	MFnToggleManip	toggleFn2(fAbsToggle);
-		toggleFn2.setDirection( MVector(0.0,0.0,0.0) );
+		toggleFn2.setDirection( nullVector );
 		toggleFn2.setLength(0.0);
 
 
 	fSlideManip = addDistanceManip("dinstanceManip","slide");
 		MFnDistanceManip distFn(fSlideManip);
-		distFn.setDirection( MVector(1.0,0.0,0.0) );
+		distFn.setDirection( nullVector );
 		
 
 	return	stat;

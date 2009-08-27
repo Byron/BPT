@@ -81,7 +81,7 @@ public:
 
 	void	createPoly(MIntArray& vtxIDs, edgeFaceData* faceData);		//!< spezielisierte Variante von create Poly
 
-	void	edgeMeshCreator::createPoly(const edgeFaceData* data);
+	void	createPoly(const edgeFaceData* data);
 	
 
 	void	changeSideFace(int origVtxID, int newVtxID, int faceID, MIntArray& newUVIds );

@@ -1,17 +1,18 @@
 #ifndef TIMER_INCLUDED
 #define TIMER_INCLUDED
 
-#ifdef WIN32
-
 #include <MACROS.h>
-
+#include <iostream>
+#include <string>
 #include <time.h>
 
-#include <string>
-
+#ifdef WIN32
 #include "windows.h"
+#else
+#include <sys/time.h>
+#endif 
 
-#include <iostream>
+
 
 using std::cout;
 using std::endl;
@@ -50,19 +51,19 @@ public: //***************** //
 //			Variablen   //
 private: //*********** //
 // /////////////////////
+	std::string messageStr;
 
+#ifdef WIN32
 	_LARGE_INTEGER start;
 	_LARGE_INTEGER freq;	//frequenz des Counters
+#else
+	struct timeval startTime;
+#endif // WIN32
 
-	std::string messageStr;
+	
 };
 
 
-#else
-
-LINUX
-
-#endif // WIN32
 
 
 #endif /*timer included*/

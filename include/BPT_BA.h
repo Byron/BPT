@@ -7,7 +7,7 @@
 #include <malloc.h>
 
 
-#include <BMACROS.h>
+#include <MACROS.h>
 
 
 namespace BPT
@@ -138,7 +138,7 @@ ULONG	syncNumTrue();
 //result hat also keinen gültigen size wert, was wirklich massig rechenzeit spart
 //will mans doch, dann syncNumTrue aufrufen
 
-bool	and (const BPT_BA& rhs, BPT_BA& result);				//!< AND OP, nur das er effizienter ist, da kein BA aus der procedur herauskopiert werden muss
+bool	_and_ (const BPT_BA& rhs, BPT_BA& result);				//!< AND OP, nur das er effizienter ist, da kein BA aus der procedur herauskopiert werden muss
 bool	inclusive_or (const BPT_BA& rhs, BPT_BA& result);		//!< | OP
 bool	exclusive_or (const BPT_BA& rhs, BPT_BA& result);		//!< ^ OP
 bool	minus(const BPT_BA& rhs, BPT_BA& result);				//!< - OP

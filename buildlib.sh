@@ -55,7 +55,7 @@ function makeDepends () {
 		g++ $@ -MT $ofile -MM $cfile >> $make_include_file
 		
 		# put the make rule in here - it is hard to tell make a general rule considering the O files are somewhere else
-		echo "	mkdir -p \`dirname \$@\`" >> $make_include_file
+		echo "	@mkdir -p \`dirname \$@\`" >> $make_include_file
 		echo "	\$(CXX) \$< -c \$(CXX_FLAGS) \$(INCLUDE_FLAGS) \$(DEFINE_FLAGS) -o \$@" >> $make_include_file
 	done 
 	

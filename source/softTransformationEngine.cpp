@@ -148,7 +148,7 @@ void	softTransformationEngine::setVtxSet(const MIntArray& newIDs, MDataBlock& da
 
 		// CompList aufbauen
 	MFnSingleIndexedComponent	compFn;
-	compFn.create(MFn::kMeshVertComponent);
+	MObject compfnObj = compFn.create(MFn::kMeshVertComponent);
 
 	compFn.addElements( *(const_cast<MIntArray *>(&newIDs)) );	// Gemein - die AddElements Methode verändert das MIntArray nicht, ist aber nicht const !
 
@@ -157,7 +157,8 @@ void	softTransformationEngine::setVtxSet(const MIntArray& newIDs, MDataBlock& da
 	MFnComponentListData compDataFn;
 	MObject dataObj = compDataFn.create();
 
-	compDataFn.add(compFn.object());
+	
+	compDataFn.add( compfnObj );
 
 
 

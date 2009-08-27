@@ -4,6 +4,7 @@
 
 #include "edgeMeshCreator.h"
 #include "edge.h"
+#include "string.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

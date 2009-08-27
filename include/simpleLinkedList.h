@@ -17,7 +17,7 @@ class simpleLinkedList
 {
 public:
 	simpleLinkedList<T>():size(0),currentPosition(0),currentPositionPtr(0),startPosition(0){tail = new linkedNode<T>;};
-	simpleLinkedList<T>(const simpleLinkedList<T>& other){cout<<"War in kopierKonstuktor"<<endl;};
+	simpleLinkedList<T>(const simpleLinkedList<T>& other){ };
 	~simpleLinkedList<T>(){/*cout<<"RUFE SIMPLELINKEDLIST DESTRUKTOR"<<endl;*/ tail->next = 0; delete tail; if(size != 0){ delete startPosition;}  };
 	//~simpleLinkedList<T>(){cout<<"RUFE SIMPLELINKEDLIST DESTRUKTOR"<<endl;/*delete startPosition;*/};
 
@@ -121,7 +121,6 @@ T* simpleLinkedList<T>::operator[]( int index ) const
 	}
 	else
 	{//ansonsten wieder von 0 anfangen zu zählen
-		cout<<"wollte von 0 anfangen"<<endl;
 		currentPosition = index;
 		startPosition->getIndex(0,index,tmpNode);
 		currentPositionPtr = tmpNode;

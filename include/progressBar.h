@@ -7,7 +7,7 @@
 #include <maya/MString.h>
 #include <maya/MGlobal.h>
 
-#include <BMACROS.h>
+#include <MACROS.h>
 
 namespace BPT
 {

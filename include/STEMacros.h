@@ -25,23 +25,23 @@
 
 #	define STE_DECLARE_STATIC_PARAMETERS(classname,prefix)	\
 															\
-		MObject	classname##::##prefix##distanceObj;			\
-		MObject	classname##::##prefix##vfObj;				\
-		MObject	classname##::##prefix##ftObj;				\
-		MObject classname##::##prefix##inMatrixObj;			\
-		MObject classname##::##prefix##vtxOrigPosObj;		\
-		MObject classname##::##prefix##vtxSetObj;			\
-		MObject	classname##::##prefix##customSl;			\
-		MObject	classname##::##prefix##maxWeightsObj;		\
-		MObject	classname##::##prefix##smoothenObj;			\
-		MObject	classname##::##prefix##edgeDistanceObj;		\
-		MObject	classname##::##prefix##useMatrixRotationObj;\
-		MObject	classname##::##prefix##pushObj;				\
-		MObject	classname##::##prefix##pushRelativeObj;		\
-		MObject	classname##::##prefix##meshMatrixObj;		\
-		MObject classname##::##prefix##vtxColorObj;			\
-		MObject classname##::##prefix##vtxColorObj2;		\
-		MObject classname##::##prefix##pointSizeObj;		
+		MObject	classname::prefix##distanceObj;			\
+		MObject	classname::prefix##vfObj;				\
+		MObject	classname::prefix##ftObj;				\
+		MObject classname::prefix##inMatrixObj;			\
+		MObject classname::prefix##vtxOrigPosObj;		\
+		MObject classname::prefix##vtxSetObj;			\
+		MObject	classname::prefix##customSl;			\
+		MObject	classname::prefix##maxWeightsObj;		\
+		MObject	classname::prefix##smoothenObj;			\
+		MObject	classname::prefix##edgeDistanceObj;		\
+		MObject	classname::prefix##useMatrixRotationObj;\
+		MObject	classname::prefix##pushObj;				\
+		MObject	classname::prefix##pushRelativeObj;		\
+		MObject	classname::prefix##meshMatrixObj;		\
+		MObject classname::prefix##vtxColorObj;			\
+		MObject classname::prefix##vtxColorObj2;		\
+		MObject classname::prefix##pointSizeObj;		
 
 
 

@@ -1442,7 +1442,7 @@ bool		BPT_BA::operator - (const MIntArray& rhs )
 
 
 //--------------------------------------------------------------------
-bool	BPT_BA::and (const BPT_BA& rhs, BPT_BA& result)
+bool	BPT_BA::_and_ (const BPT_BA& rhs, BPT_BA& result)
 //--------------------------------------------------------------------
 {
 

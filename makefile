@@ -10,7 +10,7 @@ B_TMP_PATH ?= builddata
 # separate subfolder for BPT in case the folder is used by others
 BPT_TMP_PATH = $(B_TMP_PATH)/BPT
 CXX ?= g++412
-CXX_FLAGS ?= 
+CXX_FLAGS ?= -fPIC -g
 VPATH ?= $(shell find . -type d -not -wholename "*/.*" )
 OBJS ?= # defined by file from 'depends' rule
 
@@ -89,9 +89,6 @@ endif
 .buildcommon : $(LIB_PATH)
 
 $(LIB_PATH) : $(OBJS)
-	@echo $(LIB_PATH)
-	@echo $(OUTPUT_PATH)
-	@echo $(MAYA_BASE)
 	mkdir -p `dirname $@`
 	$(CXX) -shared -o $@ $^ $(LINK_FLAGS) -O2 -Wall -g3 -O2 $(EXT_LIBS)
 
