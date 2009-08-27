@@ -717,7 +717,6 @@ MAYAEXPORT MStatus initializePlugin( MObject obj )
 	}
 
 
-#ifdef VISMESHNODE
 	status = plugin.registerNode(	"visualizeMeshNode", 
 									visualizeMeshNode::id, 
 									&visualizeMeshNode::creator, 
@@ -727,7 +726,6 @@ MAYAEXPORT MStatus initializePlugin( MObject obj )
 		status.perror("registerNode");
 		return status;
 	}
-#endif
 
 	// ******************************
 	// ** softTransformationNode ****
@@ -811,14 +809,17 @@ MAYAEXPORT MStatus initializePlugin( MObject obj )
                  						fastTrgNode::initialize);
 
 
-
+	if (!status) {
+        status.perror("registerTriangulation");
+        return status;
+	}
 	
 	//tools erzeugen, aber nur, wenn die session noch nicht abgelaufen ist
 	//
 	MGlobal::executeCommand("softTransformationTool softTransformationTool1",false,false);
 	
 
-	return status;
+	return MS::kSuccess;
 }
 
 
@@ -843,13 +844,11 @@ MAYAEXPORT MStatus uninitializePlugin( MObject obj )
 	}
 
 
-#ifdef VISMESHNODE
 	status = plugin.deregisterNode( visualizeMeshNode::id );
 	if (!status) {
 		status.perror("deregisterNode");
 		return status;
 	}
-#endif
 
 	
 	status = plugin.deregisterNode( ByronsPolyToolsNode::id );
