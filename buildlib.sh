@@ -74,6 +74,7 @@ function _callMake () {
 		exit 2
 	fi
 	
+	
 	# PARSE ARGUMENTS
 	###################
 	# parse the versions from the possible additional args
@@ -106,6 +107,7 @@ function _callMake () {
 		fi
 	done # for each arg
 	
+	
 	# CALL MAKE
 	############
 	echo "${version_compiler[@]}" |
@@ -118,9 +120,15 @@ function _callMake () {
 }
 
 # call make with the appropriate options to build BPT
-# args maya version number, i.e. 8.5 2008 2009 
-function build () {
+# args maya version number, i.e. 8.5 2008 2009, additional args will be passed to make 
+function makeBuild () {
 	_callMake "build" $@	
+}
+
+# call make with the appropriate options to release BPT
+# options: see build
+function makeRelease () {
+	_callMake "release" $@	
 }
 
 # allows to call functions directly 
