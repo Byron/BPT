@@ -17,6 +17,6 @@
 	/>
 	<Tool
 		Name="VCPostBuildEventTool"
-		CommandLine="del /S $(B_RELEASE_OUTPUT_PATH)\$(MayaVersion)x$(MayaBits)\scripts&#x0D;&#x0A;mkdir $(B_RELEASE_OUTPUT_PATH)\$(MayaVersion)x$(MayaBits)\plug-ins&#x0D;&#x0A;xcopy  /S  /Y $(ProjectDir)\scripts $(B_RELEASE_OUTPUT_PATH)\$(MayaVersion)x$(MayaBits)\scripts\&#x0D;&#x0A;copy  $(TargetPath) $(B_RELEASE_OUTPUT_PATH)\$(MayaVersion)x$(MayaBits)\plug-ins\ByronsPolyTools.mll&#x0D;&#x0A;"
+		CommandLine="del /S $(B_RELEASE_OUTPUT_PATH)\$(MayaVersion)x$(MayaBits)\scripts&#x0D;&#x0A;mkdir $(B_RELEASE_OUTPUT_PATH)\$(MayaVersion)x$(MayaBits)\plug-ins&#x0D;&#x0A;xcopy  /S  /Y $(ProjectDir)\scripts $(B_RELEASE_OUTPUT_PATH)\$(MayaVersion)x$(MayaBits)\scripts\&#x0D;&#x0A;copy  $(TargetPath) $(B_RELEASE_OUTPUT_PATH)\$(MayaVersion)x$(MayaBits)\plug-ins\ByronsPolyTools.mll&#x0D;&#x0A;copy   INSTALL.txt $(B_RELEASE_OUTPUT_PATH)\$(MayaVersion)x$(MayaBits)\&#x0D;&#x0A;copy   DISCLAIMER.txt $(B_RELEASE_OUTPUT_PATH)\$(MayaVersion)x$(MayaBits)\&#x0D;&#x0A;copy   bpt.module $(B_RELEASE_OUTPUT_PATH)\$(MayaVersion)x$(MayaBits)\&#x0D;&#x0A;"
 	/>
 </VisualStudioPropertySheet>
