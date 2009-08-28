@@ -62,6 +62,67 @@ function makeDepends () {
 }
 
 
+# Call make with the given target
+# arg 1 : make target
+# args : maya version(s) to make 
+function _callMake () {
+	local target=${1:?"Need make target"}
+	shift
+	
+	if [[ $# == 0 ]]; then
+		echo "Please provide the maya version (s) you want to build"
+		exit 2
+	fi
+	
+	# PARSE ARGUMENTS
+	###################
+	# parse the versions from the possible additional args
+	local maya_versions=(8.5 2008 2009)
+	local compilers=( 	  g++402 g++412 g++412 	)
+	if [[ ${#maya_versions[*]} != ${#compilers[*]} ]]; then
+		echo "ASSERTION FAILED: Each maya version needs the corresponding cxx compiler entry"
+		exit 2
+	fi
+	
+	local args=( )
+	local version_compiler=( )
+	for arg in $@
+	do
+		local count=0
+		local found=0
+		for version in ${maya_versions[@]}; do
+			if [[ $arg == $version ]]; then
+				found=1
+				vl=${#version_compiler[*]}
+				version_compiler[$vl]=$version
+				version_compiler[(($vl+1))]=${compilers[$count]}$'\n'	# newline to make reading easier
+			fi # end if arg is version 
+			count=$(( $count + 1 ))
+		done # for each version
+		
+		# otherwise put it into args
+		if [[ $found == 0 ]]; then
+			args[${#args[*]}]=$arg
+		fi
+	done # for each arg
+	
+	# CALL MAKE
+	############
+	echo "${version_compiler[@]}" |
+	while read version cxx
+	do 
+		# marks the end of the array data
+		if [[ $version == "" ]]; then break; fi
+		make ${args[@]} MAYA_VERSION=$version CXX=$cxx $target || ( echo "Failed to make $target" && exit $? )
+	done
+}
+
+# call make with the appropriate options to build BPT
+# args maya version number, i.e. 8.5 2008 2009 
+function build () {
+	_callMake "build" $@	
+}
+
 # allows to call functions directly 
 if [[ $1 == "call" ]]; then
 	funcname=${2:?"You need to set a function to call as second argument"}

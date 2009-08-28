@@ -3,3 +3,4 @@
 *.suo
 *.idc
 *.obj
+.depends_*

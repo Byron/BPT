@@ -1,7 +1,7 @@
 
 # VARIABLE DEFINITION
 ######################
-.PHONY = default clean dep depends .buildcommon .releasecommon .checkargs .module
+.PHONY = default clean dep depends build release .checkargs .module
 .DEFAULT_GOAL = default
 
 # default for m2008 and m2009
@@ -9,7 +9,7 @@ maya_versions ?= 8.5 2008 2009
 B_TMP_PATH ?= builddata
 # separate subfolder for BPT in case the folder is used by others
 BPT_TMP_PATH = $(B_TMP_PATH)/BPT
-CXX ?= g++412
+CXX ?= 
 CXX_FLAGS ?= -fPIC -g
 VPATH ?= $(shell find . -type d -not -wholename "*/.*" )
 OBJS ?= # defined by file from 'depends' rule
@@ -30,21 +30,15 @@ LINK_FLAGS = -L$(SDK_PATH)/lib -lFoundation -lOpenMaya -lOpenMayaAnim -lOpenMaya
 DEFINE_FLAGS ?= -DLINUX -DREQUIRE_IOSTREAM -D_BOOL
 
 # fully qualified path to catch all our output
-COMPILE_PATH = $(BPT_TMP_PATH)/$(MAYA_BASE)
+COMPILE_PATH = $(BPT_TMP_PATH)/_obj_/$(MAYA_BASE)
 OUTPUT_PATH = $(BPT_TMP_PATH)/$(MAYA_BASE)
 LIB_PATH = $(OUTPUT_PATH)/plug-ins/ByronsPolyTools.so
 
 
 FILECOUNT = $(shell find . -type f -name "*.h" -or -name "*.cpp" | wc -l )
-DEPFILE_BASE = .depends_
-DEPFILE := $(DEPFILE_BASE)$(FILECOUNT)
+DEPFILE_BASE = .depends_$(MAYA_BASE)
+DEPFILE = $(DEPFILE_BASE)_$(FILECOUNT)
  
-
-
-
-# include dependency file
-include $(DEPFILE)
-
 
 # RULES 
 #######
@@ -66,6 +60,7 @@ default:
 	@echo "make clean|build(8.5|2008|2009)|release(8.5|2008|2009)"
 	false
 
+
 .checkargs:
 ifndef B_MAYA_SDK
 	@echo "B_MAYA_SDK needs to point to a path containing the maya sdks, i.e. 2008x64 or 2008x32"
@@ -84,13 +79,20 @@ ifndef CXX
 	false
 endif
 
-# BUILD COMMON
+
+# include dependency file
+include $(DEPFILE)
+
+# BUILD
+#########
 # Rule on how to build the binary
-.buildcommon : .checkargs .module 
+build : .checkargs .module 
 
 .module : $(LIB_PATH)
 # make a fully functional module by copying scripts
 	@ln -sf $$(cd scripts; echo $$PWD) $(OUTPUT_PATH)
+	@if [[ -d icons ]];then ln -sf $$(cd icons; echo $$PWD) $(OUTPUT_PATH); fi
+	
 	
 $(LIB_PATH) : $(OBJS) 
 	mkdir -p `dirname $@`
@@ -98,10 +100,10 @@ $(LIB_PATH) : $(OBJS)
 
 
 	
-# .releasecommon 
-.releasecommon : .buildcommon 
+# release 
+release : build  
 
-	
+
 clean:
 	-rm $(DEPFILE_BASE)*
 	-rm -Rf $(BPT_TMP_PATH)
