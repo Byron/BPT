@@ -1,7 +1,7 @@
 
 # VARIABLE DEFINITION
 ######################
-.PHONY = default clean dep depends build release .checkargs .module
+.PHONY = default clean dep depends build release .checkargs .checkreleaseargs .module
 .DEFAULT_GOAL = default
 
 # default for m2008 and m2009
@@ -33,7 +33,9 @@ DEFINE_FLAGS ?= -DLINUX -DREQUIRE_IOSTREAM -D_BOOL -DBits64_
 COMPILE_PATH = $(BPT_TMP_PATH)/_obj_/$(MAYA_BASE)
 OUTPUT_PATH = $(BPT_TMP_PATH)/$(MAYA_BASE)
 LIB_PATH = $(OUTPUT_PATH)/plug-ins/ByronsPolyTools.so
-
+RELEASE_PATH = $(B_RELEASE_OUTPUT_PATH)/$(MAYA_BASE)
+RELEASE_ARCHIVE = BPT_lnx_$(MAYA_BASE).tar.gz
+RELEASE_INFO = $(RELEASE_PATH)/INFO.txt
 
 FILECOUNT = $(shell find . -type f -name "*.h" -or -name "*.cpp" | wc -l )
 DEPFILE_BASE = .depends_$(MAYA_BASE)
@@ -80,6 +82,12 @@ ifndef CXX
 endif
 
 
+.checkreleaseargs: .checkargs
+ifndef B_RELEASE_OUTPUT_PATH
+	@echo "B_RELEASE_OUTPUT_PATH needs to point to a path that will contain the release binaries"
+	false
+endif
+
 # include dependency file
 include $(DEPFILE)
 
@@ -101,7 +109,18 @@ $(LIB_PATH) : $(OBJS)
 
 	
 # release 
-release : build  
+release : .checkreleaseargs build
+	mkdir -p $(RELEASE_PATH)
+	cp -RfL $(OUTPUT_PATH)/* $(RELEASE_PATH)/
+	cp INSTALL.txt $(RELEASE_PATH)/
+	cp -Rf docs $(RELEASE_PATH)/
+# add a tag to the INFO file 
+	echo "" >> $(RELEASE_INFO)
+	echo "Created `date` from SHA `git-rev-parse HEAD`" >> $(RELEASE_INFO)
+# strip debugging symbols
+	strip `find $(RELEASE_PATH) -name "*.so"`
+	$$( cd $(RELEASE_PATH); tar -pczf ../$(RELEASE_ARCHIVE) * )
+	
 
 
 clean:

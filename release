@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# simple wrapper for the actual build library to release BPT
+./buildlib.sh call makeRelease $@
