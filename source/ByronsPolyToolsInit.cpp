@@ -6,11 +6,7 @@
 // Author: Sebastian Thiel
 //
 
-//Speziell für Linux, damit MFnPlugin ordentlich erstellt wird, was ja abhängig ist vom preprozessor:
-#ifndef WIN32
-	#define ALPHA
-#endif
-
+#define BPT_VERSION "1.0 RV"
 
 #include "ByronsPolyToolsCmd.h"
 #include "ByronsPolyToolsNode.h"
@@ -650,47 +646,11 @@ MAYAEXPORT MStatus initializePlugin( MObject obj )
 //-----------------------------------------------------------------
 
 { 
-/*
-	MString result2;
-	MGlobal::executeCommand("source ByronsPolyToolsMenu;BPT_serialInput();",result2,false,false);
-	
-	if(result2 == "Majestic12")
-		MGlobal::executeCommand("optionVar -sv BPT_srl Majestic12;",false,false);	
-	else
-	{	
-		MGlobal::executeCommand("optionVar -rm BPT_srl;",false,false);
-		MGlobal::displayError("Code was not correct. BPT will not load.");
-		return MS::kFailure;
-	}
-*/
+	// init UI
 	MGlobal::executeCommand("$BPTedgeCount[0] = -1;if ( !(`menu -exists mainBPTMenu`) ){ string $test; $test = `whatIs \"ByronsPolyToolsMenu\"`; if($test != \"Presumed Mel procedure; no definition seen yet.\")ByronsPolyToolsMenu;}",false,false);
-	//beim ersten start dankesFenster anzeigen.
-	int result;
-	MGlobal::executeCommand("optionVar -ex cloak_sfw",result,false,false);
-	
-	if(!result)
-	{
-		int error = 0;
-		MString innerCmd = "showFirstStartWindow()";
-		MGlobal::executeCommand( ("catch(" + innerCmd + ")"),error,false,false);
-
-		if(error)
-		{
-			MString outString("Could not show introductory information, probably your version has been modified. BPT will not load.");
-			MGlobal::displayError(outString);
-			cout<<outString.asChar()<<endl;
-			MGlobal::executeCommand("if ( (`menu -exists mainBPTMenu`) ) deleteUI mainBPTMenu;",false,false);
-			return MS::kFailure;
-		}
-		
-		//optionVar erstellen
-		MGlobal::executeCommand("optionVar -iv cloak_sfw 1",false,false);
-	}
-
-
 
 	cout<<endl;
-	cout<<"Byron's Poly Tools v1.0 initialized"<<endl;
+	cout<<"Byron's Poly Tools v" << BPT_VERSION << " initialized"<<endl;
 
 
 
@@ -698,7 +658,7 @@ MAYAEXPORT MStatus initializePlugin( MObject obj )
 	MStatus   status;
 
 
-	MFnPlugin plugin( obj, "Sebastian Thiel", "1.0 RV");
+	MFnPlugin plugin( obj, "Sebastian Thiel", BPT_VERSION );
 
 	
 	//#####################################

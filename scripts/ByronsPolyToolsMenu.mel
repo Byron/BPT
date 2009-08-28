@@ -20,9 +20,6 @@ global proc ByronsPolyToolsMenu()
 {
 //	DESCRIPTION:
 // 	-sets up the BPT menu in the Maya menu bar
-	
-source ByronsPolyToolsMenu;
-
 
 
 //get rid of the bothering cycleCheckWarnings
@@ -425,12 +422,6 @@ menuItem -divider true;
 	setParent -m ..;
 	menuItem -divider true;
 
-	//menuItem -l "ITV Tool"
-	//-ann "Interactively change values of the selected Nodes"
-	//-echoCommand false
-	//-c "setToolTo interactiveTweakValueTool1"
-	//ITVTItem;
-
 
 	menuItem -divider true;
   menuItem -divider true;
@@ -449,19 +440,6 @@ menuItem -divider true;
 	-echoCommand false
 	-c "ByronsPolyTools -h"
 	helpItem;
-
-	menuItem -l "Online Help"
-	-ann "Get OnlineHelp on BPT"
-	-echoCommand false
-	-c "onlineHelpLink"
-	onlineHelpItem;
-	
-	menuItem -l "Contact"
-	-ann "Send me a mail with critics or whatever :)"
-	-echoCommand false
-	-c "BPTEMailLink"
-	EMailHelpItem;
-
 
  hotBox -um;
 //check if plugin is loaded
@@ -515,31 +493,19 @@ global proc BPT_switchPrefTabs()
 
 	// base - 4 == BPT currently adds 4 own entries at the end of the list
 	//
-	if($index[0] <= ($base - 4 ) )
+	if($index[0] <= ($base - 2 ) )
 	{//The index belongs to the default Maya prefs - pass control to default procedure
 		switchPrefTabs 0;
-
-		//set window to standardSize
-		if (`about -nt`) 
-			window -e -wh 630 450 $gPreferenceWindow;
-		else
-			window -e -wh 665 500 $gPreferenceWindow;
 
 		return;
 	}
 		
-
-	
 	
 	setParent $gPreferenceWindow;
-
-	//set the window to the size needed - if nessecary
-	if(`window -q -w $gPreferenceWindow` != 633 || `window -q -h $gPreferenceWindow` != 605)
-		window -e -wh 633 605 $gPreferenceWindow;
-
+	
 	//the tab belongs to me - call my procs to change the preferences window
 	//make sure NT and LinuxIndices are compatible (since in Linux there is one more entry in the list)
-	if( $index[0] == $base - 3 )
+	if( $index[0] == $base - 1 )
 	{
 		//BPT_GeneralPrefs
 
@@ -549,7 +515,7 @@ global proc BPT_switchPrefTabs()
 					-label "BPT: General Preferences" 
 					prefTitleFrame;
 	}
-	else if( $index[0] == $base - 2 )
+	else if( $index[0] == $base )
 	{
 		//BPT_STTPrefs
 
@@ -560,28 +526,7 @@ global proc BPT_switchPrefTabs()
 					prefTitleFrame;
 
 	}
-	else if($index[0] == $base - 1 )
-	{
-		//BPT_ITVTPrefs
-
-				prefsCreateBPT_ITVT;
-				tabLayout -e -selectTabIndex $index[0] prefTabs;
-				frameLayout -e 
-					-label "Interactive Tweak Value Tool (->Find better name!):" 
-					prefTitleFrame;
-
-	}
-	else if($index[0] == $base )
-	{
-		//BPT_STTPrefs
 	
-				prefsCreateBPT_Colors;
-				tabLayout -e -selectTabIndex $index[0] prefTabs;
-				frameLayout -e 
-					-label "Colors (->Extra colors tab probably not necessary!):" 
-					prefTitleFrame;
-
-	}			
 	
 
 }
@@ -612,10 +557,9 @@ global proc showBPTPreferences()
 
 
 	//now add the BPT entries to the textScrollList
+	int $numPrefs = 2;
 	textScrollList -e -a "BPT" prefIndex;
 	textScrollList -e -a "    ST Tool" prefIndex;
-	textScrollList -e -a "    ITV Tool" prefIndex;
-	textScrollList -e -a "    Colors" prefIndex;
 
 
 	setUITemplate -pushTemplate NONE;
@@ -625,22 +569,11 @@ global proc showBPTPreferences()
 	frameLayout -lv false -bv false -mw 10 -mh 10;
 			    columnLayout -adj true BPT_prefGeneralCol;
 
-
-	setParent prefTabs;
-	frameLayout -lv false -bv false -mw 10 -mh 10;
-			    columnLayout -adj true BPT_prefSTTCol;
-
-
-	setParent prefTabs;
-	frameLayout -lv false -bv false -mw 10 -mh 10;
-			    columnLayout -adj true BPT_prefITVTCol;
-
-
-	setParent prefTabs;
-	frameLayout -lv false -bv false -mw 10 -mh 10;
-			    columnLayout -adj true BPT_prefColorsCol;
-
 	
+	setParent prefTabs;
+   frameLayout -lv false -bv false -mw 10 -mh 10;
+               columnLayout -adj true BPT_prefSTTCol;
+
 
 	//override the default selectCommand to my one which allows me process the selection first
 	textScrollList -e -selectCommand "BPT_switchPrefTabs"  prefIndex;
@@ -669,55 +602,16 @@ global proc showBPTPreferences()
 	
 	// Take into consideration that the number of prefEntries changes from version to version
 	//
-	int $offset = 0;
-	string $versionStr = `about -version`;
-	if( $versionStr == "6.0CG" )
-	{
-		$offset = 3;
-	}
-	else if( $versionStr == "5.0" )
-	{
-		$offset = 1;
-	}
+	
 
 	//Finally, set everything to show the general BPT Prefs
-	textScrollList -e -sii (22 - `about -nt` + $offset) prefIndex;
+	textScrollList -e -sii ( `textScrollList -q -ni prefIndex` - $numPrefs + 1 ) prefIndex;
 	BPT_switchPrefTabs();
 
 
 
 	
 }
-
-//-----------------------------------------------------------------------------
-global proc prefsCreateBPT_ITVT()
-//-----------------------------------------------------------------------------
-{
-
-	global string $gPreferenceWindow;
-	setParent $gPreferenceWindow;
-	string $parent = "BPT_prefITVTCol";
-	
-	// Check to see if this has been created already.
-	//
-	if (`columnLayout -q -numberOfChildren $parent` > 0) {
-		return;
-	}
-
-	//Create the UI
-	setParent $parent;
-	setUITemplate -pushTemplate prefsTemplate;		
-
-	// This is used to force the width to fill the window
-	separator -style "none" -h 1 -w 490;
-
-
-	text -l "TO DO ITVT";
-
-
-
-}
-
 
 
 //-----------------------------------------------------------------------------
@@ -833,7 +727,7 @@ global proc prefsCreateBPT_General()
 				-cc2 "optionVar -iv BPT_ir #1"
 				-cc3 "optionVar -iv BPT_nir #1"
 				-cw4 20 160 160 160
-				-ann "1: If false, sliding will be limited to a 0 - 1 boundary - 2: If true, the slide parameter will map to the edge itself - 3: TODO - Parameter Namen ändern"
+				-ann "1: If false, sliding will be limited to a 0 - 1 boundary - 2: If true, the slide parameter will map to the edge itself - 3: If true, sliding along the normals will take the face size into account"
 				bpt_pref_slide3;
 
 		setParent ..;
@@ -844,13 +738,12 @@ global proc prefsCreateBPT_General()
 	frameLayout -l "Visualization";
 	    columnLayout -adj true;
 
-		checkBoxGrp -ncb 2
+		checkBoxGrp -ncb 1
 				-l "" 
-				-la2 "Visualize Falloff" "Visualize Original Mesh" 
+				-l1 "Visualize Falloff"  
 				-cc1 "optionVar -iv BPT_avt #1"
-				-cc2 "optionVar -iv BPT_avm #1"
-				-cw3 20 240 240
-				-ann "1: Initially visualize the falloff if appropriate - 2: Initially show the original mesh"
+				-cw2 20 240
+				-ann "1: Initially visualize the falloff if appropriate"
 				bpt_pref_vis2;
 
 		setParent ..;
@@ -864,9 +757,9 @@ global proc prefsCreateBPT_General()
 					-cal 1 "center" 
 					-cal 2 "center"
 					-cal 3 "center"
-					-cw  1 150 
-					-cw  2 150
-					-cw  3 150;
+					-cw  1 180 
+					-cw  2 180
+					-cw  3 180;
 		
 		separator -style "none" -h 5 ;
 		separator -style "none" -h 5 ;
@@ -969,9 +862,9 @@ global proc prefsCreateBPT_General()
 	    rowColumnLayout -nc 3 	-cal 1 "center" 
 					-cal 2 "center"
 					-cal 3 "center"
-					-cw  1 150 
-					-cw  2 150
-					-cw  3 150;
+					-cw  1 180 
+					-cw  2 180
+					-cw  3 180;
 
 		separator -style "none" -h 5 ;
 		separator -style "none" -h 5 ;
@@ -1115,7 +1008,6 @@ global proc prefsUpdateBPT()
 
 		checkBoxGrp -e
 				-value1 `optionVar -q BPT_avt`
-				-value2 `optionVar -q BPT_avm`
 				bpt_pref_vis2;
 	}
 
@@ -1347,48 +1239,6 @@ global proc showSmartSplitOptionWindow(string $command)
 
 	}
 }
-
-//-----------------------------------------------------------------------------
-global proc showFirstStartWindow()
-//-----------------------------------------------------------------------------
-{
-		//DESCRIPTION:
-		
-		//-creates a window which show up if you first start BPT
-	
-	if(`window -ex firstStartWindow`)
-		deleteUI firstStartWindow;
-	
-	window -title "Thank You!" -w 300 -h 276 -s 0 "firstStartWindow";
-	
-	columnLayout;
-	
-	frameLayout -l "Thanks for your Support" -labelAlign "center"
-    				-borderStyle "out" ;
-
-	columnLayout;
-	
-	string $content = "\nThank you for purchasing this Plugin and therefore \n"; 
-	$content += "supporting me in my attempt to improve modeling and \n";
-	$content += "workflow in general. \n \n";
-	$content += "Only this way it will be possible for me to go on developing \n";
-	$content += "tools for Maya that will make your work faster and more \n";
-	$content += "convenient. \n \n";
-	$content += "If you have any ideas on what could still be done to improve \n";
-	$content += "Maya and the workflow, I would appreciate if you could drop \n ";
-	$content += "me some lines :).\n \n \n";
-	
-	$content += "Thanks for your Time \n";
-	$content += "Sebastian Thiel\n\n";
-	$content += "PS: This message will show up only once.";
-	text -l $content -align "left";
-	
-	
-	showWindow;
-	
-	window -e -w 300 -h 276 firstStartWindow;
-}
-
 
 //***********************************************
 //------------UI - END---------------------
@@ -1840,23 +1690,6 @@ global proc BPT_uninstall()
 
 	//BPT uninstalled successfully
 	warning "BPT uninstalled successfully";
-}
-
-
-//-----------------------------------------------------------------------------
-global proc onlineHelpLink()
-//-----------------------------------------------------------------------------
-{
-string $link = "start explorer \"http://Sebastian-Thiel.bei.T-Online.de/BPTDocs/ByronsPolyToolsHelp.htm\"";
-system($link);
-}
-
-//-----------------------------------------------------------------------------
-global proc BPTEMailLink()
-//-----------------------------------------------------------------------------
-{
-string $link = "start explorer \"mailto:Sebastian.Thiel@Byronimo.de\"";
-system($link);
 }
 
 //***********************************************
