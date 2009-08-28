@@ -113,6 +113,7 @@ release : .checkreleaseargs build
 	mkdir -p $(RELEASE_PATH)
 	cp -RfL $(OUTPUT_PATH)/* $(RELEASE_PATH)/
 	cp INSTALL.txt $(RELEASE_PATH)/
+	cp bpt.module $(RELEASE_PATH)/
 	cp -Rf docs $(RELEASE_PATH)/
 # add a tag to the INFO file 
 	echo "" >> $(RELEASE_INFO)
