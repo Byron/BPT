@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "softTransformationEngine.h"
-
+#include <maya/MFnDagNode.h>
 
 //////////////////////////////////////////////////////////////////////
 // Statische Objekte
@@ -1266,20 +1266,23 @@ void	softTransformationEngine::saveMeshPathes()
 	}
 	
 
-				MPlugArray connections;
-				
-				MPlug thisOutMesh(thisNode, outMesh);
-				
-				thisOutMesh.connectedTo(connections,false, true);
+	MPlugArray connections;
+	MPlug thisOutMesh(thisNode, outMesh);
+	thisOutMesh.connectedTo(connections,false, true);
 
-				// Da die nächste Node die visMeshnode ist, muss man noch eine stufe weiter gehen
-				connections[0].connectedTo(connections, false, true);
-
-				MDagPath::getAPathTo(connections[0].node() ,meshPath);
-
-				meshTransform = meshPath;
-				
-				meshTransform.pop();	
+	// Da die nächste Node die visMeshnode ist, muss man noch eine stufe weiter gehen
+	if( connections.length() == 0 )
+		return;
+	
+	connections[0].connectedTo(connections, false, true);
+	if( connections.length() == 0 )
+		return;
+	
+	MFnDagNode dagfn( connections[0].node() );
+	dagfn.getPath( meshPath );
+	
+	meshTransform = meshPath;
+	meshTransform.pop();	
 }
 
 //--------------------------------------------------------------------------------------

@@ -459,11 +459,12 @@ MStatus ByronsPolyToolsNode::doCompleteCompute(MDataBlock& data)
 				// IN/OUTMESH HANDLES HOLEN
 				// ***************************
 
-				MDataHandle inMeshHandle = data.inputValue(BPTinMesh);
+				MDataHandle inMeshHandle = data.inputValue(BPTinMesh, &status );
 				MDataHandle outMeshHandle = data.outputValue(BPToutMesh);
 				
 				
 				// INITIALVTXCOUNT SETZEN
+				inMeshHandle.data();
 				MFnMesh meshFn(inMeshHandle.asMesh());
 				initialVtxCount = meshFn.numVertices();
 
@@ -820,12 +821,11 @@ MStatus		ByronsPolyToolsNode::compute(const MPlug& plug, MDataBlock& data)
 		
 	//	INVIS(cout<<"Plug in BPTCompute ist: "<<plug.name()<<endl);		
 
-		if(stateHandle.asShort() == 1)
+		if(stateHandle.asShort() != 0)
 		{
 			MDataHandle inMeshHandle = data.inputValue(BPTinMesh);
 			MDataHandle outMeshHandle = data.outputValue(BPToutMesh);
 
-//			inMesh direkt an outMesh und MObject mesh an factory geben
 			outMeshHandle.set(inMeshHandle.asMesh());
 			outMeshHandle.setClean();
 
@@ -860,7 +860,7 @@ MStatus		ByronsPolyToolsNode::compute(const MPlug& plug, MDataBlock& data)
 				if(meshDirty)
 				{
 					MPRINT("COMPLETE COMPUTE!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-
+					
 					status = doCompleteCompute(data);
 					
 					INVIS(cout<<"MeshDirty ist "<<meshDirty<<endl;)

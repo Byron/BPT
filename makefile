@@ -27,7 +27,7 @@ MAYA_BASE = $(MAYA_VERSION)$(PLATFORM)
 SDK_PATH = $(B_MAYA_SDK)/$(MAYA_BASE)
 INCLUDE_FLAGS = -I. -I./include -I$(SDK_PATH)/include
 LINK_FLAGS = -L$(SDK_PATH)/lib -lFoundation -lOpenMaya -lOpenMayaAnim -lOpenMayaUI
-DEFINE_FLAGS ?= -DLINUX -DREQUIRE_IOSTREAM -D_BOOL
+DEFINE_FLAGS ?= -DLINUX -DREQUIRE_IOSTREAM -D_BOOL -DBits64_
 
 # fully qualified path to catch all our output
 COMPILE_PATH = $(BPT_TMP_PATH)/_obj_/$(MAYA_BASE)
