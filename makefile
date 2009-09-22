@@ -59,7 +59,7 @@ $(DEPFILE):
 	
 
 default:
-	@echo "make clean|build(8.5|2008|2009)|release(8.5|2008|2009)"
+	@echo "make clean|build|release
 	false
 
 

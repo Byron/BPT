@@ -1,0 +1,39 @@
+
+General Prepration for building BPT
+-----------------------------------
+The following environment varibles need to be setup to be able to build the project on windows.
+On linux, most of them will have a sane default, unless specified differently.
+
+* B_TMP_PATH
+  The path containing intermediate build files
+
+* B_[RELEASE|DEBUG]_OUTPUT_PATH
+  The path to which to copy the final built files or the debug versions respectively
+
+* B_SDK_MAYA ( to be set on linux and windows )
+  Specifies a folder containing all maya sdk's in a directory structur similar to the following:
+  ${B_SDK_MAYA}/<maya version>x<os bits>
+                                       /lib
+                                       /include
+  i.e. ${B_SDK_MAYA}/2008x64 
+  Please note that the build system will assume the lib folders are compatible to your current operating system.
+  On windows, these must be windows libraries, on linux the respective linux libraries.
+  NOTE: As Autodesk Maya is no free software, everyone who wants to build BPT needs to provide the Maya SDK by himself.
+
+
+
+Building BPT on Windows:
+------------------------ 
+	* Open BPT_VS2005.sln in Visual studio 2005 and try to build in the respective 
+	  configuration.
+	  
+Releasing BPT on Windows:
+-------------------------
+    * Is a manual process, currently only done by Sebastian Thiel
+	  
+Building BPT on Linux
+---------------------
+    * type ./build and follow the instructions
+    
+Releasing BPT on Linux
+    * type ./release and follow the instructions. Currently only done by Sebastian Thiel

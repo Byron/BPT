@@ -4,3 +4,4 @@
 *.idc
 *.obj
 .depends_*
+builddata/
