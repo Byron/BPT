@@ -78,8 +78,8 @@ function _callMake () {
 	# PARSE ARGUMENTS
 	###################
 	# parse the versions from the possible additional args
-	local maya_versions=(8.5 2008 2009)
-	local compilers=( 	  g++402 g++412 g++412 	)
+	local maya_versions=(8.5 2008 2009 2010 )
+	local compilers=( 	  g++402 g++412 g++412 g++412 	)
 	if [[ ${#maya_versions[*]} != ${#compilers[*]} ]]; then
 		echo "ASSERTION FAILED: Each maya version needs the corresponding cxx compiler entry"
 		exit 2
