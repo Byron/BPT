@@ -200,15 +200,6 @@ void visualizeMeshNode::draw( M3dView & view, const MDagPath & path,
 		return;
 
 
-	if ( view.isColorIndexMode() ) 
-	{
-		MGlobal::displayError("Can't update vtx colors in color index mode\n");
-		return;
-	}
-
-
-
-
 
 	//MeshData holen
 	plug.setAttribute(inputMesh);

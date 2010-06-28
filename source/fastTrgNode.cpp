@@ -114,7 +114,7 @@ fastTrgNode::triangulateFace(
 	const float 	*vert, 			// I: face vertex position
 	const float 	*norm, 			// I: face normals per vertex
 	const int		*loopSizes,		// I: number of vertices per loop 
-	const int		nbLoops,		// I: number of loops in the face	
+	const int		nbLoops,		// I: number of loops in the face
 	const int 		nbTrg,			// I: number of triangles to generate
 	unsigned short *trg				// O: triangles - size = 3*nbTrg. 
 									//    Note: this array is already allocated.

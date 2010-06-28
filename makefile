@@ -5,7 +5,7 @@
 .DEFAULT_GOAL = default
 
 # default for m2008 and m2009
-maya_versions ?= 8.5 2008 2009
+maya_versions ?= 8.5 2008 2009 2010 2011
 B_TMP_PATH ?= builddata
 # separate subfolder for BPT in case the folder is used by others
 BPT_TMP_PATH = $(B_TMP_PATH)/BPT
