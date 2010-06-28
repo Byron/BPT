@@ -10,6 +10,8 @@ Global
 		Release_2009_static|x64 = Release_2009_static|x64
 		Release_2010_static|Win32 = Release_2010_static|Win32
 		Release_2010_static|x64 = Release_2010_static|x64
+		Release_2011_static|Win32 = Release_2011_static|Win32
+		Release_2011_static|x64 = Release_2011_static|x64
 		Release_60_static|Win32 = Release_60_static|Win32
 		Release_60_static|x64 = Release_60_static|x64
 		Release_65_static|Win32 = Release_65_static|Win32
@@ -40,6 +42,10 @@ Global
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_2010_static|Win32.Build.0 = Release_2010_static|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_2010_static|x64.ActiveCfg = Release_2010_static|x64
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_2010_static|x64.Build.0 = Release_2010_static|x64
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_2011_static|Win32.ActiveCfg = Release_2011_static|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_2011_static|Win32.Build.0 = Release_2011_static|Win32
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_2011_static|x64.ActiveCfg = Release_2011_static|x64
+		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_2011_static|x64.Build.0 = Release_2011_static|x64
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_60_static|Win32.ActiveCfg = Release_60_static|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_60_static|Win32.Build.0 = Release_60_static|Win32
 		{FD894094-15F1-4BB9-BC88-263810486BE4}.Release_60_static|x64.ActiveCfg = Release_60_static|x64
